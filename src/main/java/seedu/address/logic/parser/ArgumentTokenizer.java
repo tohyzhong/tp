@@ -6,38 +6,47 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
- *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
- * 1. An argument's value can be an empty string e.g. the value of {@code k/} in the above example.<br>
- * 2. Leading and trailing whitespaces of an argument value will be discarded.<br>
- * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
- *    in the above example.<br>
+ * Tokenizes arguments string of the form:
+ * {@code preamble <prefix>value <prefix>value ...}<br>
+ * e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July} where prefixes
+ * are {@code t/ k/ m/}.<br>
+ * 1. An argument's value can be an empty string e.g. the value of {@code k/} in
+ * the above example.<br>
+ * 2. Leading and trailing whitespaces of an argument value will be
+ * discarded.<br>
+ * 3. An argument may be repeated and all its values will be accumulated e.g.
+ * the value of {@code t/}
+ * in the above example.<br>
  */
 public class ArgumentTokenizer {
 
     /**
-     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
-     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object
+     * that maps prefixes to their
+     * respective argument values. Only the given prefixes will be recognized in the
+     * arguments string.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param argsString Arguments string of the form:
+     *                   {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @return ArgumentMultimap object that maps prefixes to their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        return extractArguments(argsString, positions);
+        List<PrefixPosition> positions = ArgumentTokenizer.findAllPrefixPositions(argsString, prefixes);
+        return ArgumentTokenizer.extractArguments(argsString, positions);
     }
 
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param argsString Arguments string of the form:
+     *                   {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to find in the arguments string
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @return List of zero-based prefix positions in the given arguments string
      */
     private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
         return Arrays.stream(prefixes)
-                .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
+                .flatMap(prefix -> ArgumentTokenizer.findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
     }
 
@@ -47,11 +56,11 @@ public class ArgumentTokenizer {
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
 
-        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
+        int prefixPosition = ArgumentTokenizer.findPrefixPosition(argsString, prefix.getPrefix(), 0);
         while (prefixPosition != -1) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
-            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+            prefixPosition = ArgumentTokenizer.findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
         }
 
         return positions;
@@ -76,13 +85,17 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
-     * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
+     * Extracts prefixes and their argument values, and returns an
+     * {@code ArgumentMultimap} object that maps the
+     * extracted prefixes to their respective arguments. Prefixes are extracted
+     * based on their zero-based positions in
      * {@code argsString}.
      *
-     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @param argsString      Arguments string of the form:
+     *                        {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixPositions Zero-based positions of all prefixes in
+     *                        {@code argsString}
+     * @return ArgumentMultimap object that maps prefixes to their arguments
      */
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
 
@@ -102,7 +115,8 @@ public class ArgumentTokenizer {
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
             // Extract and store prefixes and their arguments
             Prefix argPrefix = prefixPositions.get(i).getPrefix();
-            String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));
+            String argValue = ArgumentTokenizer.extractArgumentValue(argsString, prefixPositions.get(i),
+                    prefixPositions.get(i + 1));
             argMultimap.put(argPrefix, argValue);
         }
 
@@ -110,12 +124,13 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
+     * Returns the trimmed value of the argument in the arguments string specified
+     * by {@code currentPrefixPosition}.
      * The end position of the value is determined by {@code nextPrefixPosition}.
      */
     private static String extractArgumentValue(String argsString,
-                                        PrefixPosition currentPrefixPosition,
-                                        PrefixPosition nextPrefixPosition) {
+            PrefixPosition currentPrefixPosition,
+            PrefixPosition nextPrefixPosition) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
@@ -137,11 +152,11 @@ public class ArgumentTokenizer {
         }
 
         int getStartPosition() {
-            return startPosition;
+            return this.startPosition;
         }
 
         Prefix getPrefix() {
-            return prefix;
+            return this.prefix;
         }
     }
 

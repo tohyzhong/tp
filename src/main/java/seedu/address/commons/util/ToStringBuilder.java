@@ -1,7 +1,8 @@
 package seedu.address.commons.util;
 
 /**
- * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
+ * Builds a string representation of an object that is suitable as the return
+ * value of {@link Object#toString()}.
  */
 public class ToStringBuilder {
     private static final String OBJECT_PREFIX = "{";
@@ -13,14 +14,16 @@ public class ToStringBuilder {
     private boolean hasField;
 
     /**
-     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with {@code objectName}.
+     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed
+     * with {@code objectName}.
      */
     public ToStringBuilder(String objectName) {
-        stringBuilder.append(objectName).append(OBJECT_PREFIX);
+        this.stringBuilder.append(objectName).append(ToStringBuilder.OBJECT_PREFIX);
     }
 
     /**
-     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with the
+     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed
+     * with the
      * canonical class name of {@code object}.
      */
     public ToStringBuilder(Object object) {
@@ -30,16 +33,17 @@ public class ToStringBuilder {
     /**
      * Adds a field name/value pair to the output string.
      *
-     * @param fieldName The name of the field.
+     * @param fieldName  The name of the field.
      * @param fieldValue The value of the field.
-     * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be chained.
+     * @return A reference to this {@code ToStringBuilder} object, allowing method
+     *         calls to be chained.
      */
     public ToStringBuilder add(String fieldName, Object fieldValue) {
-        if (hasField) {
-            stringBuilder.append(FIELD_SEPARATOR);
+        if (this.hasField) {
+            this.stringBuilder.append(ToStringBuilder.FIELD_SEPARATOR);
         }
-        stringBuilder.append(fieldName).append(FIELD_NAME_VALUE_SEPARATOR).append(fieldValue);
-        hasField = true;
+        this.stringBuilder.append(fieldName).append(ToStringBuilder.FIELD_NAME_VALUE_SEPARATOR).append(fieldValue);
+        this.hasField = true;
         return this;
     }
 
@@ -48,6 +52,6 @@ public class ToStringBuilder {
      */
     @Override
     public String toString() {
-        return stringBuilder.toString() + OBJECT_SUFFIX;
+        return this.stringBuilder.toString() + ToStringBuilder.OBJECT_SUFFIX;
     }
 }

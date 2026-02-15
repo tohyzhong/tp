@@ -18,8 +18,9 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
-     * otherwise returns false.
+     * Returns true if {@code path} can be converted into a {@code Path} via
+     * {@link Paths#get(String)}, otherwise returns false.
+     *
      * @param path A string representing the file path. Cannot be null.
      */
     public static boolean isValidPath(String path) {
@@ -32,24 +33,27 @@ public class FileUtil {
     }
 
     /**
-     * Creates a file if it does not exist along with its missing parent directories.
+     * Creates a file if it does not exist along with its missing parent
+     * directories.
+     *
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
-        if (!isFileExists(file)) {
-            createFile(file);
+        if (!FileUtil.isFileExists(file)) {
+            FileUtil.createFile(file);
         }
     }
 
     /**
-     * Creates a file if it does not exist along with its missing parent directories.
+     * Creates a file if it does not exist along with its missing parent
+     * directories.
      */
     public static void createFile(Path file) throws IOException {
         if (Files.exists(file)) {
             return;
         }
 
-        createParentDirsOfFile(file);
+        FileUtil.createParentDirsOfFile(file);
 
         Files.createFile(file);
     }
@@ -69,7 +73,7 @@ public class FileUtil {
      * Assumes file exists
      */
     public static String readFromFile(Path file) throws IOException {
-        return new String(Files.readAllBytes(file), CHARSET);
+        return new String(Files.readAllBytes(file), FileUtil.CHARSET);
     }
 
     /**
@@ -77,7 +81,7 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
+        Files.write(file, content.getBytes(FileUtil.CHARSET));
     }
 
 }

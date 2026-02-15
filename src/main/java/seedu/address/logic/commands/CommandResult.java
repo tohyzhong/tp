@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -23,7 +21,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.feedbackToUser = Objects.requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -37,15 +35,15 @@ public class CommandResult {
     }
 
     public String getFeedbackToUser() {
-        return feedbackToUser;
+        return this.feedbackToUser;
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return this.showHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return this.exit;
     }
 
     @Override
@@ -60,22 +58,22 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+        return this.feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && this.showHelp == otherCommandResult.showHelp
+                && this.exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(this.feedbackToUser, this.showHelp, this.exit);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("feedbackToUser", feedbackToUser)
-                .add("showHelp", showHelp)
-                .add("exit", exit)
+                .add("feedbackToUser", this.feedbackToUser)
+                .add("showHelp", this.showHelp)
+                .add("exit", this.exit)
                 .toString();
     }
 

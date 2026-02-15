@@ -20,7 +20,7 @@ public class AppParameters {
     private Path configPath;
 
     public Path getConfigPath() {
-        return configPath;
+        return this.configPath;
     }
 
     public void setConfigPath(Path configPath) {
@@ -36,7 +36,7 @@ public class AppParameters {
 
         String configPathParameter = namedParameters.get("config");
         if (configPathParameter != null && !FileUtil.isValidPath(configPathParameter)) {
-            logger.warning("Invalid config path " + configPathParameter + ". Using default config path.");
+            AppParameters.logger.warning("Invalid config path " + configPathParameter + ". Using default config path.");
             configPathParameter = null;
         }
         appParameters.setConfigPath(configPathParameter != null ? Paths.get(configPathParameter) : null);
@@ -56,18 +56,18 @@ public class AppParameters {
         }
 
         AppParameters otherAppParameters = (AppParameters) other;
-        return Objects.equals(configPath, otherAppParameters.configPath);
+        return Objects.equals(this.configPath, otherAppParameters.configPath);
     }
 
     @Override
     public int hashCode() {
-        return configPath.hashCode();
+        return this.configPath.hashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("configPath", configPath)
+                .add("configPath", this.configPath)
                 .toString();
     }
 }

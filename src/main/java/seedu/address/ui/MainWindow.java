@@ -25,7 +25,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
+    private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     private Stage primaryStage;
     private Logic logic;
@@ -54,30 +54,31 @@ public class MainWindow extends UiPart<Stage> {
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
-        super(FXML, primaryStage);
+        super(MainWindow.FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        this.setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        this.setAccelerators();
 
-        helpWindow = new HelpWindow();
+        this.helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
-        return primaryStage;
+        return this.primaryStage;
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        this.setAccelerator(this.helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -98,7 +99,7 @@ public class MainWindow extends UiPart<Stage> {
          * help window purposely so to support accelerators even when focus is
          * in CommandBox or ResultDisplay.
          */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        this.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
@@ -110,28 +111,28 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        this.personListPanel = new PersonListPanel(this.logic.getFilteredPersonList());
+        this.personListPanelPlaceholder.getChildren().add(this.personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        this.resultDisplay = new ResultDisplay();
+        this.resultDisplayPlaceholder.getChildren().add(this.resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(this.logic.getAddressBookFilePath());
+        this.statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        this.commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+        this.primaryStage.setHeight(guiSettings.getWindowHeight());
+        this.primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
-            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
-            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+            this.primaryStage.setX(guiSettings.getWindowCoordinates().getX());
+            this.primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
 
@@ -140,15 +141,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
+        if (!this.helpWindow.isShowing()) {
+            this.helpWindow.show();
         } else {
-            helpWindow.focus();
+            this.helpWindow.focus();
         }
     }
 
     void show() {
-        primaryStage.show();
+        this.primaryStage.show();
     }
 
     /**
@@ -156,15 +157,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        GuiSettings guiSettings = new GuiSettings(this.primaryStage.getWidth(), this.primaryStage.getHeight(),
+                (int) this.primaryStage.getX(), (int) this.primaryStage.getY());
+        this.logic.setGuiSettings(guiSettings);
+        this.helpWindow.hide();
+        this.primaryStage.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+        return this.personListPanel;
     }
 
     /**
@@ -174,22 +175,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            CommandResult commandResult = this.logic.execute(commandText);
+            this.logger.info("Result: " + commandResult.getFeedbackToUser());
+            this.resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                this.handleHelp();
             }
 
             if (commandResult.isExit()) {
-                handleExit();
+                this.handleExit();
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            this.logger.info("An error occurred while executing command: " + commandText);
+            this.resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

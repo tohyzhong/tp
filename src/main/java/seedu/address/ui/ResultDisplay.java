@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -17,12 +17,12 @@ public class ResultDisplay extends UiPart<Region> {
     private TextArea resultDisplay;
 
     public ResultDisplay() {
-        super(FXML);
+        super(ResultDisplay.FXML);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        resultDisplay.setText(feedbackToUser);
+        Objects.requireNonNull(feedbackToUser);
+        this.resultDisplay.setText(feedbackToUser);
     }
 
 }

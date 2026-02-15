@@ -5,10 +5,14 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Represents a zero-based or one-based index.
  *
- * {@code Index} should be used right from the start (when parsing in a new user input), so that if the current
- * component wants to communicate with another component, it can send an {@code Index} to avoid having to know what
- * base the other component is using for its index. However, after receiving the {@code Index}, that component can
- * convert it back to an int if the index will not be passed to a different component again.
+ * {@code Index} should be used right from the start (when parsing in a new user
+ * input), so that if the current
+ * component wants to communicate with another component, it can send an
+ * {@code Index} to avoid having to know what
+ * base the other component is using for its index. However, after receiving the
+ * {@code Index}, that component can
+ * convert it back to an int if the index will not be passed to a different
+ * component again.
  */
 public class Index {
     private int zeroBasedIndex;
@@ -26,11 +30,11 @@ public class Index {
     }
 
     public int getZeroBased() {
-        return zeroBasedIndex;
+        return this.zeroBasedIndex;
     }
 
     public int getOneBased() {
-        return zeroBasedIndex + 1;
+        return this.zeroBasedIndex + 1;
     }
 
     /**
@@ -59,11 +63,11 @@ public class Index {
         }
 
         Index otherIndex = (Index) other;
-        return zeroBasedIndex == otherIndex.zeroBasedIndex;
+        return this.zeroBasedIndex == otherIndex.zeroBasedIndex;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("zeroBasedIndex", zeroBasedIndex).toString();
+        return new ToStringBuilder(this).add("zeroBasedIndex", this.zeroBasedIndex).toString();
     }
 }

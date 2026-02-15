@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,15 +12,16 @@ public class CollectionUtil {
 
     /** @see #requireAllNonNull(Collection) */
     public static void requireAllNonNull(Object... items) {
-        requireNonNull(items);
+        Objects.requireNonNull(items);
         Stream.of(items).forEach(Objects::requireNonNull);
     }
 
     /**
-     * Throws NullPointerException if {@code items} or any element of {@code items} is null.
+     * Throws NullPointerException if {@code items} or any element of {@code items}
+     * is null.
      */
     public static void requireAllNonNull(Collection<?> items) {
-        requireNonNull(items);
+        Objects.requireNonNull(items);
         items.forEach(Objects::requireNonNull);
     }
 

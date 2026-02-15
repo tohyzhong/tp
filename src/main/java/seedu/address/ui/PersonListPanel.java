@@ -24,13 +24,14 @@ public class PersonListPanel extends UiPart<Region> {
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
-        super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        super(PersonListPanel.FXML);
+        this.personListView.setItems(personList);
+        this.personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using
+     * a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
         @Override
@@ -38,10 +39,10 @@ public class PersonListPanel extends UiPart<Region> {
             super.updateItem(person, empty);
 
             if (empty || person == null) {
-                setGraphic(null);
-                setText(null);
+                this.setGraphic(null);
+                this.setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                this.setGraphic(new PersonCard(person, this.getIndex() + 1).getRoot());
             }
         }
     }

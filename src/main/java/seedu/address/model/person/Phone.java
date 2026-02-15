@@ -1,7 +1,8 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.util.Objects;
+
+import seedu.address.commons.util.AppUtil;
 
 /**
  * Represents a Person's phone number in the address book.
@@ -9,9 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = """
+            Phone numbers should only contain numbers, and it should be at least 3 digits long""";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -21,21 +21,21 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        Objects.requireNonNull(phone);
+        AppUtil.checkArgument(Phone.isValidPhone(phone), Phone.MESSAGE_CONSTRAINTS);
+        this.value = phone;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(Phone.VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return this.value;
     }
 
     @Override
@@ -50,12 +50,12 @@ public class Phone {
         }
 
         Phone otherPhone = (Phone) other;
-        return value.equals(otherPhone.value);
+        return this.value.equals(otherPhone.value);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.value.hashCode();
     }
 
 }
