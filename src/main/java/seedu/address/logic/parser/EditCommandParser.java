@@ -30,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Objects.requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
                 CliSyntax.PREFIX_EMAIL,
-                CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_REMARK, CliSyntax.PREFIX_TAG);
 
         Index index;
 
@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                CliSyntax.PREFIX_ADDRESS);
+                CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_REMARK);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -58,6 +58,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor
                     .setAddress(ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_REMARK).isPresent()) {
+            editPersonDescriptor
+                    .setRemark(ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get()));
         }
         this.parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

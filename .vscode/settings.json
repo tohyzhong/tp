@@ -19,7 +19,9 @@
     "editor.insertSpaces": true
   },
   "redhat.telemetry.enabled": true,
-  "editor.rulers": [120],
+  "editor.rulers": [
+    120
+  ],
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
   },
@@ -38,5 +40,6 @@
     "source.organizeImports": "always"
   },
   "[gradle]": {},
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
