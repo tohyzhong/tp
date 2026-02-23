@@ -1,6 +1,6 @@
 ---
 layout: default.md
-  title: "About Us"
+title: "About Us"
 ---
 # About Us
 
@@ -10,11 +10,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Li Zuyi
 ### Toh Yi Zhong
 
-<img src="images/lizuyi.png" width="200px">
 <img src="images/tohyzhong.png" width="200px">
+
+[[linkedin](https://www.linkedin.com/in/yizhongtoh)]
+[[github](https://github.com/tohyzhong)]
+[[portfolio](team/tohyzhong.md)]
+
+* Role: Developer
+
+### Li Zuyi
+
+<img src="images/lizuyi.png" width="200px">
 
 [[homepage](https://www.linkedin.com/in/zuyi-li-ba692b327/)]
 [[github](https://github.com/ZSYUYIIE)]
@@ -24,7 +32,7 @@ Major: Computer Science Year 2
 
 Nationality: Chinese
 
-* Role: Nil
+* Role: Developer
 
 ### Wong Eu En
 
@@ -33,48 +41,5 @@ Nationality: Chinese
 [[linkedin](https://www.linkedin.com/in/eu-en-wong-1547b9234/)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/euenw.md)]
-[[linkedin](https://www.linkedin.com/in/yizhongtoh)]
-[[github](https://github.com/tohyzhong)]
-[[portfolio](team/tohyzhong.md)]
 
 * Role: Developer
-* Role: Developer
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
