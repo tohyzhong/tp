@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wong Eu En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euenw.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[linkedin](https://www.linkedin.com/in/eu-en-wong-1547b9234/)]
 [[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/euenw.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 
