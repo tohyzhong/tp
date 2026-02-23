@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/lizuyi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[homepage](https://www.linkedin.com/in/zuyi-li-ba692b327/)]
 [[github](https://github.com/ZSYUYIIE)]
 [[portfolio](team/lizuyi.md)]
 
