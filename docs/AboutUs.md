@@ -2,11 +2,10 @@
 layout: default.md
 title: "About Us"
 ---
+
 # About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -41,5 +40,15 @@ Nationality: Chinese
 [[linkedin](https://www.linkedin.com/in/eu-en-wong-1547b9234/)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/euenw.md)]
+
+* Role: Developer
+
+### Terry Si
+
+<img src="images/blerargh.png" width="200px">
+
+[[linkedin](https://www.linkedin.com/in/terry-si/)]
+[[github](https://github.com/blerargh)]
+[[portfolio](team/blerargh.md)]
 
 * Role: Developer
