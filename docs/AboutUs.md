@@ -24,6 +24,16 @@ Nationality: Chinese
 
 * Role: Nil
 
+### Wong Eu En
+
+<img src="images/euenw.png" width="200px">
+
+[[linkedin](https://www.linkedin.com/in/eu-en-wong-1547b9234/)]
+[[github](https://github.com/johndoe)]
+[[portfolio](team/euenw.md)]
+
+* Role: Developer
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
