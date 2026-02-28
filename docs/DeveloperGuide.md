@@ -307,30 +307,26 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `ClassroomPlusPlus` and the **Actor** is the `user` (a teacher), unless specified otherwise)
 
-**Use Case 1: Add a New Contact**
+#### Use Case 1: Add a New Contact
 
 **MSS**
 
 1. User requests to add a contact with fields (Name, Phone, Email, Address, Class name, Assignment name).
-1. System validates the information.
-1. System saves the contact to contact list.
-1. System <u>shows contact list (Use Case 2)</u>.
+1. System <u>shows updated contact list (Use Case 2)</u>.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. User left optional fields blank (e.g. Class name, Assignment name).
-  * 2a1. System accepts the input and proceeds.
+* 1a. User left optional fields blank (e.g. Class name, Assignment name).
+  * 1a1. System accepts the input and proceeds.
+* 1b. A contact with the same Name and Phone number exists in contact list.
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
+* 1c. Invalid or missing fields.
+  * 1c1. System shows an error message.
+  * 1c2. Use case ends.
 
-* 2b. A contact with the same Name and Phone number exists in contact list.
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
-
-* 2c. Invalid fields
-  * 2c1. System shows an error message.
-  * 2c2. Use case ends.
-
-**Use Case 2: List Contacts**
+#### Use Case 2: List Contacts
 
 **MSS**
 
@@ -343,27 +339,24 @@ _{More to be added}_
 * 2a. No contacts exist in the list.
   * 2a1. System shows an empty list with a message indicating that no contacts exist.
 
-**Use Case 3: Add a New Class**
+#### Use Case 3: Add a New Class
 
 **MSS**
 
 1. User requests to add a class with fields (Class name).
-1. System validates the information.
-1. System saves the class to class list.
 1. System <u>shows class list (Use Case 4)</u>.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. A class with the same name exists in class list.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
+* 1a. A class with the same name exists in class list.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Invalid or missing fields.
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
 
-* 2b. Invalid fields
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
-
-**Use Case 4: List Classes**
+#### Use Case 4: List Classes
 
 **MSS**
 
@@ -377,32 +370,29 @@ _{More to be added}_
   * 2a1. System shows an empty list with a message indicating that no classes exist.
   * 2a2. Use case ends.
 
-**Use Case 5: Assign a Contact to a Class**
+#### Use Case 5: Assign a Contact to a Class
 
 **MSS**
 
 1. User requests to assign a contact to a class.
-1. System validates the contact and class.
 1. System assigns the contact to the class.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. Invalid contact or class.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
+* 1a. Invalid contact or class.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Contact is already assigned to the class.
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
 
-* 2b. Contact is already assigned to the class.
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
-
-**Use Case 6: Remove a Contact from a Class**
+#### Use Case 6: Remove a Contact from a Class
 
 **MSS**
 
 1. User <u>views the list of contacts assigned to a class (Use Case 18)</u>.
 1. User requests to remove a contact from the class.
-1. System validates the contact and class.
 1. System removes the contact from the class.
 1. Use case ends.
 
@@ -411,33 +401,30 @@ _{More to be added}_
 * 2a. Invalid contact or class.
   * 2a1. System shows an error message.
   * 2a2. Use case ends.
-
 * 2b. Contact is not assigned to the class.
   * 2b1. System shows an error message.
   * 2b2. Use case ends.
 
-**Use Case 7: Add a New Assignment**
+#### Use Case 7: Add a New Assignment
 
 **MSS**
 
 1. User requests to add an assignment with fields (Assignment name, Deadline, Class name, Contact indices).
-1. System validates the information.
-1. System saves the assignment to assignment list, and updates the contact list accordingly.
-1. System <u>shows assignment list (Use Case 8)</u>.
+1. System <u>shows updated assignment list (Use Case 8)</u>.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. A assignment with the same name exists in assignment list.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
-* 2b. Invalid fields
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
-* 2c. User left optional fields blank (e.g. Class name, Contact indices).
-  * 2c1. System accepts the input and proceeds.
+* 1a. A assignment with the same name exists in assignment list.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Invalid or missing fields.
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
+* 1c. User left optional fields blank (e.g. Class name, Contact indices).
+  * 1c1. System accepts the input and proceeds.
 
-**Use Case 8: List Assignments**
+#### Use Case 8: List Assignments
 
 **MSS**
 
@@ -451,68 +438,57 @@ _{More to be added}_
   * 2a1. System shows an empty list with a message indicating that no assignments exist.
   * 2a2. Use case ends.
 
-**Use Case 9: Assign an Assignment**
+#### Use Case 9: Assign an Assignment
 
 **MSS**
 
 1. User requests to assign an assignment with fields (Assignment name, Class name, Contact indices).
-1. System validates the assignment and contacts.
 1. System assigns the assignment to the contacts.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. Invalid assignment or contacts.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
+* 1a. Invalid assignment or contacts.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Assignment is already assigned to one of the contacts.
+  * 1b1. System proceeds with Step 3.
+* 1c. User left Class name field blank.
+  * 1c1. System proceeds with Step 3, assigning only to contacts specified.
+* 1d. User left Contact indices field blank.
+  * 1d1. System proceeds with Step 3, assigning to all contacts in the specified class.
 
-* 2b. Assignment is already assigned to one of the contacts.
-  * 2b1. System proceeds with Step 3.
-
-* 2c. User left Class name field blank.
-  * 2c1. System proceeds with Step 3, assigning only to contacts specified.
-
-* 2d. User left Contact indices field blank.
-  * 2d1. System proceeds with Step 3, assigning to all contacts in the specified class.
-
-**Use Case 10: Unassign an Assignment**
+#### Use Case 10: Unassign an Assignment
 
 **MSS**
 
 1. User <u>views the list of contacts assigned to an assignment (Use Case 19)</u>.
 1. User requests to unassign an assignment with fields (Assignment name, Class name, Contact indices).
-1. System validates the assignment and contacts.
 1. System unassigns the assignment from the contacts.
 1. Use case ends.
 
 **Extensions**
 
-* 3a. Invalid assignment, classname, or contacts.
-  * 3a1. System shows an error message.
-  * 3a2. Use case ends.
+* 2a. Invalid assignment, classname, or contacts.
+  * 2a1. System shows an error message.
+  * 2a2. Use case ends.
+* 2b. Assignment is not assigned to one of the contacts.
+  * 2b1. System proceeds with Step 3 without the contact.
+* 2c. User left Class name field blank.
+  * 2c1. System proceeds with Step 3, unassigning only from contacts specified.
+* 2d. User left Contact indices field blank.
+  * 2d1. System proceeds with Step 3, unassigning from all contacts in the specified class.
+* 2e. User left both Class name and Contact indices fields blank.
+  * 2e1. System proceeds with Step 3, unassigning from all contacts assigned to the assignment.
+* 2f. No contacts are assigned to the assignment.
+  * 2f1. System shows an error message.
+  * 2f2. Use case ends.
 
-* 3b. Assignment is not assigned to one of the contacts.
-  * 3b1. System proceeds with Step 4 without the contact.
-
-* 3c. User left Class name field blank.
-  * 3c1. System proceeds with Step 4, unassigning only from contacts specified.
-
-* 3d. User left Contact indices field blank.
-  * 3d1. System proceeds with Step 4, unassigning from all contacts in the specified class.
-
-* 3e. User left both Class name and Contact indices fields blank.
-  * 3e1. System proceeds with Step 4, unassigning from all contacts assigned to the assignment.
-
-* 3f. No contacts are assigned to the assignment.
-  * 3f1. System shows an error message.
-  * 3f2. Use case ends.
-
-**Use Case 11: Delete a Contact**
+#### Use Case 11: Delete a Contact
 
 **MSS**
 
 1. User requests to delete a contact.
-1. System validates the contact.
 1. System removes the contact from the contact list, any classes and assignments it is assigned to.
 1. Use case ends.
 
@@ -521,16 +497,14 @@ _{More to be added}_
 * 1a. Invalid contact.
   * 1a1. System shows an error message.
   * 1a2. Use case ends.
-  
 * 1b. User specified multiple contacts to delete.
   * 1b1. System repeats Steps 2 and 3 for all specified contacts.
 
-**Use Case 12: Delete a Class**
+#### Use Case 12: Delete a Class
 
 **MSS**
 
 1. User requests to delete a class.
-1. System validates the class.
 1. System removes the class from the class list, and from any students belonging to the class.
 1. Use case ends.
 
@@ -539,16 +513,14 @@ _{More to be added}_
 * 1a. Invalid class.
   * 1a1. System shows an error message.
   * 1a2. Use case ends.
-
 * 1b. User specified multiple classes to delete.
   * 1b1. System repeats Steps 2 and 3 for all classes.
 
-**Use Case 13: Delete an Assignment**
+#### Use Case 13: Delete an Assignment
 
 **MSS**
 
 1. User requests to delete an assignment.
-1. System validates the assignment.
 1. System removes the assignment from the assignment list, and from any students who have it assigned.
 1. Use case ends.
 
@@ -557,69 +529,65 @@ _{More to be added}_
 * 1a. Invalid assignment.
   * 1a1. System shows an error message.
   * 1a2. Use case ends.
-
 * 1b. User specified multiple assignments to delete.
   * 1b1. System repeats Steps 2 and 3 for all assignments.
 
 <!-- Start of non MVP feature use cases -->
 **The use cases below are for features that are not part of the MVP, but are proposed to be implemented if time permits.**
 
-**Use Case 14: Find a Contact**
+#### Use Case 14: Find a Contact
 
 **MSS**
 
 1. User requests to find contacts by name, phone, class, or email.
-1. System searches for contacts matching the query.
 1. System displays the matching contacts.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. No contacts match the search query.
-  * 2a1. System shows an empty list with a message indicating no matches found.
-  * 2a2. Use case ends.
-* 2b. Invalid search query (e.g. invalid field, or missing search keyword).
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
+* 1a. No contacts match the search query.
+  * 1a1. System shows an empty list with a message indicating no matches found.
+  * 1a2. Use case ends.
+* 1b. Invalid search query (e.g. invalid field, or missing search keyword).
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
 
-**Use Case 15: Find a Class**
+#### Use Case 15: Find a Class
 
 **MSS**
 
 1. User requests to find a class by name.
-1. System searches for classes matching the query.
 1. System displays the matching classes.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. No classes match the search query.
-  * 2a1. System shows an empty list with a message indicating no matches found.
-  * 2a2. Use case ends.
+* 1a. No classes match the search query.
+  * 1a1. System shows an empty list with a message indicating no matches found.
+  * 1a2. Use case ends.
 
-**Use Case 16: Find an Assignment**
+#### Use Case 16: Find an Assignment
 
 **MSS**
 
 1. User requests to find an assignment by name or deadline.
-1. System searches for assignments matching the query.
 1. System displays the matching assignments.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. No assignments match the search query.
-  * 2a1. System shows an empty list with a message indicating no matches found.
-  * 2a2. Use case ends.
-* 2b. Invalid search query (e.g. invalid field, or missing search keyword).
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
+* 1a. No assignments match the search query.
+  * 1a1. System shows an empty list with a message indicating no matches found.
+  * 1a2. Use case ends.
+* 1b. Invalid search query (e.g. invalid field, or missing search keyword).
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
 
-**Use Case 17: View a Contact**
+#### Use Case 17: View a Contact
 
 **MSS**
 
-1. User views the list of contacts (Use Case 2).
+1. User <u>views the list of contacts (Use Case 2)</u>.
 1. User requests to view a contact.
 1. System displays the contact details, including any assignments and their deadlines assigned to the contact.
 1. Use case ends.
@@ -630,11 +598,11 @@ _{More to be added}_
   * 2a1. System shows an error message.
   * 2a2. Use case ends.
 
-**Use Case 18: View a Class**
+#### Use Case 18: View a Class
 
 **MSS**
 
-1. User views the list of classes (Use Case 4).
+1. User <u>views the list of classes (Use Case 4)</u>.
 1. User requests to view a class.
 1. System displays the class details and associated contacts.
 1. Use case ends.
@@ -645,11 +613,11 @@ _{More to be added}_
   * 2a1. System shows an error message.
   * 2a2. Use case ends.
 
-**Use Case 19: View an Assignment**
+#### Use Case 19: View an Assignment
 
 **MSS**
 
-1. User views the list of assignments (Use Case 8).
+1. User <u>views the list of assignments (Use Case 8)</u>.
 1. User requests to view an assignment.
 1. System displays the assignment details and associated contacts.
 1. Use case ends.
@@ -660,7 +628,7 @@ _{More to be added}_
   * 2a1. System shows an error message.
   * 2a2. Use case ends.
 
-**Use Case 20: Update Submission Status of an Assignment**
+#### Use Case 20: Update Submission Status of an Assignment
 
 **MSS**
 
@@ -673,83 +641,45 @@ _{More to be added}_
 * 1a. Invalid contact or assignment.
   * 1a1. System shows an error message.
   * 1a2. Use case ends.
-
 * 1b. Contact is not assigned the assignment.
   * 1b1. System shows an error message.
   * 1b2. Use case ends.
 
-**Use Case 21: Mark an Assignment**
+#### Use Case 21: Mark an Assignment
 
 **MSS**
 
 1. User requests to mark an assignment for a contact with a score.
-1. System validates the assignment and contact.
 1. System marks the assignment as graded for the contact and sets the score.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. Invalid assignment or contact.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
+* 1a. Invalid assignment or contact.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Assignment is already graded for the contact.
+  * 1b1. System continues with Step 3, overwriting the previous score.
+* 1c. Invalid score.
+  * 1c1. System shows an error message.
+  * 1c2. Use case ends.
 
-* 2b. Assignment is already graded for the contact.
-  * 2b1. System continues with Step 3, overwriting the previous score.
-
-* 2c. Invalid score.
-  * 2c1. System shows an error message.
-  * 2c2. Use case ends.
-
-**Use Case 22: Unmark an Assignment**
+#### Use Case 22: Unmark an Assignment
 
 **MSS**
 
 1. User requests to unmark an assignment for a contact.
-1. System validates the assignment and contact.
 1. System ungrades the assignment for the contact and removes the score.
 1. Use case ends.
 
 **Extensions**
 
-* 2a. Invalid assignment or contact.
-  * 2a1. System shows an error message.
-  * 2a2. Use case ends.
-
-* 2b. Assignment is not marked for the contact.
-  * 2b1. System shows an error message.
-  * 2b2. Use case ends.
-
-<!-- **Use Case 23: Archive a Contact**
-
-**Use Case 24: Archive a Class**
-
-**Use Case 25: Archive an Assignment**
-
-**Use Case 26: Sort Contacts**
-
-**Use Case 27: Sort Classes**
-
-**Use Case 28: Sort Assignments**
-
-**Use Case 29: Export Data**
-
-**Use Case 30: Import Data**
-
-**Use Case 31: Add a Note to a Contact**
-
-**Use Case 32: Remove a Note from a Contact**
-
-**Use Case 33: Add a Tag to a Contact**
-
-**Use Case 34: Remove a Tag from a Contact**
-
-**Use Case 35: Undo an Action**
-
-**Use Case 36: View Input History**
-
-**Use Case 37: Copy Email Address of Selected Contacts**
-
-**Use Case 38: Edit a Contact** -->
+* 1a. Invalid assignment or contact.
+  * 1a1. System shows an error message.
+  * 1a2. Use case ends.
+* 1b. Assignment is not marked for the contact.
+  * 1b1. System shows an error message.
+  * 1b2. Use case ends.
 
 ### Non-Functional Requirements
 
