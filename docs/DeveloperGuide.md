@@ -312,7 +312,7 @@ _{More to be added}_
 **MSS**
 
 1. User requests to add a contact with fields (Name, Phone, Email, Address, Class name, Assignment name).
-1. System <u>shows updated contact list (Use Case 2)</u>.
+1. System <u>[shows updated contact list (Use Case 2)](#use-case-2-list-contacts)</u>.
 1. Use case ends.
 
 **Extensions**
@@ -344,7 +344,7 @@ _{More to be added}_
 **MSS**
 
 1. User requests to add a class with fields (Class name).
-1. System <u>shows class list (Use Case 4)</u>.
+1. System <u>[shows class list (Use Case 4)](#use-case-4-list-classes)</u>.
 1. Use case ends.
 
 **Extensions**
@@ -391,7 +391,7 @@ _{More to be added}_
 
 **MSS**
 
-1. User <u>views the list of contacts assigned to a class (Use Case 18)</u>.
+1. User <u>[views the list of contacts assigned to a class (Use Case 18)](#use-case-18-view-a-class)</u>.
 1. User requests to remove a contact from the class.
 1. System removes the contact from the class.
 1. Use case ends.
@@ -410,7 +410,7 @@ _{More to be added}_
 **MSS**
 
 1. User requests to add an assignment with fields (Assignment name, Deadline, Class name, Contact indices).
-1. System <u>shows updated assignment list (Use Case 8)</u>.
+1. System <u>[shows updated assignment list (Use Case 8)](#use-case-8-list-assignments)</u>.
 1. Use case ends.
 
 **Extensions**
@@ -462,7 +462,7 @@ _{More to be added}_
 
 **MSS**
 
-1. User <u>views the list of contacts assigned to an assignment (Use Case 19)</u>.
+1. User <u>[views the list of contacts assigned to an assignment (Use Case 19)](#use-case-19-view-an-assignment)</u>.
 1. User requests to unassign an assignment with fields (Assignment name, Class name, Contact indices).
 1. System unassigns the assignment from the contacts.
 1. Use case ends.
@@ -587,7 +587,7 @@ _{More to be added}_
 
 **MSS**
 
-1. User <u>views the list of contacts (Use Case 2)</u>.
+1. User <u>[views the list of contacts (Use Case 2)](#use-case-2-list-contacts)</u>.
 1. User requests to view a contact.
 1. System displays the contact details, including any assignments and their deadlines assigned to the contact.
 1. Use case ends.
@@ -602,7 +602,7 @@ _{More to be added}_
 
 **MSS**
 
-1. User <u>views the list of classes (Use Case 4)</u>.
+1. User <u>[views the list of classes (Use Case 4)](#use-case-4-list-classes)</u>.
 1. User requests to view a class.
 1. System displays the class details and associated contacts.
 1. Use case ends.
@@ -617,7 +617,7 @@ _{More to be added}_
 
 **MSS**
 
-1. User <u>views the list of assignments (Use Case 8)</u>.
+1. User <u>[views the list of assignments (Use Case 8)](#use-case-8-list-assignments)</u>.
 1. User requests to view an assignment.
 1. System displays the assignment details and associated contacts.
 1. Use case ends.
