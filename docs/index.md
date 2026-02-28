@@ -5,8 +5,9 @@
 
 # AddressBook Level-3
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![Java CI](https://github.com/AY2526S2-CS2103T-T10-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S2-CS2103T-T10-1/tp/actions/workflows/gradle.yml)
+[![MarkBind Action](https://github.com/AY2526S2-CS2103T-T10-1/tp/actions/workflows/docs.yml/badge.svg)](https://github.com/AY2526S2-CS2103T-T10-1/tp/actions/workflows/docs.yml)
+[![codecov](https://codecov.io/gh/AY2526S2-CS2103T-T10-1/tp/graph/badge.svg?token=NQXZAWCVKG)](https://codecov.io/gh/AY2526S2-CS2103T-T10-1/tp)
 
 ![Ui](images/Ui.png)
 
@@ -14,7 +15,6 @@
 
 * If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-
 
 **Acknowledgements**
 
