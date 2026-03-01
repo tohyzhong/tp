@@ -329,9 +329,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should respond to user commands within 2 seconds to ensure a smooth user experience.
+5. Should be capable of handling up to 50 classes and 500 assignments without noticeable reduction in performance for typical usage.
+6. Should launch and load existing data within 5 seconds.
+7. Should gracefully handle invalid inputs by providing clear, red-colored error messages instructing the user on the correct format.
+8. Should work well for standard screen resolutions of 1920x1080 and higher (at 100% and 125% screen scales), and must remain fully usable for resolutions of 1280x720 and higher (at 150% screen scale).
+9. Data should be stored locally in a human-editable text file (JSON) without the use of any Database Management System.
+10. Should automatically save data to the hard disk after any command that modifies the state to prevent data loss.
 
 *{More to be added}*
 
