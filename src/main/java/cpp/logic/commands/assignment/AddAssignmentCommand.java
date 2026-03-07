@@ -65,7 +65,8 @@ public class AddAssignmentCommand extends Command {
             return false;
         }
         AddAssignmentCommand o = (AddAssignmentCommand) other;
-        return this.toAdd.equals(o.toAdd);
+        return this.toAdd.getName().equals(o.toAdd.getName())
+                && this.toAdd.getDeadline().equals(o.toAdd.getDeadline());
     }
 
     @Override
