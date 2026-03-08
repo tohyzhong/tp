@@ -78,6 +78,7 @@ public class UniqueClassGroupList implements Iterable<ClassGroup> {
         if (!this.classGroupsAreUnique(classGroups)) {
             throw new DuplicateClassGroupException();
         }
+        this.internalList.setAll(classGroups);
     }
 
     public void setClassGroups(UniqueClassGroupList replacement) {
