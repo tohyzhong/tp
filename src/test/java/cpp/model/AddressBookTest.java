@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import cpp.logic.commands.CommandTestUtil;
 import cpp.model.assignment.Assignment;
+import cpp.model.assignment.AssignmentName;
 import cpp.model.assignment.ContactAssignment;
-import cpp.model.assignment.Name;
 import cpp.model.contact.Contact;
 import cpp.model.contact.exceptions.DuplicateContactException;
 import cpp.testutil.Assert;
@@ -100,14 +100,14 @@ public class AddressBookTest {
 
     @Test
     public void hasAssignment_assignmentNotInAddressBook_returnsFalse() {
-        Assignment assignment = new Assignment(new Name("Assignment 1"),
+        Assignment assignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2020, 1, 1, 10, 0));
         Assertions.assertFalse(this.addressBook.hasAssignment(assignment));
     }
 
     @Test
     public void hasAssignment_assignmentInAddressBook_returnsTrue() {
-        Assignment assignment = new Assignment(new Name("Assignment 1"),
+        Assignment assignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2020, 1, 1, 10, 0));
         this.addressBook.addAssignment(assignment);
         Assertions.assertTrue(this.addressBook.hasAssignment(assignment));
@@ -115,11 +115,11 @@ public class AddressBookTest {
 
     @Test
     public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        Assignment assignment = new Assignment(new Name("Assignment 1"),
+        Assignment assignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2020, 1, 1, 10, 0));
         this.addressBook.addAssignment(assignment);
         // Same name (identity), different deadline
-        Assignment editedAssignment = new Assignment(new Name("Assignment 1"),
+        Assignment editedAssignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2021, 1, 1, 10, 0));
         Assertions.assertTrue(this.addressBook.hasAssignment(editedAssignment));
     }
@@ -132,7 +132,7 @@ public class AddressBookTest {
 
     @Test
     public void addAssignment_validAssignment_addSuccessful() {
-        Assignment assignment = new Assignment(new Name("Assignment 1"),
+        Assignment assignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2020, 1, 1, 10, 0));
         this.addressBook.addAssignment(assignment);
         Assertions.assertTrue(this.addressBook.hasAssignment(assignment));
