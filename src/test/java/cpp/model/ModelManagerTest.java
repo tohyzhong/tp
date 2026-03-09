@@ -126,6 +126,7 @@ public class ModelManagerTest {
     @Test
     public void deleteAssignment_assignmentInAddressBook_removesAssignment() {
         this.modelManager.addAssignment(TypicalAssignments.ASSIGNMENT_ONE);
+        Assertions.assertTrue(this.modelManager.hasAssignment(TypicalAssignments.ASSIGNMENT_ONE));
         this.modelManager.deleteAssignment(TypicalAssignments.ASSIGNMENT_ONE);
         Assertions.assertFalse(this.modelManager.hasAssignment(TypicalAssignments.ASSIGNMENT_ONE));
     }

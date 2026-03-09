@@ -151,6 +151,7 @@ public class AddressBookTest {
         Assignment assignment = new Assignment(new AssignmentName("Assignment 1"),
                 LocalDateTime.of(2020, 1, 1, 10, 0));
         this.addressBook.addAssignment(assignment);
+        Assertions.assertTrue(this.addressBook.hasAssignment(assignment));
         this.addressBook.removeAssignment(assignment);
         Assertions.assertFalse(this.addressBook.hasAssignment(assignment));
     }

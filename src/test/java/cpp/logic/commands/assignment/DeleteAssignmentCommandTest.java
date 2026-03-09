@@ -37,7 +37,7 @@ public class DeleteAssignmentCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_commandFailure() {
         Index outOfBoundIndex = Index.fromOneBased(this.model.getFilteredAssignmentList().size() + 1);
         DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(outOfBoundIndex);
 

@@ -14,20 +14,20 @@ import cpp.model.contact.Contact;
  * Deletes a contact identified using it's displayed index from the address
  * book.
  */
-public class DeleteCommand extends Command {
+public class DeleteContactCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = DeleteCommand.COMMAND_WORD
+    public static final String MESSAGE_USAGE = DeleteContactCommand.COMMAND_WORD
             + ": Deletes the contact identified by the index number used in the displayed contact list.\n"
             + "Parameters: ct/INDEX (must be a positive integer)\n"
-            + "Example: " + DeleteCommand.COMMAND_WORD + " ct/1";
+            + "Example: " + DeleteContactCommand.COMMAND_WORD + " ct/1";
 
     public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contact: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteContactCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
         Contact contactToDelete = lastShownList.get(this.targetIndex.getZeroBased());
         model.deleteContact(contactToDelete);
         return new CommandResult(
-                String.format(DeleteCommand.MESSAGE_DELETE_CONTACT_SUCCESS, Messages.format(contactToDelete)));
+                String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, Messages.format(contactToDelete)));
     }
 
     @Override
@@ -53,12 +53,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteContactCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return this.targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteContactCommand otherDeleteContactCommand = (DeleteContactCommand) other;
+        return this.targetIndex.equals(otherDeleteContactCommand.targetIndex);
     }
 
     @Override

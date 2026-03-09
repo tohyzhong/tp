@@ -3,12 +3,12 @@ package cpp.logic.parser;
 import cpp.commons.core.index.Index;
 import cpp.logic.Messages;
 import cpp.logic.commands.Command;
-import cpp.logic.commands.DeleteCommand;
+import cpp.logic.commands.DeleteContactCommand;
 import cpp.logic.commands.assignment.DeleteAssignmentCommand;
 import cpp.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand or DeleteAssignmentCommand object.
+ * Parses input arguments and creates a new DeleteContactCommand or DeleteAssignmentCommand object.
  */
 public class DeleteCommandParser implements Parser<Command> {
 
@@ -26,18 +26,18 @@ public class DeleteCommandParser implements Parser<Command> {
             return parseDeleteAssignment(argMultimap);
         } else {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE));
         }
     }
 
     // parse delete contact by index
-    private DeleteCommand parseDeleteContact(ArgumentMultimap argMultimap) throws ParseException {
+    private DeleteContactCommand parseDeleteContact(ArgumentMultimap argMultimap) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_CONTACT).get());
-            return new DeleteCommand(index);
+            return new DeleteContactCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE), pe);
         }
     }
 

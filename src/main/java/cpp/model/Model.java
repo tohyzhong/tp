@@ -128,9 +128,12 @@ public interface Model {
      */
     void deleteClassGroup(ClassGroup target);
 
-    // delete assignment from the address book
+    /**
+     * Deletes the given assignment.
+     * The assignment must exist in the address book.
+     */
     void deleteAssignment(Assignment target);
 
-    // returns unmodifiable view of the filtered assignment list
+    /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
 }

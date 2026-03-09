@@ -3,7 +3,7 @@ package cpp.logic.parser;
 import org.junit.jupiter.api.Test;
 
 import cpp.logic.Messages;
-import cpp.logic.commands.DeleteCommand;
+import cpp.logic.commands.DeleteContactCommand;
 import cpp.logic.commands.assignment.DeleteAssignmentCommand;
 import cpp.testutil.TypicalIndexes;
 
@@ -14,7 +14,7 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validContactArgs_returnsDeleteCommand() {
         CommandParserTestUtil.assertParseSuccess(this.parser, " ct/1",
-                new DeleteCommand(TypicalIndexes.INDEX_FIRST_CONTACT));
+                new DeleteContactCommand(TypicalIndexes.INDEX_FIRST_CONTACT));
     }
 
     @Test
@@ -26,13 +26,13 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(this.parser, "1",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidContactIndex_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(this.parser, " ct/abc",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -44,6 +44,6 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_bothPrefixes_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(this.parser, " ct/1 ass/1",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE));
     }
 }
