@@ -54,7 +54,8 @@ public class DeleteAssignmentCommandTest {
         Assertions.assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteAssignmentCommand deleteFirstCommandCopy = new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
+        DeleteAssignmentCommand deleteFirstCommandCopy =
+                new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
         Assertions.assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
