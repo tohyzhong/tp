@@ -8,7 +8,7 @@ public class ListCommandParserTest {
     private ListCommandParser parser = new ListCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
+    public void parse_emptyArgs_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(this.parser, "     ", ListCommand.MESSAGE_TAB_EMPTY);
     }
 
@@ -20,5 +20,22 @@ public class ListCommandParserTest {
 
         // multiple whitespaces between keywords
         CommandParserTestUtil.assertParseSuccess(this.parser, " \n contacts \n \t ", expectedListCommand);
+    }
+
+    @Test
+    public void parse_assignmentsArgs_returnsListCommand() {
+        ListCommand expectedListCommand = new ListCommand("assignments");
+        CommandParserTestUtil.assertParseSuccess(this.parser, "assignments", expectedListCommand);
+    }
+
+    @Test
+    public void parse_classesArgs_returnsListCommand() {
+        ListCommand expectedListCommand = new ListCommand("classes");
+        CommandParserTestUtil.assertParseSuccess(this.parser, "classes", expectedListCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        CommandParserTestUtil.assertParseFailure(this.parser, "invalid", ListCommand.MESSAGE_TAB_INVALID);
     }
 }

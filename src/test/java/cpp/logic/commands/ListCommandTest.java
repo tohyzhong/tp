@@ -1,5 +1,6 @@
 package cpp.logic.commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,50 @@ public class ListCommandTest {
         CommandTestUtil.showContactAtIndex(this.model, TypicalIndexes.INDEX_FIRST_CONTACT);
         CommandTestUtil.assertCommandSuccess(new ListCommand("contacts"), this.model, ListCommand.MESSAGE_SUCCESS,
                 this.expectedModel);
+    }
+
+    @Test
+    public void execute_listAssignments_returnsAssignmentMessage() {
+        CommandTestUtil.assertCommandSuccess(new ListCommand("assignments"), this.model,
+                ListCommand.MESSAGE_ASSIGNMENTS,
+                this.expectedModel);
+    }
+
+    @Test
+    public void execute_listClasses_returnsClassesMessage() {
+        CommandTestUtil.assertCommandSuccess(new ListCommand("classes"), this.model, ListCommand.MESSAGE_CLASSES,
+                this.expectedModel);
+    }
+
+    @Test
+    public void equals_sameTab_returnsTrue() {
+        ListCommand command1 = new ListCommand("contacts");
+        ListCommand command2 = new ListCommand("contacts");
+        Assertions.assertEquals(command1, command2);
+    }
+
+    @Test
+    public void equals_differentTab_returnsFalse() {
+        ListCommand command1 = new ListCommand("contacts");
+        ListCommand command2 = new ListCommand("assignments");
+        Assertions.assertNotEquals(command1, command2);
+    }
+
+    @Test
+    public void equals_sameInstance_returnsTrue() {
+        ListCommand command = new ListCommand("contacts");
+        Assertions.assertEquals(command, command);
+    }
+
+    @Test
+    public void equals_notListCommand_returnsFalse() {
+        ListCommand command = new ListCommand("contacts");
+        Assertions.assertNotEquals(command, new Object());
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        ListCommand command = new ListCommand("contacts");
+        Assertions.assertNotEquals(command, null);
     }
 }
