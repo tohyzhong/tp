@@ -27,27 +27,34 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListContactCommand(), this.model, ListCommand.MESSAGE_SUCCESS,
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS,
+                CommandResult.ListView.CONTACTS);
+        CommandTestUtil.assertCommandSuccess(new ListContactCommand(), this.model, expectedResult,
                 this.expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         CommandTestUtil.showContactAtIndex(this.model, TypicalIndexes.INDEX_FIRST_CONTACT);
-        CommandTestUtil.assertCommandSuccess(new ListContactCommand(), this.model, ListCommand.MESSAGE_SUCCESS,
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS,
+                CommandResult.ListView.CONTACTS);
+        CommandTestUtil.assertCommandSuccess(new ListContactCommand(), this.model, expectedResult,
                 this.expectedModel);
     }
 
     @Test
     public void execute_listAssignments_returnsAssignmentMessage() {
-        CommandTestUtil.assertCommandSuccess(new ListAssignmentCommand(), this.model,
-                ListCommand.MESSAGE_ASSIGNMENTS,
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_ASSIGNMENTS,
+                CommandResult.ListView.ASSIGNMENTS);
+        CommandTestUtil.assertCommandSuccess(new ListAssignmentCommand(), this.model, expectedResult,
                 this.expectedModel);
     }
 
     @Test
     public void execute_listClasses_returnsClassesMessage() {
-        CommandTestUtil.assertCommandSuccess(new ListClassCommand(), this.model, ListCommand.MESSAGE_CLASSES,
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_CLASSES,
+                CommandResult.ListView.CLASSGROUPS);
+        CommandTestUtil.assertCommandSuccess(new ListClassCommand(), this.model, expectedResult,
                 this.expectedModel);
     }
 
