@@ -52,6 +52,10 @@ public class ClassGroup {
         return this.name;
     }
 
+    public HashSet<String> getContactIdSet() {
+        return this.contactIdSet;
+    }
+
     /**
      * Allocates a contact to this class group. If the contact is already allocated
      * to this class group, a ContactAlreadyAllocatedClassGroupException is thrown.
