@@ -14,7 +14,7 @@ import cpp.model.contact.Contact;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addcontact";
 
     public static final String MESSAGE_USAGE = AddCommand.COMMAND_WORD + ": Adds a contact to the address book. "
             + "Parameters: "
