@@ -12,8 +12,8 @@ import cpp.model.assignment.Assignment;
 import cpp.model.assignment.AssignmentName;
 import cpp.model.assignment.ContactAssignment;
 import cpp.model.assignment.exceptions.ContactAlreadyAllocatedAssignmentException;
-import cpp.model.classgroup.ClassGroup;
-import cpp.model.classgroup.ClassGroupName;
+//import cpp.model.classgroup.ClassGroup;
+//import cpp.model.classgroup.ClassGroupName;
 import cpp.model.contact.Contact;
 
 
@@ -86,7 +86,6 @@ public class AddCommand extends Command {
                 // Should not be reachable
             }
         }
-        
         return new CommandResult(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(this.toAdd)));
     }
 

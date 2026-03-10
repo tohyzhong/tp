@@ -7,7 +7,7 @@ import cpp.logic.Messages;
 import cpp.logic.commands.AddCommand;
 import cpp.logic.parser.exceptions.ParseException;
 import cpp.model.assignment.AssignmentName;
-import cpp.model.classgroup.ClassGroupName;
+// import cpp.model.classgroup.ClassGroupName;
 import cpp.model.contact.Address;
 import cpp.model.contact.Contact;
 import cpp.model.contact.ContactName;
@@ -46,11 +46,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
 
-        // String classGroupNameValue = argMultimap.getValue(CliSyntax.PREFIX_CLASS).orElse("");
-        // ClassGroupName classGroupName = classGroupName != "" ? ParserUtil.parseAssignmentName(classGroupNameValue) : null;
-
         String assignmentNameValue = argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).orElse("");
-        AssignmentName assignmentName = assignmentNameValue != "" ? ParserUtil.parseAssignmentName(assignmentNameValue) : null;
+        AssignmentName assignmentName =
+                assignmentNameValue != "" ? ParserUtil.parseAssignmentName(assignmentNameValue) : null;
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
