@@ -6,6 +6,7 @@ import cpp.logic.Messages;
 import cpp.logic.commands.DeleteCommand;
 import cpp.logic.commands.DeleteContactCommand;
 import cpp.logic.commands.assignment.DeleteAssignmentCommand;
+import cpp.model.assignment.AssignmentName;
 import cpp.testutil.TypicalIndexes;
 
 public class DeleteCommandParserTest {
@@ -20,8 +21,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validAssignmentArgs_returnsDeleteAssignmentCommand() {
-        CommandParserTestUtil.assertParseSuccess(this.parser, " ass/1",
-                new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT));
+        CommandParserTestUtil.assertParseSuccess(this.parser, " ass/Assignment 1",
+                new DeleteAssignmentCommand(new AssignmentName("Assignment 1")));
     }
 
     @Test
@@ -37,14 +38,8 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAssignmentIndex_throwsParseException() {
-        CommandParserTestUtil.assertParseFailure(this.parser, " ass/abc",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-    }
-
-    @Test
     public void parse_bothPrefixes_throwsParseException() {
-        CommandParserTestUtil.assertParseFailure(this.parser, " ct/1 ass/1",
+        CommandParserTestUtil.assertParseFailure(this.parser, " ct/1 ass/Assignment 1",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

@@ -174,11 +174,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Assignment> getFilteredAssignmentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasClassGroup(ClassGroup classGroup) {
             throw new AssertionError("This method should not be called.");
         }

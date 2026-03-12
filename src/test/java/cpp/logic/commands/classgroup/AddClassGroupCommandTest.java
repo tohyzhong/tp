@@ -177,6 +177,11 @@ public class AddClassGroupCommandTest {
         }
 
         @Override
+        public void deleteAssignment(Assignment target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasClassGroup(ClassGroup classGroup) {
             throw new AssertionError("This method should not be called.");
         }

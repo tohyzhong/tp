@@ -23,7 +23,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Contact> filteredContacts;
-    private final FilteredList<Assignment> filteredAssignments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +35,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredContacts = new FilteredList<>(this.addressBook.getContactList());
-        this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
     }
 
     public ModelManager() {
@@ -172,11 +170,6 @@ public class ModelManager implements Model {
     public void updateFilteredContactList(Predicate<Contact> predicate) {
         Objects.requireNonNull(predicate);
         this.filteredContacts.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<Assignment> getFilteredAssignmentList() {
-        return this.filteredAssignments;
     }
 
     @Override

@@ -133,7 +133,4 @@ public interface Model {
      * The assignment must exist in the address book.
      */
     void deleteAssignment(Assignment target);
-
-    /** Returns an unmodifiable view of the filtered assignment list */
-    ObservableList<Assignment> getFilteredAssignmentList();
 }

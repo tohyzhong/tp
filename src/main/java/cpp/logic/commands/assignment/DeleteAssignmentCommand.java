@@ -3,7 +3,6 @@ package cpp.logic.commands.assignment;
 import java.util.List;
 import java.util.Objects;
 
-import cpp.commons.core.index.Index;
 import cpp.commons.util.ToStringBuilder;
 import cpp.logic.Messages;
 import cpp.logic.commands.DeleteCommand;
@@ -11,30 +10,31 @@ import cpp.logic.commands.CommandResult;
 import cpp.logic.commands.exceptions.CommandException;
 import cpp.model.Model;
 import cpp.model.assignment.Assignment;
+import cpp.model.assignment.AssignmentName;
 
 /**
- * Deletes an assignment identified using its displayed index from the address book.
+ * Deletes an assignment identified using its name from the address book.
  */
 public class DeleteAssignmentCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
 
-    private final Index targetIndex;
+    private final AssignmentName targetName;
 
-    public DeleteAssignmentCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteAssignmentCommand(AssignmentName targetName) {
+        this.targetName = targetName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Objects.requireNonNull(model);
-        List<Assignment> lastShownList = model.getFilteredAssignmentList();
+        List<Assignment> assignmentList = model.getAddressBook().getAssignmentList();
 
-        if (this.targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-        }
+        Assignment assignmentToDelete = assignmentList.stream()
+                .filter(a -> a.getName().equals(this.targetName))
+                .findFirst()
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_ASSIGNMENT_NOT_FOUND));
 
-        Assignment assignmentToDelete = lastShownList.get(this.targetIndex.getZeroBased());
         model.deleteAssignment(assignmentToDelete);
         return new CommandResult(
                 String.format(DeleteAssignmentCommand.MESSAGE_DELETE_ASSIGNMENT_SUCCESS,
@@ -52,13 +52,13 @@ public class DeleteAssignmentCommand extends DeleteCommand {
         }
 
         DeleteAssignmentCommand otherDeleteAssignmentCommand = (DeleteAssignmentCommand) other;
-        return this.targetIndex.equals(otherDeleteAssignmentCommand.targetIndex);
+        return this.targetName.equals(otherDeleteAssignmentCommand.targetName);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", this.targetIndex)
+                .add("targetName", this.targetName)
                 .toString();
     }
 }

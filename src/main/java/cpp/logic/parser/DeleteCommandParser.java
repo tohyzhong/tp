@@ -7,6 +7,7 @@ import cpp.logic.commands.DeleteCommand;
 import cpp.logic.commands.DeleteContactCommand;
 import cpp.logic.commands.assignment.DeleteAssignmentCommand;
 import cpp.logic.parser.exceptions.ParseException;
+import cpp.model.assignment.AssignmentName;
 
 /**
  * Parses input arguments and creates a new DeleteContactCommand or DeleteAssignmentCommand object.
@@ -42,11 +43,12 @@ public class DeleteCommandParser implements Parser<Command> {
         }
     }
 
-    // parse delete assignment by index
+    // parse delete assignment by name
     private DeleteAssignmentCommand parseDeleteAssignment(ArgumentMultimap argMultimap) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
-            return new DeleteAssignmentCommand(index);
+            AssignmentName name = ParserUtil.parseAssignmentName(
+                    argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
+            return new DeleteAssignmentCommand(name);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

@@ -8,8 +8,8 @@ public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a contact or assignment identified by the index number used in the displayed list.\n"
-            + "Parameters: ct/INDEX or ass/INDEX (must be a positive integer)\n"
-            + "Examples: " + COMMAND_WORD + " ct/1, " + COMMAND_WORD + " ass/1";
+            + ": Deletes a contact identified by index, or an assignment identified by name.\n"
+            + "Parameters: ct/INDEX (must be a positive integer) or ass/ASSIGNMENT_NAME\n"
+            + "Examples: " + COMMAND_WORD + " ct/1, " + COMMAND_WORD + " ass/Assignment 1";
 
 }

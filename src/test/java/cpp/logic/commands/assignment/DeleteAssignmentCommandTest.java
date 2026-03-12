@@ -3,15 +3,15 @@ package cpp.logic.commands.assignment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import cpp.commons.core.index.Index;
 import cpp.logic.Messages;
 import cpp.logic.commands.CommandTestUtil;
 import cpp.model.Model;
 import cpp.model.ModelManager;
 import cpp.model.UserPrefs;
 import cpp.model.assignment.Assignment;
+import cpp.model.assignment.AssignmentName;
+import cpp.testutil.TypicalAssignments;
 import cpp.testutil.TypicalContacts;
-import cpp.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -22,10 +22,9 @@ public class DeleteAssignmentCommandTest {
     private Model model = new ModelManager(TypicalContacts.getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndex_success() {
-        Assignment assignmentToDelete = this.model.getFilteredAssignmentList()
-                .get(TypicalIndexes.INDEX_FIRST_CONTACT.getZeroBased());
-        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
+    public void execute_validName_success() {
+        Assignment assignmentToDelete = TypicalAssignments.ASSIGNMENT_ONE;
+        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(assignmentToDelete.getName());
 
         String expectedMessage = String.format(DeleteAssignmentCommand.MESSAGE_DELETE_ASSIGNMENT_SUCCESS,
                 Messages.format(assignmentToDelete));
@@ -37,25 +36,27 @@ public class DeleteAssignmentCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_commandFailure() {
-        Index outOfBoundIndex = Index.fromOneBased(this.model.getFilteredAssignmentList().size() + 1);
-        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(outOfBoundIndex);
+    public void execute_notFound_commandFailure() {
+        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(
+                new AssignmentName("Nonexistent Assignment"));
 
         CommandTestUtil.assertCommandFailure(deleteCommand, this.model,
-                Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+                Messages.MESSAGE_ASSIGNMENT_NOT_FOUND);
     }
 
     @Test
     public void equals() {
-        DeleteAssignmentCommand deleteFirstCommand = new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
-        DeleteAssignmentCommand deleteSecondCommand = new DeleteAssignmentCommand(TypicalIndexes.INDEX_SECOND_CONTACT);
+        DeleteAssignmentCommand deleteFirstCommand = new DeleteAssignmentCommand(
+                TypicalAssignments.ASSIGNMENT_ONE.getName());
+        DeleteAssignmentCommand deleteSecondCommand = new DeleteAssignmentCommand(
+                TypicalAssignments.ASSIGNMENT_TWO.getName());
 
         // same object -> returns true
         Assertions.assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteAssignmentCommand deleteFirstCommandCopy =
-                new DeleteAssignmentCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
+        DeleteAssignmentCommand deleteFirstCommandCopy = new DeleteAssignmentCommand(
+                TypicalAssignments.ASSIGNMENT_ONE.getName());
         Assertions.assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -64,15 +65,15 @@ public class DeleteAssignmentCommandTest {
         // null -> returns false
         Assertions.assertFalse(deleteFirstCommand.equals(null));
 
-        // different index -> returns false
+        // different assignment -> returns false
         Assertions.assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(targetIndex);
-        String expected = DeleteAssignmentCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        AssignmentName targetName = new AssignmentName("Assignment 1");
+        DeleteAssignmentCommand deleteCommand = new DeleteAssignmentCommand(targetName);
+        String expected = DeleteAssignmentCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         Assertions.assertEquals(expected, deleteCommand.toString());
     }
 }
