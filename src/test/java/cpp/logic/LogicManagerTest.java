@@ -82,6 +82,18 @@ public class LogicManagerTest {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.logic.getFilteredContactList().remove(0));
     }
 
+    @Test
+    public void getFilteredAssignmentList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class,
+                () -> this.logic.getFilteredAssignmentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredClassGroupList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class,
+                () -> this.logic.getFilteredClassGroupList().remove(0));
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
