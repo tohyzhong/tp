@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         this.contactListPanel = new ContactListPanel(this.logic.getFilteredContactList());
         this.assignmentListPanel = new AssignmentListPanel(this.logic.getFilteredAssignmentList());
         this.classGroupListPanel = new ClassGroupListPanel(this.logic.getFilteredClassGroupList());
-        
+
         this.contactListPanelPlaceholder.getChildren().add(this.contactListPanel.getRoot());
         this.assignmentListPanelPlaceholder.getChildren().add(this.assignmentListPanel.getRoot());
         this.classListPanelPlaceholder.getChildren().add(this.classGroupListPanel.getRoot());
