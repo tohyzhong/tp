@@ -9,7 +9,6 @@ import cpp.commons.util.ToStringBuilder;
 import cpp.logic.Messages;
 import cpp.logic.commands.Command;
 import cpp.logic.commands.CommandResult;
-import cpp.logic.commands.assignment.AllocateAssignmentCommand;
 import cpp.logic.commands.exceptions.CommandException;
 import cpp.logic.parser.CliSyntax;
 import cpp.model.Model;
@@ -25,17 +24,17 @@ public class AllocateClassGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "allocclass";
 
-    public static final String MESSAGE_USAGE = AllocateAssignmentCommand.COMMAND_WORD
+    public static final String MESSAGE_USAGE = AllocateClassGroupCommand.COMMAND_WORD
             + ": Allocates an contact to a class group. "
             + "Parameters: "
             + CliSyntax.PREFIX_CLASS + "CLASS NAME "
             + CliSyntax.PREFIX_CONTACT + "CONTACT INDICES...\n"
-            + "Example: " + AllocateAssignmentCommand.COMMAND_WORD + " "
+            + "Example: " + AllocateClassGroupCommand.COMMAND_WORD + " "
             + CliSyntax.PREFIX_CLASS + "CS2103T10 "
             + CliSyntax.PREFIX_CONTACT + "1 2 3";
 
     public static final String MESSAGE_SUCCESS = """
-            Allocated class group: %1$s contacts to %2$s.\nContacts allocated: %3$s
+            Allocated class group: %1$s to %2$s contacts.\nContacts allocated: %3$s
             """;
     public static final String MESSAGE_INVALID_CLASS_GROUP_NAME = "The class group name provided is invalid";
     public static final String MESSAGE_ALLOCATION_FAILED = "No new contacts were allocated the class group.";
@@ -69,8 +68,8 @@ public class AllocateClassGroupCommand extends Command {
         this.allocateContactsToClassGroup(model, lastShownContactList, classGroupToAllocate);
 
         return new CommandResult(
-                String.format(AllocateClassGroupCommand.MESSAGE_SUCCESS, this.successfulAllocations,
-                        classGroupToAllocate.getName(), this.successfullyAllocatedNames.toString()));
+                String.format(AllocateClassGroupCommand.MESSAGE_SUCCESS, classGroupToAllocate.getName(),
+                        this.successfulAllocations, this.successfullyAllocatedNames.toString()));
     }
 
     @Override
