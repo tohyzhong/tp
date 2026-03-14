@@ -28,6 +28,8 @@ public class ModelManager implements Model {
     private final AssignmentManager assignmentManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Contact> filteredContacts;
+    private final FilteredList<Assignment> filteredAssignments;
+    private final FilteredList<ClassGroup> filteredClassGroups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +43,13 @@ public class ModelManager implements Model {
         this.assignmentManager = new AssignmentManager(addressBook.getContactAssignmentList());
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredContacts = new FilteredList<>(this.addressBook.getContactList());
+        this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        this.filteredClassGroups = new FilteredList<>(this.addressBook.getClassGroupList());
+
+        // Initialize with predicates that show all items
+        this.filteredContacts.setPredicate(Model.PREDICATE_SHOW_ALL_CONTACTS);
+        this.filteredAssignments.setPredicate(Model.PREDICATE_SHOW_ALL_ASSIGNMENTS);
+        this.filteredClassGroups.setPredicate(Model.PREDICATE_SHOW_ALL_CLASSGROUPS);
     }
 
     public ModelManager() {
@@ -205,6 +214,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return this.filteredAssignments;
+    }
+
+    @Override
+    public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
+        Objects.requireNonNull(predicate);
+        this.filteredAssignments.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<ClassGroup> getFilteredClassGroupList() {
+        return this.filteredClassGroups;
+    }
+
+    @Override
+    public void updateFilteredClassGroupList(Predicate<ClassGroup> predicate) {
+        Objects.requireNonNull(predicate);
+        this.filteredClassGroups.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -218,7 +249,9 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return this.addressBook.equals(otherModelManager.addressBook)
                 && this.userPrefs.equals(otherModelManager.userPrefs)
-                && this.filteredContacts.equals(otherModelManager.filteredContacts);
+                && this.filteredContacts.equals(otherModelManager.filteredContacts)
+                && this.filteredAssignments.equals(otherModelManager.filteredAssignments)
+                && this.filteredClassGroups.equals(otherModelManager.filteredClassGroups);
     }
 
 }

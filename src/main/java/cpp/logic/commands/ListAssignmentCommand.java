@@ -1,0 +1,41 @@
+package cpp.logic.commands;
+
+import java.util.Objects;
+
+import cpp.model.Model;
+
+/**
+ * Lists all assignments in the address book to the user.
+ */
+public class ListAssignmentCommand extends ListCommand {
+
+    public ListAssignmentCommand() {
+        super();
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        Objects.requireNonNull(model);
+        model.updateFilteredAssignmentList(Model.PREDICATE_SHOW_ALL_ASSIGNMENTS);
+        return new CommandResult(ListCommand.MESSAGE_ASSIGNMENTS, CommandResult.ListView.ASSIGNMENTS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListAssignmentCommand)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return ListAssignmentCommand.class.hashCode();
+    }
+}

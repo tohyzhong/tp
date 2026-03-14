@@ -213,6 +213,26 @@ public class AddClassGroupCommandTest {
         public void deleteClassGroup(ClassGroup target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Assignment> getFilteredAssignmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ClassGroup> getFilteredClassGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClassGroupList(Predicate<ClassGroup> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

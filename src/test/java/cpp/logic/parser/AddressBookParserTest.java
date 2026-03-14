@@ -93,8 +93,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        Assertions.assertTrue(this.parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        Assertions.assertTrue(this.parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        Assertions.assertTrue(this.parser.parseCommand(ListCommand.COMMAND_WORD + " contacts") instanceof ListCommand);
+        Assertions
+                .assertTrue(this.parser.parseCommand(ListCommand.COMMAND_WORD + " assignments") instanceof ListCommand);
+        Assertions.assertTrue(this.parser.parseCommand(ListCommand.COMMAND_WORD + " classes") instanceof ListCommand);
     }
 
     @Test

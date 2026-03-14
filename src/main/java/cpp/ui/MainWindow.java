@@ -11,6 +11,8 @@ import cpp.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
+    private AssignmentListPanel assignmentListPanel;
+    private ClassGroupListPanel classGroupListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +49,28 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane contactListPanelPlaceholder;
 
     @FXML
+    private StackPane assignmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane classListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane mainTabPane;
+
+    @FXML
+    private Tab contactsTab;
+
+    @FXML
+    private Tab classesTab;
+
+    @FXML
+    private Tab assignmentsTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -112,7 +134,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         this.contactListPanel = new ContactListPanel(this.logic.getFilteredContactList());
+        this.assignmentListPanel = new AssignmentListPanel(this.logic.getFilteredAssignmentList());
+        this.classGroupListPanel = new ClassGroupListPanel(this.logic.getFilteredClassGroupList());
+
         this.contactListPanelPlaceholder.getChildren().add(this.contactListPanel.getRoot());
+        this.assignmentListPanelPlaceholder.getChildren().add(this.assignmentListPanel.getRoot());
+        this.classListPanelPlaceholder.getChildren().add(this.classGroupListPanel.getRoot());
 
         this.resultDisplay = new ResultDisplay();
         this.resultDisplayPlaceholder.getChildren().add(this.resultDisplay.getRoot());
@@ -164,8 +191,35 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage.hide();
     }
 
+    private void handleListCommand(CommandResult commandResult) {
+        CommandResult.ListView listView = commandResult.getListView();
+        switch (listView) {
+        case CONTACTS:
+            this.mainTabPane.getSelectionModel().select(this.contactsTab);
+            break;
+        case ASSIGNMENTS:
+            this.mainTabPane.getSelectionModel().select(this.assignmentsTab);
+            break;
+        case CLASSGROUPS:
+            this.mainTabPane.getSelectionModel().select(this.classesTab);
+            break;
+        case NONE:
+        default:
+            // Do nothing when list view is NONE
+            break;
+        }
+    }
+
     public ContactListPanel getContactListPanel() {
         return this.contactListPanel;
+    }
+
+    public AssignmentListPanel getAssignmentListPanel() {
+        return this.assignmentListPanel;
+    }
+
+    public ClassGroupListPanel getClassGroupListPanel() {
+        return this.classGroupListPanel;
     }
 
     /**
@@ -186,6 +240,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 this.handleExit();
             }
+
+            this.handleListCommand(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

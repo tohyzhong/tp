@@ -1,39 +1,91 @@
 package cpp.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import cpp.model.Model;
-import cpp.model.ModelManager;
-import cpp.model.UserPrefs;
-import cpp.testutil.TypicalContacts;
-import cpp.testutil.TypicalIndexes;
-
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * ListCommand.
+ * Contains unit tests for ListCommand base class and its polymorphic behavior.
  */
 public class ListCommandTest {
 
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        this.model = new ModelManager(TypicalContacts.getTypicalAddressBook(), new UserPrefs());
-        this.expectedModel = new ModelManager(this.model.getAddressBook(), new UserPrefs());
+    @Test
+    public void equals_sameTab_returnsTrue() {
+        ListContactCommand command1 = new ListContactCommand();
+        ListContactCommand command2 = new ListContactCommand();
+        Assertions.assertEquals(command1, command2);
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListCommand(), this.model, ListCommand.MESSAGE_SUCCESS,
-                this.expectedModel);
+    public void equals_differentTab_returnsFalse() {
+        ListContactCommand command1 = new ListContactCommand();
+        ListAssignmentCommand command2 = new ListAssignmentCommand();
+        Assertions.assertNotEquals(command1, command2);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showContactAtIndex(this.model, TypicalIndexes.INDEX_FIRST_CONTACT);
-        CommandTestUtil.assertCommandSuccess(new ListCommand(), this.model, ListCommand.MESSAGE_SUCCESS,
-                this.expectedModel);
+    public void equals_sameInstance_returnsTrue() {
+        ListContactCommand command = new ListContactCommand();
+        Assertions.assertEquals(command, command);
+    }
+
+    @Test
+    public void equals_notListCommand_returnsFalse() {
+        ListContactCommand command = new ListContactCommand();
+        Assertions.assertNotEquals(command, new Object());
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        ListContactCommand command = new ListContactCommand();
+        Assertions.assertNotEquals(command, null);
+    }
+
+    @Test
+    public void polymorphism_contactAndAssignment_notEqual() {
+        ListContactCommand contact = new ListContactCommand();
+        ListAssignmentCommand assignment = new ListAssignmentCommand();
+        Assertions.assertNotEquals(contact, assignment);
+    }
+
+    @Test
+    public void polymorphism_contactAndClass_notEqual() {
+        ListContactCommand contact = new ListContactCommand();
+        ListClassCommand classCmd = new ListClassCommand();
+        Assertions.assertNotEquals(contact, classCmd);
+    }
+
+    @Test
+    public void polymorphism_assignmentAndClass_notEqual() {
+        ListAssignmentCommand assignment = new ListAssignmentCommand();
+        ListClassCommand classCmd = new ListClassCommand();
+        Assertions.assertNotEquals(assignment, classCmd);
+    }
+
+    @Test
+    public void polymorphism_allDifferent_returnsFalse() {
+        ListContactCommand contact = new ListContactCommand();
+        ListAssignmentCommand assignment = new ListAssignmentCommand();
+        ListClassCommand classCmd = new ListClassCommand();
+
+        Assertions.assertNotEquals(contact, assignment);
+        Assertions.assertNotEquals(assignment, classCmd);
+        Assertions.assertNotEquals(contact, classCmd);
+    }
+
+    @Test
+    public void hashCode_equalObjects_sameHashCode() {
+        ListContactCommand command1 = new ListContactCommand();
+        ListContactCommand command2 = new ListContactCommand();
+        Assertions.assertEquals(command1.hashCode(), command2.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentTypes_mayBeDifferent() {
+        ListContactCommand contact = new ListContactCommand();
+        ListAssignmentCommand assignment = new ListAssignmentCommand();
+        // Different types should generally have different hash codes (not required but
+        // typical)
+        // This test documents the behavior
+        Assertions.assertNotEquals(contact, assignment);
     }
 }

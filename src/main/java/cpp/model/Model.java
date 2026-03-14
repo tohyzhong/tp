@@ -18,6 +18,8 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
+    Predicate<ClassGroup> PREDICATE_SHOW_ALL_CLASSGROUPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -150,4 +152,26 @@ public interface Model {
      * The class group must exist in the address book.
      */
     void deleteClassGroup(ClassGroup target);
+
+    /** Returns an unmodifiable view of the filtered assignment list */
+    ObservableList<Assignment> getFilteredAssignmentList();
+
+    /**
+     * Updates the filter of the filtered assignment list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAssignmentList(Predicate<Assignment> predicate);
+
+    /** Returns an unmodifiable view of the filtered class group list */
+    ObservableList<ClassGroup> getFilteredClassGroupList();
+
+    /**
+     * Updates the filter of the filtered class group list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredClassGroupList(Predicate<ClassGroup> predicate);
 }

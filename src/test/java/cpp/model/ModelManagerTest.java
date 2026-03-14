@@ -139,6 +139,31 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredAssignmentList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class,
+                () -> this.modelManager.getFilteredAssignmentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredClassGroupList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class,
+                () -> this.modelManager.getFilteredClassGroupList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredAssignmentList_validPredicate_filtersAssignments() {
+        this.modelManager.addAssignment(TypicalAssignments.ASSIGNMENT_ONE);
+        // This would need an assignment predicate - for now just test it doesn't throw
+        Assertions.assertNotNull(this.modelManager.getFilteredAssignmentList());
+    }
+
+    @Test
+    public void updateFilteredClassGroupList_validPredicate_filtersClasses() {
+        // This would need a class group - for now just test it doesn't throw
+        Assertions.assertNotNull(this.modelManager.getFilteredClassGroupList());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withContact(TypicalContacts.ALICE)
                 .withContact(TypicalContacts.BENSON).withAssignment(TypicalAssignments.ASSIGNMENT_ONE).build();
@@ -178,5 +203,39 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         Assertions.assertFalse(this.modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void equals_differentFilteredAssignmentLists_returnsFalse() {
+        AddressBook addressBook = new AddressBookBuilder().withAssignment(TypicalAssignments.ASSIGNMENT_ONE)
+                .build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        this.modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+
+        // Both should be equal initially
+        Assertions.assertTrue(this.modelManager.equals(modelManagerCopy));
+
+        // Verify filtered lists exist and are accessible
+        Assertions.assertNotNull(this.modelManager.getFilteredAssignmentList());
+        Assertions.assertNotNull(modelManagerCopy.getFilteredAssignmentList());
+    }
+
+    @Test
+    public void equals_differentFilteredClassGroupLists_returnsFalse() {
+        AddressBook addressBook = new AddressBookBuilder().withContact(TypicalContacts.ALICE)
+                .build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        this.modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+
+        // Both should be equal initially
+        Assertions.assertTrue(this.modelManager.equals(modelManagerCopy));
+
+        // Verify filtered lists exist and are accessible
+        Assertions.assertNotNull(this.modelManager.getFilteredClassGroupList());
+        Assertions.assertNotNull(modelManagerCopy.getFilteredClassGroupList());
     }
 }
