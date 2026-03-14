@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import cpp.commons.exceptions.IllegalValueException;
+import cpp.model.AddressBook;
 import cpp.model.assignment.ContactAssignment;
 
 /**
@@ -51,14 +52,22 @@ class JsonAdaptedContactAssignment {
      * @throws IllegalValueException if there were any data constraints violated
      *                               in the adapted contact assignment.
      */
-    public ContactAssignment toModelType() throws IllegalValueException {
+    public ContactAssignment toModelType(AddressBook addressBook) throws IllegalValueException {
         if (this.assignmentId == null) {
             throw new IllegalValueException(String.format(JsonAdaptedContactAssignment.MISSING_FIELD_MESSAGE_FORMAT,
                     "assignmentId"));
         }
+        if (!addressBook.hasAssignmentId(this.assignmentId)) {
+            throw new IllegalValueException(
+                    String.format("Assignment with id %s does not exist in the address book", this.assignmentId));
+        }
         if (this.contactId == null) {
             throw new IllegalValueException(String.format(JsonAdaptedContactAssignment.MISSING_FIELD_MESSAGE_FORMAT,
                     "contactId"));
+        }
+        if (!addressBook.hasContactId(this.contactId)) {
+            throw new IllegalValueException(
+                    String.format("Contact with id %s does not exist in the address book", this.contactId));
         }
         if (this.isSubmitted == null) {
             throw new IllegalValueException(String.format(JsonAdaptedContactAssignment.MISSING_FIELD_MESSAGE_FORMAT,
