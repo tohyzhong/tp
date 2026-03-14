@@ -39,9 +39,11 @@ public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmen
         AssignmentName assignmentName = ParserUtil
                 .parseAssignmentName(argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
 
-        String contactValue = argMultimap.getValue(CliSyntax.PREFIX_CONTACT).orElse("");
-
-        List<Index> contactIndices = ParserUtil.parseContactIndices(contactValue);
+        List<Index> contactIndices = List.of();
+        if (ParserUtil.arePrefixesPresent(argMultimap, CliSyntax.PREFIX_CONTACT)) {
+            String contactString = argMultimap.getValue(CliSyntax.PREFIX_CONTACT).orElse("");
+            contactIndices = ParserUtil.parseContactIndices(contactString);
+        }
 
         return new AllocateAssignmentCommand(assignmentName, contactIndices);
     }
