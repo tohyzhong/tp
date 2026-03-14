@@ -27,5 +27,5 @@ docs/_markbind/logs/
 # Local Gradle properties (may contain local JDK path)
 /gradle.properties
 
-# Eclipse files
-.settings/org.eclipse.buildship.core.prefs
+# Buildship Prefs
+org.eclipse.buildship.core.prefs

@@ -1,5 +1,6 @@
 package cpp.logic.parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import cpp.logic.Messages;
 import cpp.logic.commands.AddCommand;
 import cpp.logic.commands.ClearCommand;
 import cpp.logic.commands.DeleteCommand;
+import cpp.logic.commands.DeleteContactCommand;
 import cpp.logic.commands.EditCommand;
 import cpp.logic.commands.EditCommand.EditContactDescriptor;
 import cpp.logic.commands.ExitCommand;
@@ -54,9 +56,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) this.parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_CONTACT.getOneBased());
-        Assertions.assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_CONTACT), command);
+        DeleteContactCommand command = (DeleteContactCommand) this.parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " ct/" + TypicalIndexes.INDEX_FIRST_CONTACT.getOneBased());
+        Assertions.assertEquals(new DeleteContactCommand(List.of(TypicalIndexes.INDEX_FIRST_CONTACT)), command);
     }
 
     @Test
@@ -110,7 +112,7 @@ public class AddressBookParserTest {
         ClassGroup classGroup = new ClassGroupBuilder().build();
         AddClassGroupCommand command = (AddClassGroupCommand) this.parser
                 .parseCommand(ClassGroupUtil.getAddClassGroupCommand(classGroup));
-        Assertions.assertEquals(new AddClassGroupCommand(classGroup), command);
+        Assertions.assertEquals(new AddClassGroupCommand(classGroup, new ArrayList<>()), command);
     }
 
     @Test

@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -28,6 +29,7 @@ import cpp.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EMPTY_INDICES = "Contact indices should not be blank.";
     public static final DateTimeFormatter DEADLINE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
@@ -178,6 +180,8 @@ public class ParserUtil {
      * Example: "1 2 3" will be parsed into a list of indices [1, 2, 3].
      * If the contact value string is empty or contains only whitespace, an empty
      * list will be returned.
+     * If the contact value string contains duplicate indices, it will only return
+     * the unique indices.
      *
      * @param contactValue the string containing the contact indices to be parsed
      * @return a list of indices parsed from the contact value string
@@ -186,13 +190,13 @@ public class ParserUtil {
      */
     public static List<Index> parseContactIndices(String contactValue) throws ParseException {
         String[] parts = contactValue.trim().split("\\s+");
-        List<Index> contactIndices = new ArrayList<>();
+        Set<Index> contactIndices = new LinkedHashSet<>();
         for (String part : parts) {
             if (part.isBlank()) {
                 continue;
             }
             contactIndices.add(ParserUtil.parseIndex(part));
         }
-        return contactIndices;
+        return new ArrayList<>(contactIndices);
     }
 }
