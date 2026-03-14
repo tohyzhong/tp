@@ -198,6 +198,11 @@ public class ParserUtil {
             }
             contactIndices.add(ParserUtil.parseIndex(part));
         }
+
+        if (contactIndices.isEmpty()) {
+            throw new ParseException(ParserUtil.MESSAGE_EMPTY_INDICES);
+        }
+
         return new ArrayList<>(contactIndices);
     }
 
