@@ -129,7 +129,7 @@ public class AddAssignmentCommand extends Command {
         return this.toAdd.getName().equals(o.toAdd.getName())
                 && this.toAdd.getDeadline().equals(o.toAdd.getDeadline())
                 && this.contactIndices.equals(o.contactIndices)
-                && this.classGroupName.equals(o.classGroupName);
+                && Objects.equals(this.classGroupName, o.classGroupName);
     }
 
     @Override
