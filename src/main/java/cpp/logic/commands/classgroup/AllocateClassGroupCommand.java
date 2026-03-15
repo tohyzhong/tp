@@ -63,6 +63,10 @@ public class AllocateClassGroupCommand extends Command {
         List<ClassGroup> classGroupList = model.getAddressBook().getClassGroupList();
         ClassGroup classGroupToAllocate = ClassGroupUtil.findClassGroup(classGroupList, this.classGroupName);
 
+        if (classGroupToAllocate == null) {
+            throw new CommandException(AllocateClassGroupCommand.MESSAGE_INVALID_CLASS_GROUP_NAME);
+        }
+
         List<Contact> lastShownContactList = model.getFilteredContactList();
         CommandUtil.checkContactIndices(lastShownContactList, this.contactIndices);
         this.allocateContactsToClassGroup(classGroupToAllocate, lastShownContactList);
