@@ -39,7 +39,9 @@ public class DeleteCommandParser implements Parser<Command> {
         }
     }
 
-    // parse delete contact by one or more space-separated indices
+    /**
+     * Parses delete contact arguments and returns a {@code DeleteContactCommand}.
+     */
     private DeleteContactCommand parseDeleteContact(ArgumentMultimap argMultimap) throws ParseException {
         List<Index> indices = ParserUtil.parseContactIndices(
                 argMultimap.getValue(CliSyntax.PREFIX_CONTACT).get());
@@ -49,14 +51,18 @@ public class DeleteCommandParser implements Parser<Command> {
         return new DeleteContactCommand(indices);
     }
 
-    // parse delete assignment by name
+    /**
+     * Parses delete assignment arguments and returns a {@code DeleteAssignmentCommand}.
+     */
     private DeleteAssignmentCommand parseDeleteAssignment(ArgumentMultimap argMultimap) throws ParseException {
         AssignmentName name = ParserUtil.parseAssignmentName(
                 argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
         return new DeleteAssignmentCommand(name);
     }
 
-    // parse delete class group by name
+    /**
+     * Parses delete class group arguments and returns a {@code DeleteClassGroupCommand}.
+     */
     private DeleteClassGroupCommand parseDeleteClassGroup(ArgumentMultimap argMultimap) throws ParseException {
         String value = argMultimap.getValue(CliSyntax.PREFIX_CLASS).get();
         if (value.isBlank()) {
