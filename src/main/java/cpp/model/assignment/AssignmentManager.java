@@ -173,15 +173,19 @@ public class AssignmentManager {
         Objects.requireNonNull(assignment);
         String assignmentId = assignment.getId();
         Map<String, ContactAssignment> assMap = this.byAssignment.remove(assignmentId);
-        if (assMap != null) {
-            for (ContactAssignment ca : assMap.values()) {
-                Map<String, ContactAssignment> contactMap = this.byContact.get(ca.getContactId());
-                if (contactMap != null) {
-                    contactMap.remove(assignmentId);
-                    if (contactMap.isEmpty()) {
-                        this.byContact.remove(ca.getContactId());
-                    }
-                }
+        if (assMap == null) {
+            return;
+        }
+
+        for (ContactAssignment ca : assMap.values()) {
+            Map<String, ContactAssignment> contactMap = this.byContact.get(ca.getContactId());
+            if (contactMap == null) {
+                continue;
+            }
+
+            contactMap.remove(assignmentId);
+            if (contactMap.isEmpty()) {
+                this.byContact.remove(ca.getContactId());
             }
         }
     }
@@ -194,15 +198,19 @@ public class AssignmentManager {
         Objects.requireNonNull(contact);
         String contactId = contact.getId();
         Map<String, ContactAssignment> contactMap = this.byContact.remove(contactId);
-        if (contactMap != null) {
-            for (ContactAssignment ca : contactMap.values()) {
-                Map<String, ContactAssignment> assMap = this.byAssignment.get(ca.getAssignmentId());
-                if (assMap != null) {
-                    assMap.remove(contactId);
-                    if (assMap.isEmpty()) {
-                        this.byAssignment.remove(ca.getAssignmentId());
-                    }
-                }
+        if (contactMap == null) {
+            return;
+        }
+
+        for (ContactAssignment ca : contactMap.values()) {
+            Map<String, ContactAssignment> assMap = this.byAssignment.get(ca.getAssignmentId());
+            if (assMap == null) {
+                continue;
+            }
+
+            assMap.remove(contactId);
+            if (assMap.isEmpty()) {
+                this.byAssignment.remove(ca.getAssignmentId());
             }
         }
     }
