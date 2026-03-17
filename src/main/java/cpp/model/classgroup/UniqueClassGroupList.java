@@ -100,12 +100,17 @@ public class UniqueClassGroupList implements Iterable<ClassGroup> {
         }
     }
 
+    /**
+     * Unallocates a contact from all class groups in this list. If the contact is
+     * not allocated to a class group, nothing happens.
+     */
     public void unallocateContactFromAllClassGroups(Contact contact) {
         String contactId = contact.getId();
         for (ClassGroup cg : this.internalList) {
             try {
                 cg.unallocateContact(contactId);
             } catch (ContactNotAllocatedClassGroupException e) {
+                // do nothing
             }
         }
     }

@@ -52,6 +52,10 @@ public class UniqueContactAssignmentList implements Iterable<ContactAssignment> 
         }
     }
 
+    /**
+     * Removes all the contact assignments in the given list from this list. The
+     * contact assignments must exist in the list.
+     */
     public void removeMultiple(List<ContactAssignment> toRemoveList) {
         CollectionUtil.requireAllNonNull(toRemoveList);
         for (ContactAssignment ca : toRemoveList) {
