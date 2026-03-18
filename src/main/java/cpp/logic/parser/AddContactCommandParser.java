@@ -47,13 +47,14 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
 
-        String classGroupNameValue = argMultimap.getValue(CliSyntax.PREFIX_CLASS).orElse("");
-        ClassGroupName classGroupName = classGroupNameValue != "" ? ParserUtil.parseClassGroupName(
-                classGroupNameValue)
+        String classGroupNameValue = argMultimap.getValue(CliSyntax.PREFIX_CLASS).orElse(null);
+        ClassGroupName classGroupName = classGroupNameValue != null
+                ? ParserUtil.parseClassGroupName(classGroupNameValue)
                 : null;
 
-        String assignmentNameValue = argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).orElse("");
-        AssignmentName assignmentName = assignmentNameValue != "" ? ParserUtil.parseAssignmentName(assignmentNameValue)
+        String assignmentNameValue = argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).orElse(null);
+        AssignmentName assignmentName = assignmentNameValue != null
+                ? ParserUtil.parseAssignmentName(assignmentNameValue)
                 : null;
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
