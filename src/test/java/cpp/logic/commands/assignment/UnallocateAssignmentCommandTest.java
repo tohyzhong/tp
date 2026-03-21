@@ -115,9 +115,9 @@ public class UnallocateAssignmentCommandTest {
                 validContact1.getName().fullName + "; "
                         + TypicalContacts.getTypicalContacts().get(2).getName().fullName),
                 result.getFeedbackToUser());
-        Assertions.assertEquals(1, modelStub.contactAssignments.size()); // AMY should still be allocated, BENSON should
-                                                                         // be unallocated, ALICE was not allocated to
-                                                                         // begin with so should not affect the count
+        // AMY should still be allocated, BENSON should be unallocated, ALICE was not
+        // allocated to begin with so should not affect the count
+        Assertions.assertEquals(1, modelStub.contactAssignments.size());
     }
 
     @Test
