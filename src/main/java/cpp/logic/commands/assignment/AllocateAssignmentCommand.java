@@ -1,8 +1,10 @@
 package cpp.logic.commands.assignment;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import cpp.commons.core.index.Index;
 import cpp.commons.util.ToStringBuilder;
@@ -46,15 +48,19 @@ public class AllocateAssignmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = """
             Allocated assignment: %1$s to %2$s contact(s)
-            Contacts allocated: %3$s""";
+            Contacts allocated: %3$s
+            Contacts not allocated (already allocated assignment): %4$s""";
     public static final String MESSAGE_INVALID_ASSIGNMENT_NAME = "The assignment name provided is invalid";
     public static final String MESSAGE_ALLOCATION_FAILED = "No contacts were allocated the assignment";
 
     private final AssignmentName assignmentName;
     private final List<Index> contactIndices;
+    private final Set<Contact> contactsToAllocate;
     private final ClassGroupName classGroupName;
     private int allocatedCount;
     private StringBuilder allocatedContacts;
+    private int unsuccessfulAllocationCount;
+    private StringBuilder unsuccessfulContactAllocations;
 
     /**
      * Creates an AllocateAssignmentCommand with the specified assignment and
@@ -65,9 +71,12 @@ public class AllocateAssignmentCommand extends Command {
         Objects.requireNonNull(contactIndices);
         this.assignmentName = assignmentName;
         this.contactIndices = new ArrayList<>(contactIndices);
+        this.contactsToAllocate = new HashSet<>();
         this.classGroupName = null;
         this.allocatedCount = 0;
         this.allocatedContacts = new StringBuilder();
+        this.unsuccessfulAllocationCount = 0;
+        this.unsuccessfulContactAllocations = new StringBuilder();
     }
 
     /**
@@ -81,9 +90,12 @@ public class AllocateAssignmentCommand extends Command {
         Objects.requireNonNull(classGroupName);
         this.assignmentName = assignmentName;
         this.contactIndices = new ArrayList<>(contactIndices);
+        this.contactsToAllocate = new HashSet<>();
         this.classGroupName = classGroupName;
         this.allocatedCount = 0;
         this.allocatedContacts = new StringBuilder();
+        this.unsuccessfulAllocationCount = 0;
+        this.unsuccessfulContactAllocations = new StringBuilder();
     }
 
     @Override
@@ -117,8 +129,13 @@ public class AllocateAssignmentCommand extends Command {
             throw new CommandException(AllocateAssignmentCommand.MESSAGE_ALLOCATION_FAILED);
         }
 
+        if (this.unsuccessfulAllocationCount == 0) {
+            this.unsuccessfulContactAllocations.append("None");
+        }
+
         return new CommandResult(String.format(AllocateAssignmentCommand.MESSAGE_SUCCESS,
-                Messages.format(assignmentToAllocate), this.allocatedCount, this.allocatedContacts.toString()));
+                Messages.format(assignmentToAllocate), this.allocatedCount, this.allocatedContacts.toString(),
+                this.unsuccessfulContactAllocations.toString()));
     }
 
     @Override
@@ -170,20 +187,39 @@ public class AllocateAssignmentCommand extends Command {
     }
 
     private void allocateToContact(Model model, Assignment assignment, Contact contact) {
+        if (this.contactsToAllocate.contains(contact)) {
+            // Skip contacts that have already been allocated the assignment through contact
+            // indices in the same command
+            return;
+        }
+
         ContactAssignment ca = new ContactAssignment(assignment.getId(), contact.getId());
 
         try {
             model.addContactAssignment(ca);
-
-            if (this.allocatedContacts.length() > 0) {
-                this.allocatedContacts.append("; ");
-            }
-            this.allocatedContacts.append(contact.getName().fullName);
             this.allocatedCount++;
+            this.buildSuccessfulAllocationString(contact.getName().fullName);
+            this.contactsToAllocate.add(contact);
 
         } catch (ContactAlreadyAllocatedAssignmentException e) {
             // Skip contacts that already have the assignment allocated.
+            this.unsuccessfulAllocationCount++;
+            this.buildUnsuccessfulAllocationString(contact.getName().fullName);
         }
+    }
+
+    private void buildSuccessfulAllocationString(String contactName) {
+        if (this.allocatedContacts.length() > 0) {
+            this.allocatedContacts.append("; ");
+        }
+        this.allocatedContacts.append(contactName);
+    }
+
+    private void buildUnsuccessfulAllocationString(String contactName) {
+        if (this.unsuccessfulContactAllocations.length() > 0) {
+            this.unsuccessfulContactAllocations.append("; ");
+        }
+        this.unsuccessfulContactAllocations.append(contactName);
     }
 
 }
