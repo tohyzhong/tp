@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import cpp.commons.util.CollectionUtil;
 import cpp.model.assignment.exceptions.ContactAssignmentAlreadySubmittedException;
+import cpp.model.assignment.exceptions.ContactAssignmentNotSubmittedException;
 
 /**
  * Association between an Assignment and a Contact (by id).
@@ -78,7 +79,17 @@ public class ContactAssignment {
         this.isSubmitted = true;
     }
 
+    /**
+     * Marks this contact assignment as unsubmitted. Throws an exception if it is
+     * not currently marked as submitted. Unsubmitting also resets the grading state
+     * to ungraded and score to 0.
+     */
     public void markUnsubmitted() {
+        if (!this.isSubmitted) {
+            throw new ContactAssignmentNotSubmittedException();
+        }
+        this.isGraded = false;
+        this.score = 0;
         this.isSubmitted = false;
     }
 

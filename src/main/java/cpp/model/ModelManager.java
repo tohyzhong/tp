@@ -188,6 +188,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markUnsubmitted(Assignment assignment, Contact contact) {
+        Objects.requireNonNull(assignment);
+        Objects.requireNonNull(contact);
+
+        this.assignmentManager.unsubmit(assignment.getId(), contact.getId());
+    }
+
+    @Override
     public boolean hasClassGroup(ClassGroup classGroup) {
         Objects.requireNonNull(classGroup);
         return this.addressBook.hasClassGroup(classGroup);

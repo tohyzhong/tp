@@ -133,6 +133,11 @@ public interface Model {
     void markSubmitted(Assignment assignment, Contact contact);
 
     /**
+     * Marks the assignment as unsubmitted for the given contact.
+     */
+    void markUnsubmitted(Assignment assignment, Contact contact);
+
+    /**
      * Returns true if a class group with the same identity as {@code classGroup}
      * exists in the class group list.
      */

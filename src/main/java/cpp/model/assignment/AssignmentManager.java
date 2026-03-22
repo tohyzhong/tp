@@ -110,6 +110,19 @@ public class AssignmentManager {
     }
 
     /**
+     * Marks the contact assignment for the given assignment and contact as
+     * unsubmitted. Contact assignment must exist and be currently marked as
+     * submitted.
+     * 
+     * @param assignmentId
+     * @param contactId
+     */
+    public void unsubmit(String assignmentId, String contactId) {
+        ContactAssignment ca = this.find(assignmentId, contactId);
+        ca.markUnsubmitted();
+    }
+
+    /**
      * Grades the contact assignment for the given assignment and contact with a
      * score.
      *
