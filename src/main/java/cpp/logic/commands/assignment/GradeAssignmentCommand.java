@@ -53,6 +53,11 @@ public class GradeAssignmentCommand extends Command {
             Contacts not graded (already graded): %6$s
             Contacts not graded (not submitted yet): %7$s
             Contacts not graded (not allocated the assignment): %8$s""";
+    public static final String MESSAGE_GRADE_FAILED = """
+            Failed to grade any contacts for the assignment.
+            Contacts not graded (already graded): %1$s
+            Contacts not graded (not submitted yet): %2$s
+            Contacts not graded (not allocated the assignment): %3$s""";
 
     private final AssignmentName assignmentName;
     private final List<Index> contactIndices;
@@ -99,10 +104,6 @@ public class GradeAssignmentCommand extends Command {
 
         this.gradeByContactIndices(model, assignmentToGrade, lastShownContactList);
 
-        if (this.gradedCount == 0) {
-            throw new CommandException(SubmitAssignmentCommand.MESSAGE_SUBMISSION_FAILED);
-        }
-
         if (this.alreadyGradedCount == 0) {
             this.alreadyGradedContacts.append("None");
         }
@@ -113,6 +114,12 @@ public class GradeAssignmentCommand extends Command {
 
         if (this.notAllocatedCount == 0) {
             this.notAllocatedContacts.append("None");
+        }
+
+        if (this.gradedCount == 0) {
+            throw new CommandException(
+                    String.format(GradeAssignmentCommand.MESSAGE_GRADE_FAILED, this.alreadyGradedContacts.toString(),
+                            this.notSubmittedContacts.toString(), this.notAllocatedContacts.toString()));
         }
 
         return new CommandResult(
