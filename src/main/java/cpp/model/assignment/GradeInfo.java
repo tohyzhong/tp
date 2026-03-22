@@ -61,6 +61,10 @@ public final class GradeInfo {
         return true;
     }
 
+    public static boolean isValidScore(float score) {
+        return score >= 0 && score <= 100;
+    }
+
     public boolean isGraded() {
         return this.isGraded;
     }
