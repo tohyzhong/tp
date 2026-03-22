@@ -139,7 +139,7 @@ class JsonAdaptedContactAssignment {
                     "gradingDate"));
         }
         try {
-            final float parsedScore = Float.parseFloat(this.score);
+            final float parsedScore = ParserUtil.parseScore(this.score);
             if (!GradeInfo.isValidGradeInfo(Boolean.parseBoolean(this.isGraded), modelGradingDate,
                     parsedScore,
                     modelSubmissionInfo)) {
@@ -148,8 +148,8 @@ class JsonAdaptedContactAssignment {
 
             modelGradeInfo = new GradeInfo(Boolean.parseBoolean(this.isGraded), modelGradingDate,
                     parsedScore, modelSubmissionInfo);
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException(JsonAdaptedContactAssignment.INVALID_SCORE_MESSAGE);
+        } catch (ParseException e) {
+            throw new IllegalValueException(e.getMessage());
         }
 
         return new ContactAssignment(this.assignmentId, this.contactId, modelSubmissionInfo.isSubmitted(),
