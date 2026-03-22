@@ -35,7 +35,7 @@ public class UnsubmitAssignmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = UnsubmitAssignmentCommand.COMMAND_WORD
             + ": Marks an assignment as unsubmitted by contact(s) or class group. "
-            + "Also removes any grade status for the contact(s) for the assignment. "
+            + "Also removes any grade status for the contact(s) for the assignment.\n"
             + "Parameters: "
             + CliSyntax.PREFIX_ASSIGNMENT + "ASSIGNMENT NAME "
             + "[" + CliSyntax.PREFIX_CLASS + "CLASS NAME] "
