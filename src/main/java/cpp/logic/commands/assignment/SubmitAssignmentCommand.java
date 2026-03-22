@@ -51,7 +51,7 @@ public class SubmitAssignmentCommand extends Command {
             + CliSyntax.PREFIX_DATETIME + "21-02-2026 23:50";
 
     public static final String MESSAGE_SUCCESS = """
-            Marked assignment: %1$s as submitted on %2$s by %3$s contacts.
+            Marked assignment: %1$s as submitted on %2$s by %3$s contact(s).
             Contacts marked submitted: %4$s
             Contacts not marked submitted (already submitted): %5$s
             Contacts not marked submitted (not allocated the assignment): %6$s""";

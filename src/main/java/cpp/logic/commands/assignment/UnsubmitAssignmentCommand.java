@@ -47,7 +47,7 @@ public class UnsubmitAssignmentCommand extends Command {
             + CliSyntax.PREFIX_CONTACT + "1 2 3";
 
     public static final String MESSAGE_SUCCESS = """
-            Marked assignment: %1$s as unsubmitted by %2$s contacts.
+            Marked assignment: %1$s as unsubmitted by %2$s contact(s).
             Contacts marked unsubmitted: %3$s
             Contacts not marked unsubmitted (not submitted): %4$s
             Contacts not marked unsubmitted (not allocated the assignment): %5$s""";

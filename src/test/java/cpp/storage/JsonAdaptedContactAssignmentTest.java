@@ -27,7 +27,7 @@ public class JsonAdaptedContactAssignmentTest {
     private static final String INVALID_ASSIGNMENT_ID = null;
     private static final String VALID_CONTACT_ID = "valid contact id";
     private static final String VALID_ASSIGNMENT_ID = "valid assignment id";
-    private static final LocalDateTime submissionDate = LocalDateTime.now();
+    private static final LocalDateTime submissionDate = LocalDateTime.now().minusMonths(1);
     private static final String submissionDateString = JsonAdaptedContactAssignmentTest.submissionDate
             .format(ParserUtil.DATETIME_FORMATTER);
     private static final LocalDateTime gradingDate = JsonAdaptedContactAssignmentTest.submissionDate.plusDays(1);

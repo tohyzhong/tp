@@ -129,7 +129,7 @@ class JsonAdaptedContactAssignment {
         final LocalDateTime modelGradingDate;
         try {
             if (this.gradingDate != null) {
-                modelGradingDate = ParserUtil.parseDeadline(this.gradingDate);
+                modelGradingDate = ParserUtil.parseDateTime(this.gradingDate);
             } else {
                 modelGradingDate = null;
             }

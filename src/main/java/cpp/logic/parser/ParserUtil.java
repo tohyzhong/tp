@@ -34,6 +34,7 @@ public class ParserUtil {
     public static final String MESSAGE_EMPTY_INDICES = "Contact indices should not be blank.";
     public static final String MESSAGE_INVALID_DATETIME = """
             Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm""";
+    public static final String MESSAGE_INVALID_FUTURE_DATETIME = "Date and time cannot be in the future.";
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
@@ -153,6 +154,18 @@ public class ParserUtil {
             throw new ParseException("Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm");
         }
         return parsedDateTime;
+    }
+
+    /**
+     * Parses a {@code String datetime} into a {@code LocalDateTime} and checks if
+     * it is not in the future.
+     */
+    public static LocalDateTime parseDateTime(String datetime) throws ParseException {
+        LocalDateTime dateTime = ParserUtil.parseDeadline(datetime);
+        if (dateTime.isAfter(LocalDateTime.now())) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_FUTURE_DATETIME);
+        }
+        return dateTime;
     }
 
     /**
