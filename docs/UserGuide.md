@@ -3,43 +3,214 @@
   title: "User Guide"
   pageNav: 3
 ---
+<div class="user-guide">
 
-# AB-3 User Guide
+# Classroom Plus Plus (CPP) User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Classroom Plus Plus (CPP) is a desktop application designed for educators to manage student and staff contact information, classes, and assignment tracking from a single, centralized place. CPP combines a simple graphical user interface with a powerful Command-Line Interface (CLI) so teachers can work quickly and reliably.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+**Who this guide is for**
+
+* **Primary users:** Primary and secondary school teachers and tutors who manage classes and student records.
+
+* **Assumed skills:** Basic computer literacy, and comfortable using a terminal/command prompt. No prior experience with Java or software development is required.
+
+**How to use this guide**
+
+* Use the [**Quick start**](#quick-start) section to install and run the app fast.
+
+* Use [**Features**](#features) to view the full list of features, command reference, and examples.
+
+* Use [**FAQ**](#faq) and [**Known issues**](#known-issues-and-workarounds) when troubleshooting.
+
+* Refer to the [**Command summary**](#command-summary) for a quick reference of all commands and formats.
+
+* Use the page navigation at the side to jump between sections.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of contents
+
+* [Quick start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Known issues and workarounds](#known-issues-and-workarounds)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+This quick start assumes you are a teacher who wants to install CPP, open the application, and run a few common commands to manage your contacts, classes, and assignments. Follow the short steps below, then consult [**Features**](#features) for full command details.
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+### Prerequisites
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+* Java 17 or newer must be installed and available on your PATH. Please refer to the section on [**How to check and install Java**](#how-to-check-and-install-java) to check your Java version and install Java if needed.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+* Minimum disk space: 50 MB for app + data. Please refer to the section on [**How to check available disk space**](#how-to-check-available-disk-space) to ensure you have enough free space.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+#### How to check and install Java
 
-   * `list` : Lists all contacts.
+**Windows specific install/check tips:**
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+1. Open Command Prompt or PowerShell by searching for it in the Windows Search Bar.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+1. To check Java from Command Prompt or PowerShell, run `java -version`.
 
-   * `clear` : Deletes all contacts.
+1. If Java is installed, you should see output showing the Java version (e.g., `java version "17.0.1"`).
+    <box type="info">Any version that is 17.0.0 or newer is acceptable.</box>
+    <box type="warning">Older versions (e.g., Java 8) will not work and must be updated using Step 4.</box>
+    <box type="warning">If you see an error like 'java' is not recognized, it means Java is not installed. Please follow the next step to install Java.</box>
 
-   * `exit` : Exits the app.
+    ![Windows Java Version](images/java-version-windows.png)
 
-1. Refer to the [Features](#features) below for details of each command.
+1. If Java is not found, you may refer to the [Windows guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html) to install Java 17.
+
+1. If Java is found and the version is 17 or newer, you may proceed to check the disk space as described in the next section [**How to check available disk space**](#how-to-check-available-disk-space).
+
+1. Once Java is installed, repeat Steps 1-3 to verify the installation.
+
+**macOS specific install/check tips:**
+
+1. Open Terminal by searching for it in the Applications folder or using Mac's Spotlight.
+
+1. To check Java from Terminal, run `java -version`.
+
+1. If Java is installed, you should see output showing the Java version (e.g., `java version "17.0.1"`).
+    <box type="info">Any version that is 17.0.0 or newer is acceptable.</box>
+    <box type="warning">Older versions (e.g., Java 8) will not work and must be updated using Step 4.</box>
+    <box type="warning">If you see an error like 'java' is not recognized, it means Java is not installed. Please follow the next step to install Java.</box>
+
+    ![macOS Java Version](images/java-version-mac.png)
+    <p style="font-size: 0.9em; color: #666; text-align: center; margin-top: 0;">(Source: tutorials24x7)</p>
+
+1. If Java is not found, you may refer to the [macOS guide](https://se-education.org/guides/tutorials/javaInstallationMac.html) to install Java 17.
+
+1. If Java is found and the version is 17 or newer, you may proceed to check the disk space as described in the next section [**How to check available disk space**](#how-to-check-available-disk-space).
+
+1. Once Java is installed, repeat Steps 1-3 to verify the installation.
+
+#### How to check available disk space
+
+**Windows:**
+
+1. Open File Explorer and navigate to **"This PC"** or **"My Computer"**.
+
+1. Look for the drive where you plan to store the app home (e.g., `C:\` or `D:\`).
+
+1. Check the **"Free space"** column for that drive to ensure it has at least `50M` free. For safety, keep a few hundred MB free for updates and data growth. As a referennce, 1 TB = 1048576 MB, 1 GB = 1024 MB.
+
+**macOS:**
+
+1. Click on the Apple menu and select "About This Mac".
+
+1. Go to the "Storage" tab.
+
+1. Check the available space for the drive where you plan to store the app home (e.g., Macintosh HD) to ensure it has at least `50M` free. For safety, keep a few hundred MB free for updates and data growth.
+
+### Install and run
+
+1. Download the latest `cpp.jar` from the project [release page](https://github.com/AY2526S2-CS2103T-T10-1/tp/releases) and save it in a folder you will use as the app home.
+
+    <box type="info">A subfolder "data/" and a file "preferences.json" will both be created in this folder.</box>
+
+1. Users are **strongly encouraged to create a dedicated folder for CPP** (e.g., `Documents/CPP`) rather than running the JAR from a temporary download folder to prevent accidental deletion of data files.
+
+1. Open the folder where you saved `cpp.jar`, right click on an empty space in the folder and select **"Open in Terminal" (macOS)** or **"Open Command Prompt here" (Windows)**.
+   <box type="info">On later versions of Windows, you may also see "Open Windows Terminal here" which is also fine.</box>
+
+1. To launch the app, type in the following command and press Enter:
+
+    ```bash
+    java -jar cpp.jar
+    ```
+
+\
+Within a few seconds the application will appear. The main User Interface (UI) contains from top to bottom:
+
+* A command box to enter CLI commands.
+* A result display that shows the output of commands and brief success/error messages.
+* A central list panel with a toggle to show contacts, classes, or assignments.
+
+    <box type="info">The app will automatically load some default contacts on first launch.</box>
+
+![Ui](images/Ui.png)
+
+### Quick CLI tutorial (common tasks and expected output)
+
+* **List all contacts:**
+
+    Command:
+
+    ```text
+    list contacts
+    ```
+
+    Expected: Displays numbered list of contacts in the main panel.
+
+    ```text
+    Listed all contacts
+    ```
+
+* **Add a contact John Doe with phone, email, address and tags:**
+
+    Command:
+
+    ```text
+    addcontact n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2 t/FinancialAid t/TransferStudent
+    ```
+
+    Expected: Confirmation message in result display and new contact appears in the list.
+
+    ```text
+    New contact added: John Doe Test; Phone: 98765432; Email: <johnd@example.com>; Address: 311, Clementi Ave 2; Tags: [TransferStudent][FinancialAssistance]
+    ```
+
+* **Delete the 1st, 2nd and 3rd contact in the list:**
+
+    Command:
+
+    ```text
+    delete ct/1 2 3
+    ```
+
+    Expected: Confirmation message in result display and contact list updated with the deleted contact removed.
+
+    ```text
+    Deleted Contact: Alice Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Tags: [friends]
+    Deleted Contact: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; Tags: [colleagues][friends]
+    Deleted Contact: Charlotte Oliveiro; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04; Tags: [neighbours]
+    ```
+
+* **Find by name keywords (case-insensitive):**
+
+    Command:
+
+    ```text
+    findcontact dAviD IRFAN
+    ```
+
+    Expected: Confirmation message in result display and contact list updated to show only David Li and Irfan Ibrahim.
+
+    ```text
+    2 contacts listed!
+    ```
+
+#### Tips
+
+* Do not attempt to copy multiple commands at once. Copy and paste one command at a time, and wait for the result display to show the confirmation message before pasting the next command.
+
+* Use `help` in the command box for a quick list of commands: `help`.
+
+* If you are unsure of the command format, you may enter the command with incomplete parameters (e.g., `addcontact n/John Doe`) and the app will show an error message with the correct usage.
+
+#### Warnings and expected failures
+
+* Back up your data folder (`data/addressbook.json`) before manual edits. Corrupted JSON will cause the app to start with an empty dataset.
+
+* The app prevents obvious duplicates at entry; if you attempt to add contacts, assignments, or class groups with the same name, CPP will reject the entry with an explanatory error.
+
+Refer to the [**Features**](#features) below for advanced features with the full command format, options and advanced examples.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,18 +221,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addcontact n/NAME`, `NAME` is a parameter which can be used as `addcontact n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.<br>
+  e.g. `ct/CONTACT INDICES` can be used as `ct/1`, `ct/1 2 3`, `ct/1 3 5 7` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -75,7 +247,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding a contact: `add`
 
 Adds a contact to the address book.
@@ -88,6 +259,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
@@ -111,8 +283,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 ### Locating contacts by name: `find`
 
@@ -128,6 +301,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
+
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -143,6 +317,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
@@ -181,15 +356,31 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?\
+**A**: Install CPP on the other computer by following the installation instructions in [**Install and run**](#install-and-run), then copy the `data/addressbook.json` file from your existing app home folder into the new app home folder (overwrite the empty file created on first run). Always stop the app before copying files.
+
+**Q**: How can I back up my data and restore it if something goes wrong?\
+**A**: Make a copy of `data/addressbook.json` and store it in a safe location (cloud or external drive). To restore, stop CPP, replace the `addressbook.json` in the app home `data/` folder, then start CPP.
+
+**Q**: How does CPP prevent duplicate contacts?\
+**A**: CPP performs basic duplicate detection at entry. **For contacts**, the **name**, **phone number**, and **email** should be unique. No 2 contacts should share the same name, or the same phone number, or the same email. If you attempt to add a contact that violates these rules, CPP will reject the entry and show an error message. **For classes and assignments**, the **name** should be unique.
+
+**Q**: Can I export/import data for other systems (e.g., Excel)?\
+**A**: The primary data format used by CPP is JSON. We do not support importing from Excel, but users may manually convert their Excel files to JSON format, adhering to the structure and format of the `addressbook.json` file generated on first run. Manual editing of `addressbook.json` is not recommended unless you are comfortable with JSON.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known issues and workarounds
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **Multiple screens / off-screen window**: If you move the app to a secondary monitor and later use only the primary monitor, the GUI may open off-screen. Workaround: delete `preferences.json` in the app home folder while the app is closed; the window position will reset on next start.
+
+1. **Minimized Help Window**: If the Help Window is minimized and you run `help` again, the existing window may remain minimized. Workaround: restore it manually from the taskbar.
+
+1. **Preferences or data corruption**: If `preferences.json` or `addressbook.json` becomes invalid (e.g., partial writes), CPP will start with an empty dataset. Always keep backups before making changes.
+
+1. **File permission issues (Windows)**: Running the app from a protected folder (e.g., `C:\Program Files`) may prevent writing `data/` or `preferences.json`. Run from a user-writable folder (e.g., Documents) or run the terminal as Administrator.
+
+If you encounter other issues, please raise a ticket with the project maintainers and include `data/addressbook.json` and `preferences.json` for troubleshooting.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -204,3 +395,5 @@ _Details coming soon ..._
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+
+</div>
