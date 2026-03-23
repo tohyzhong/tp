@@ -200,17 +200,25 @@ Within a few seconds the application will appear. The main User Interface (UI) c
 
 #### Tips
 
+<box type="tip" seamless>
+
 * Do not attempt to copy multiple commands at once. Copy and paste one command at a time, and wait for the result display to show the confirmation message before pasting the next command.
 
 * Use `help` in the command box for a quick list of commands: `help`.
 
 * If you are unsure of the command format, you may enter the command with incomplete parameters (e.g., `addcontact n/John Doe`) and the app will show an error message with the correct usage.
 
+</box>
+
 #### Warnings and expected failures
+
+<box type="warning" seamless>
 
 * Back up your data folder (`data/addressbook.json`) before manual edits. Corrupted JSON will cause the app to start with an empty dataset.
 
 * The app prevents obvious duplicates at entry; if you attempt to add contacts, assignments, or class groups with the same name, CPP will reject the entry with an explanatory error.
+
+</box>
 
 Refer to the [**Features**](#features) below for advanced features with the full command format, options and advanced examples.
 
@@ -352,6 +360,24 @@ Format: `addass ass/ASSIGNMENT NAME d/DEADLINE [c/CLASS NAME] [ct/CONTACT INDICE
 
 * These `CONTACT INDICES` must be positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
 
+<box type="warning" seamless>
+
+* If any of the specified contacts or classes do not exist, the command will fail and no assignment is created.
+
+* If any of the other parameters are invalid, the command will also fail and no assignment is created.
+
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+
+* If the specified class does not contain any students, the command will fail and no assignment is created.
+
+</box>
+
+<box type="tip" seamless>
+
+* You can enter the `c/CLASS NAME` and/or `ct/CONTACT INDICES` parameters to allocate the assignment to specific contacts at the time of creation. This is optional and can also be done later using the `allocass` command.
+
+</box>
+
 Examples:
 
 * `addass ass/Assignment 1 d/01-12-2023 23:59`<br>
@@ -365,6 +391,105 @@ Examples:
 
 * `list contacts` followed by `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T ct/4 5`<br>
   Creates an assignment with the name "Assignment 4" and deadline "15 Jan 2024 23:59", allocated to the 4th and 5th contacts in the list, as well as all contacts belonging to class "CS2103T".
+  
+  In this example, the class "CS2103T" consists of contacts 2-5.\
+  ![Creating and allocating Assignment 4](images/addass-result.png)
+
+### Allocate assignments to contacts: `allocass`
+
+Allocates an assignment to specific contacts.
+
+Format: `allocass ass/ASSIGNMENT NAME [ct/CONTACT INDICES...] [c/CLASS NAME]`
+
+* Allocates the assignment to the specified contacts, as well as all contacts in the specified class.
+
+* The `ASSIGNMENT NAME` must match the name of an existing assignment (case-insensitive).
+
+* At least 1 of [ct/CONTACT INDICES...] or [c/CLASS NAME] must be provided.
+
+* The `CONTACT INDICES` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
+  
+<box type="warning" seamless>
+
+* If any of the specified contacts or classes do not exist, the command will fail and no allocation is done.
+
+* If any of the parameters are invalid, the command will also fail and no allocation is done.
+
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+
+* If the specified class does not contain any students, the command will fail and no allocation is done.
+
+* If no contacts are allocated at the end of the command, the command will fail and the user will see an error message specifying the issue.
+
+</box>
+
+<box type="tip" seamless>
+
+* You can enter both the `c/CLASS NAME` and `ct/CONTACT INDICES` parameters to allocate the assignment to more contacts at the same time.
+
+</box>
+
+Examples:
+
+* `allocass ass/Assignment 1 ct/1 2 3`<br>
+  Allocates the "Assignment 1" to the 1st, 2nd, and 3rd contacts in the list.
+
+* `allocass ass/Assignment 2 c/CS2103T`<br>
+  Allocates the "Assignment 2" to all contacts in the "CS2103T" class.
+
+* `allocass ass/Assignment 3 ct/1 2 3 c/CS2103T`<br>
+  Allocates the "Assignment 3" to the 1st, 2nd, and 3rd contacts in the list, as well as all contacts belonging to class "CS2103T".
+
+  In this example, the class "CS2103T" contains contacts 2-5, and contact 3 was already allocated the assignment.<br>
+  ![Allocating Assignment 3](images/allocass-result.png)
+
+### Unallocate assignments from contacts: `unallocass`
+
+Unallocates an assignment from specific contacts.
+
+Format: `unallocass ass/ASSIGNMENT NAME [ct/CONTACT INDICES...] [c/CLASS NAME]`
+
+* Unallocates the assignment from the specified contacts, as well as all contacts in the specified class.
+
+* The `ASSIGNMENT NAME` must match the name of an existing assignment (case-insensitive).
+
+* At least 1 of [ct/CONTACT INDICES...] or [c/CLASS NAME] must be provided.
+
+* The `CONTACT INDICES` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
+  
+<box type="warning" seamless>
+
+* If any of the specified contacts or classes do not exist, the command will fail and no unallocation is done.
+
+* If any of the parameters are invalid, the command will also fail and no unallocation is done.
+
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+
+* If the specified class does not contain any students, the command will fail and no unallocation is done.
+
+* If no contacts are unallocated at the end of the command, the command will fail and the user will see an error message specifying the issue.
+
+</box>
+
+<box type="tip" seamless>
+
+* You can enter both the `c/CLASS NAME` and `ct/CONTACT INDICES` parameters to unallocate the assignment from more contacts at the same time.
+
+</box>
+
+Examples:
+
+* `unallocass ass/Assignment 1 ct/1 2 3`<br>
+  Unallocates the "Assignment 1" from the 1st, 2nd, and 3rd contacts in the list.
+
+* `unallocass ass/Assignment 2 c/CS2103T`<br>
+  Unallocates the "Assignment 2" from all contacts in the "CS2103T" class.
+
+* `unallocass ass/Assignment 3 ct/1 2 3 c/CS2103T`<br>
+  Unallocates the "Assignment 3" from the 1st, 2nd, and 3rd contacts in the list, as well as all contacts belonging to class "CS2103T".
+
+  In this example, the class "CS2103T" contains contacts 2-5, and only contacts 1, 2, 4, and 5 had the assignment allocated.<br>
+  ![Unallocating Assignment 3](images/unallocass-result.png)
 
 ### Clearing all entries : `clear`
 
