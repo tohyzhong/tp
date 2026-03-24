@@ -141,22 +141,33 @@ Deletes the specified contact(s), assignment, or class group from the address bo
 Format: `delete ct/INDEX [ct/INDEX]…​`
 
 * Deletes the contact(s) at the specified `INDEX` (or multiple indices).
+
 * The index refers to the index number shown in the displayed contact list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
+
 * At least one `ct/INDEX` must be provided.
 
-> **Warning:** Deletion is permanent and cannot be undone. Deleted contacts are removed from all class groups and assignments they were allocated to.
+<box type="warning" seamless>
+
+**Warning:** Deletion is permanent and cannot be undone. Deleted contacts are removed from all class groups and assignments they were allocated to.
+</box>
 
 Expected output (e.g. `delete ct/2`):
 ```
 Deleted Contact(s): [Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Tags: [friends]]
 ```
 
-> **Tip:** Use `find` before deleting to narrow the list and make sure you have the right index. You can also delete multiple contacts at once: `delete ct/1 ct/3 ct/5`.
+<box type="tip" seamless>
+
+**Tip:** Use `find` before deleting to narrow the list and make sure you have the right index. You can also delete multiple contacts at once: `delete ct/1 ct/3 ct/5`.
+</box>
 
 Examples:
 * `list` followed by `delete ct/2` deletes the 2nd contact in the displayed list.
+
 * `find Betsy` followed by `delete ct/1` deletes the 1st contact in the filtered results.
+
 * `delete ct/1 ct/3` deletes the 1st and 3rd contacts shown in the displayed list.
 
 **Delete assignment**
@@ -164,20 +175,29 @@ Examples:
 Format: `delete ass/ASSIGNMENT_NAME`
 
 * Deletes the assignment with the given `ASSIGNMENT_NAME`.
+
 * The name must match exactly (case-sensitive).
+
 * All contact–assignment allocations for this assignment are also removed.
 
-> **Warning:** Deleting an assignment removes it and all its grading records permanently. This cannot be undone.
+<box type="warning" seamless>
+
+**Warning:** Deleting an assignment removes it and all its grading records permanently. This cannot be undone.
+</box>
 
 Expected output (e.g. `delete ass/Assignment 1`):
 ```
 Deleted Assignment: Assignment 1; Deadline: 01-01-2025 23:59
 ```
 
-> **Tip:** Use `list` to see all assignment names before deleting, so you can copy the exact name.
+<box type="tip" seamless>
+
+**Tip:** Use `list` to see all assignment names before deleting, so you can copy the exact name.
+</box>
 
 Examples:
 * `delete ass/Assignment 1` deletes the assignment named `Assignment 1`.
+
 * `delete ass/Midterm Exam` deletes the assignment named `Midterm Exam`.
 
 **Delete class group**
@@ -185,20 +205,29 @@ Examples:
 Format: `delete c/CLASS_NAME`
 
 * Deletes the class group with the given `CLASS_NAME`.
+
 * The name must match exactly (case-sensitive).
+
 * Deleting a class group removes the grouping only. The contacts that were in the class group are **not** deleted from the address book.
 
-> **Warning:** Deleting a class group is permanent. You will need to recreate the group and re-add contacts if you delete it by mistake.
+<box type="warning" seamless>
+
+**Warning:** Deleting a class group is permanent. You will need to recreate the group and re-add contacts if you delete it by mistake.
+</box>
 
 Expected output (e.g. `delete c/CS2103T-T14`):
 ```
 Deleted Class Group: CS2103T-T14
 ```
 
-> **Tip:** If you just want to remove a single student from a class group, use `unallocateclass` instead of deleting the entire group.
+<box type="tip" seamless>
+
+**Tip:** If you just want to remove a single student from a class group, use `unallocateclass` instead of deleting the entire group.
+</box>
 
 Examples:
 * `delete c/CS2103T-T14` deletes the class group named `CS2103T-T14`.
+
 * `delete c/Tutorial Group A` deletes the class group named `Tutorial Group A`.
 
 ### Clearing all entries : `clear`
