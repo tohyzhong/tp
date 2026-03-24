@@ -260,11 +260,37 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `add`
+### Adding a contact: `addcontact`
 
 Adds a contact to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [c/CLASS_NAME] [ass/ASSIGNMENT_NAME] [t/TAG]...`
+
+* Creates a contact with the specified `NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS`.
+
+* The `NAME` provided must only contain alphanumeric characters and spaces only. It should not start with a space, and cannot be blank. The `NAME` must be unique across all contacts.
+
+* The `PHONE_NUMBER` provided must only contain numeric digits (0-9), be a minimum of 3 digits long, and cannot be blank.
+
+* The `EMAIL` provided must be in the format `local-part@domain`.
+
+  * The local part can contain alphanumeric characters and special characters (`+`, `.`, `-`), but cannot start or end with special characters.
+
+  * The domain must contain at least one period, each label must be alphanumeric with optional hyphens between characters, and the top-level domain must be at least 2 characters long. No spaces allowed, and cannot be blank.
+
+* The `ADDRESS` provided can contain any characters, but cannot start with a space and cannot be blank.
+
+* `c/CLASS_NAME` is optional and can be used to allocate the contact to the specific class. If the `c/` prefix is included, the `CLASS_NAME` must match the name of an existing class (case-insensitive).
+
+* `ass/ASSIGNMENT_NAME` is optional and can be used to allocate the contact to the specific assignment. If the `ass/` prefix is included, the `ASSIGNMENT_NAME` must match the name of an existing assignment (case-insensitive).
+
+<box type="warning" seamless>
+
+* If the specified class or assignment does not exist, the command will fail and no contact is created.
+
+* If any of the parameters are invalid, the command will also fail and no contact is created.
+
+</box>
 
 <box type="tip" seamless>
 
@@ -273,9 +299,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addcontact n/Betsy Crowe e/betsycrowe@example.com a/Betsy Street, Block 123, #06-07 p/1234567` <br>
+  Creates a contact with the name "Betsy Crowe", phone number "1234567", email "betsycrowe<span></span>@example.com", address "John Street, Block 123, #06-07"
 
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addcontact n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/CS2103T10 ass/Assignment 1 t/friends t/owesMoney`<br>
+  Creates a contact with the name "John Doe", phone number "98765432", email "johnd<span></span>@example.com", address "311, Clementi Ave 2, #02-25", assigned to class group "CS2103T10" and assignment "Assignment1", with tags "friends" and "owesMoney".
 
 ### Listing all contacts : `list`
 
