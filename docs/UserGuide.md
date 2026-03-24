@@ -353,13 +353,15 @@ Adds a class to the address book.
 
 Format: `addclass c/CLASS_NAME [ct/CONTACT_INDICES...]`
 
-* Creates a class with the specified `CLASS_NAME`.
+* Creates a class with the specified `CLASS_NAME`. The `CLASS_NAME` must be unique and should not match the name of any existing class (case-insensitive).
 
-* `ct/CONTACT_INDICES...` is optional and can be used to allocate the class specific contacts to the class upon creation. If the `ct/` prefix is included, at least 1 contact index must be specified.
+* `ct/CONTACT_INDICES...` is optional and can be used to allocate the class to specific contacts upon creation. If the `ct/` prefix is included, at least 1 contact index must be specified.
+
+* These `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
 
 <box type="warning" seamless>
 
-* If any of the specified contacts or class do not exist, the command will fail and no class is created.
+* If any of the specified contacts do not exist, the command will fail and no class is created.
 
 * If any of the parameters are invalid, the command will also fail and no class is created.
 
@@ -383,7 +385,7 @@ Format: `allocclass c/CLASS_NAME ct/CONTACT_INDICES...`
 
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
-* The `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
+* These `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
   
 <box type="warning" seamless>
 
@@ -413,7 +415,7 @@ Format: `unallocclass c/CLASS_NAME ct/CONTACT_INDICES...`
 
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
-* The `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
+* These `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
   
 <box type="warning" seamless>
 
@@ -441,7 +443,7 @@ Adds an assignment to the address book.
 
 Format: `addass ass/ASSIGNMENT_NAME d/DEADLINE [c/CLASS_NAME] [ct/CONTACT_INDICES...]`
 
-* Creates an assignment with the specified `ASSIGNMENT_NAME` and `DEADLINE`.
+* Creates an assignment with the specified `ASSIGNMENT_NAME` and `DEADLINE`. The `ASSIGNMENT_NAME` must be unique and should not match the name of any existing assignment (case-insensitive).
 
 * The `DEADLINE` provided must be in the format `dd-MM-yyyy HH:mm`.
 
