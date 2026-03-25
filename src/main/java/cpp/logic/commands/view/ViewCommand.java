@@ -3,6 +3,10 @@ package cpp.logic.commands.view;
 import cpp.logic.commands.Command;
 import cpp.logic.parser.CliSyntax;
 
+/**
+ * Represents a command to view details of a contact, assignment, or class
+ * group.
+ */
 public abstract class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
