@@ -123,9 +123,9 @@ How the parsing works:
 
 #### Model — current design
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="900" />
 
-**Model (current design):** shows `AddressBook`, `Contact`, `UniqueContactList`, and their primary relationships.
+**Model (current design):** shows `AddressBook` and its relations to the 3 main entities: `Contact`, `ClassGroup`, and `Assignment` through the unique list counterparts. The `Model` component also includes a `UserPref` class to store user preferences (e.g., file path of the address book data, GUI settings).
 
 ---
 
