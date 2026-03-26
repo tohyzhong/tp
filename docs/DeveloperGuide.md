@@ -131,7 +131,7 @@ How the parsing works:
 
 #### Contacts view
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagramContacts.puml" width="450" />
 
 **Contacts view:** highlights classes and contact-related entities.
 
