@@ -54,7 +54,8 @@ public class FindContactCommandTest {
         ContactNameContainsKeywordsPredicate predicate = this.preparePredicate(" ");
         FindContactCommand command = new FindContactCommand(predicate);
         this.expectedModel.updateFilteredContactList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, this.model, expectedMessage, this.expectedModel);
+        CommandTestUtil.assertCommandSuccess(command, this.model,
+                new CommandResult(expectedMessage, CommandResult.ListView.CONTACTS), this.expectedModel);
         Assertions.assertEquals(Collections.emptyList(), this.model.getFilteredContactList());
     }
 
@@ -64,7 +65,8 @@ public class FindContactCommandTest {
         ContactNameContainsKeywordsPredicate predicate = this.preparePredicate("Kurz Elle Kunz");
         FindContactCommand command = new FindContactCommand(predicate);
         this.expectedModel.updateFilteredContactList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, this.model, expectedMessage, this.expectedModel);
+        CommandTestUtil.assertCommandSuccess(command, this.model,
+                new CommandResult(expectedMessage, CommandResult.ListView.CONTACTS), this.expectedModel);
         Assertions.assertEquals(Arrays.asList(TypicalContacts.CARL, TypicalContacts.ELLE, TypicalContacts.FIONA),
                 this.model.getFilteredContactList());
     }
