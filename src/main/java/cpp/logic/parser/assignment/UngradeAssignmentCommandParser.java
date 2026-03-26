@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpp.commons.core.index.Index;
 import cpp.logic.Messages;
-import cpp.logic.commands.assignment.AllocateAssignmentCommand;
+import cpp.logic.commands.assignment.UngradeAssignmentCommand;
 import cpp.logic.parser.ArgumentMultimap;
 import cpp.logic.parser.ArgumentTokenizer;
 import cpp.logic.parser.CliSyntax;
@@ -15,15 +15,19 @@ import cpp.model.assignment.AssignmentName;
 import cpp.model.classgroup.ClassGroupName;
 
 /**
- * Parses input arguments and creates a new AllocateAssignmentCommand object.
- * Expected parameters: name and contact indices (ct/).
+ * Parses input arguments and creates a new {@code UngradeAssignmentCommand}
+ * object
  */
-public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmentCommand> {
+public class UngradeAssignmentCommandParser implements Parser<UngradeAssignmentCommand> {
 
+    /**
+     * Parses the given {@code String} and returns an
+     * {@code UngradeAssignmentCommand} object for execution.
+     */
     @Override
-    public AllocateAssignmentCommand parse(String args) throws ParseException {
+    public UngradeAssignmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CLASS, CliSyntax.PREFIX_CONTACT);
+                CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CONTACT, CliSyntax.PREFIX_CLASS);
 
         boolean hasAssignment = argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).isPresent();
         boolean hasContact = argMultimap.getValue(CliSyntax.PREFIX_CONTACT).isPresent();
@@ -31,11 +35,11 @@ public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmen
 
         if (!hasAssignment || !(hasContact || hasClass) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AllocateAssignmentCommand.MESSAGE_USAGE));
+                    UngradeAssignmentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CLASS,
-                CliSyntax.PREFIX_CONTACT);
+        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CONTACT,
+                CliSyntax.PREFIX_CLASS);
 
         AssignmentName assignmentName = ParserUtil
                 .parseAssignmentName(argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
@@ -49,10 +53,10 @@ public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmen
         if (hasClass) {
             String classGroupString = argMultimap.getValue(CliSyntax.PREFIX_CLASS).orElse("");
             ClassGroupName classGroupName = ParserUtil.parseClassGroupName(classGroupString);
-            return new AllocateAssignmentCommand(assignmentName, contactIndices, classGroupName);
+            return new UngradeAssignmentCommand(assignmentName, contactIndices, classGroupName);
         }
 
-        return new AllocateAssignmentCommand(assignmentName, contactIndices);
+        return new UngradeAssignmentCommand(assignmentName, contactIndices);
     }
 
 }

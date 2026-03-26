@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpp.commons.core.index.Index;
 import cpp.logic.Messages;
-import cpp.logic.commands.assignment.AllocateAssignmentCommand;
+import cpp.logic.commands.assignment.UnsubmitAssignmentCommand;
 import cpp.logic.parser.ArgumentMultimap;
 import cpp.logic.parser.ArgumentTokenizer;
 import cpp.logic.parser.CliSyntax;
@@ -15,13 +15,13 @@ import cpp.model.assignment.AssignmentName;
 import cpp.model.classgroup.ClassGroupName;
 
 /**
- * Parses input arguments and creates a new AllocateAssignmentCommand object.
- * Expected parameters: name and contact indices (ct/).
+ * Parses input arguments and creates a new {@code UnsubmitAssignmentCommand}
+ * object
  */
-public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmentCommand> {
+public class UnsubmitAssignmentCommandParser implements Parser<UnsubmitAssignmentCommand> {
 
     @Override
-    public AllocateAssignmentCommand parse(String args) throws ParseException {
+    public UnsubmitAssignmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CLASS, CliSyntax.PREFIX_CONTACT);
 
@@ -31,7 +31,7 @@ public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmen
 
         if (!hasAssignment || !(hasContact || hasClass) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AllocateAssignmentCommand.MESSAGE_USAGE));
+                    UnsubmitAssignmentCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_CLASS,
@@ -49,10 +49,9 @@ public class AllocateAssignmentCommandParser implements Parser<AllocateAssignmen
         if (hasClass) {
             String classGroupString = argMultimap.getValue(CliSyntax.PREFIX_CLASS).orElse("");
             ClassGroupName classGroupName = ParserUtil.parseClassGroupName(classGroupString);
-            return new AllocateAssignmentCommand(assignmentName, contactIndices, classGroupName);
+            return new UnsubmitAssignmentCommand(assignmentName, contactIndices, classGroupName);
         }
 
-        return new AllocateAssignmentCommand(assignmentName, contactIndices);
+        return new UnsubmitAssignmentCommand(assignmentName, contactIndices);
     }
-
 }
