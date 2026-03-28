@@ -34,6 +34,7 @@ Classroom Plus Plus (CPP) is a desktop application designed for educators to man
 * [Quick start](#quick-start)
 * [Features](#features)
 * [FAQ](#faq)
+* [Planned features and future work](#planned-features-and-future-work)
 * [Known issues and workarounds](#known-issues-and-workarounds)
 * [Command summary](#command-summary)
 
@@ -48,6 +49,8 @@ This quick start assumes you are a teacher who wants to install CPP, open the ap
 * Minimum disk space: `500 MB` for app + data. Please refer to the section on [**How to check available disk space**](#how-to-check-available-disk-space) to ensure you have enough free space.
 
 * Java 17 or newer must be installed and available on your PATH (system environment variables). If you are unfamiliar with setting up your PATH or checking your current version, do not worry - just head over to the [**How to check and install Java**](#how-to-check-and-install-java) section for a quick walkthrough.
+
+* If your system meets the above requirements, you may proceed to the section on [**Install and run**](#install-and-run) to download the application and try out some commands.
 
 #### How to check available disk space
 
@@ -676,6 +679,50 @@ CPP data is saved automatically in `[JAR file location]/data/addressbook.json`. 
 
 * Certain edits can cause CPP to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Planned features and future work
+
+### Filtering contacts by submission and grading status for a particular assignment
+
+CPP does not currently support filtering contacts by submission and grading status for a particular assignment, but this is a planned feature for future releases, to allow users to easily track the progress of their students for each assignment. For example, users may want to filter the list of contacts to show only those who have submitted assignment but have not been graded yet.
+
+We will consider implementing this by adding filter options to the existing `view` command, allowing users to specify the assignment name and the desired submission/grading status.
+
+In the meantime, users will only have the default `view` command which shows all contacts allocated to an assignment without filtering by submission or grading status.
+
+### Sorting contacts by score for a particular assignment
+
+CPP does not currently support sorting contacts by score for a particular assignment, but this is a planned feature for future releases, to allow users to easily identify top performers and those who may need additional help. For example, users may want to sort the list of contacts allocated to an assignment by their scores in descending order.
+
+We will consider implementing this by adding sort options to the existing `view` command, allowing users to specify the assignment name and the desired sorting order (e.g., ascending or descending).
+
+In the meantime, users will only have the default `view` command which shows all contacts allocated to an assignment without sorting by score.
+
+### Archiving contacts, classes, and assignments
+
+CPP does not currently support archiving contacts, classes, and assignments, but this is a planned feature for future releases, to allow users to keep their address book organized without permanently deleting data. For example, users may want to archive a class that has ended, while still keeping the data for record-keeping purposes.
+
+We will consider implementing this by adding an `archive` command that allows users to specify the contact, class, or assignment to be archived. Archived items will be hidden from the default lists but can be accessed through a separate view or by using specific filter options.
+
+In the meantime, users can save a backup of their data file before deleting any contacts, classes, or assignments that they wish to archive, and restore the data if needed.
+
+### Taking attendance for classes
+
+CPP does not currently support taking attendance for classes, but this is a planned feature for future releases, to allow users to easily track attendance records for their classes. For example, users may want to mark which students attended a particular class session.
+
+We will consider implementing this by adding `attend` and `absent` commands that allows users to specify the class name, date, and the list of contacts who attended. Attendance records for the class can then be viewed using the existing `view` command.
+
+In the meantime, users can create an attendance assignment allocated to the class for each session, and manually mark attendance by marking the assignment as submitted for students who attended, and not marking it for those who were absent.
+
+### Exporting data as a CSV file
+
+CPP does not currently support exporting data as a CSV file, but this is a planned feature for future releases, to allow users to easily retrieve the data they require. For example, users may want to export the list of scores for a particular assignment in order to perform further analysis or share it with others.
+
+We will consider adding an `export` command that allows users to specify the filename, and the entire `addressbook.json` will be converted to a CSV file with readable column headers and values.
+
+In the meantime, users can manually extract the required data from `addressbook.json` and convert it to CSV format using external tools if needed.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -884,7 +884,7 @@ Overall, the introduction of the new entities and their associated features requ
 
 Team size: 5
 
-1. **Filter contacts by their submission and grading status for a specific assignment**
+1. **Filtering contacts by their submission and grading status for a specific assignment**
 
    * **Description**: Allow users to filter contacts based on their submission and grading status for a specific assignment. For example, users can filter to see only those contacts who have submitted an assignment but have not been graded yet.
 
@@ -896,7 +896,7 @@ Team size: 5
 
        * Expected outcome: List of contacts who have submitted the assignment but have not been graded yet.
 
-1. **Sort contacts by their scores for a specific assignment**
+1. **Sorting contacts by their scores for a specific assignment**
 
     * **Description**: Allow users to sort contacts based on their scores for a specific assignment.
 
@@ -908,7 +908,7 @@ Team size: 5
 
         * Expected outcome: List of contacts sorted by their scores for the specified assignment in ascending order.
 
-1. **Archive contacts, classes, and assignments**
+1. **Archiving contacts, classes, and assignments**
 
     * **Description**: Allows users to archive unused contacts, classes, and assignments, so that they can focus on the currently relevant ones.
 
@@ -920,7 +920,7 @@ Team size: 5
 
         * Expected outcome: The specified contact, class, or assignment is moved to the archive state and hidden from the default view.
 
-1. **Attendance taking**
+1. **Taking attendance for classes**
 
     * **Description**: Allows users to mark the attendance of contacts for specific classes.
 
@@ -936,7 +936,7 @@ Team size: 5
 
         * Expected outcome: The specified contacts with index 6, 7, 8, 9, 10 are marked as absent for the given class.
 
-1. **Exporting data**
+1. **Exporting data as a CSV file**
 
     * **Description**: Allows users to export the data in the address book to a file.
 
