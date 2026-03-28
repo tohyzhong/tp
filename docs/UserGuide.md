@@ -515,7 +515,7 @@ Adds an assignment to the address book.
 
 * If any of the other parameters are invalid, the command will also fail and no assignment is created.
 
-* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `findcontact` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
 
 * If the specified class does not contain any students, the command will fail and no assignment is created.
 
@@ -568,7 +568,7 @@ Allocates an assignment to specific contacts.
 
 * If any of the parameters are invalid, the command will also fail and no allocation is done.
 
-* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `findcontact` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
 
 * If the specified class does not contain any students, the command will fail and no allocation is done.
 
@@ -620,7 +620,7 @@ Unallocates an assignment from specific contacts.
 
 * If any of the parameters are invalid, the command will also fail and no unallocation is done.
 
-* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `find` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
+* The contact indices specified refer to the currently displayed contact list after filtering (e.g., after a `findcontact` command). It is recommended to run `list contacts` before this command to ensure the correct contact indices are used.
 
 * If the specified class does not contain any students, the command will fail and no unallocation is done.
 
