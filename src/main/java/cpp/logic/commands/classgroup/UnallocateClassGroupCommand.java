@@ -3,9 +3,12 @@ package cpp.logic.commands.classgroup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
+import cpp.commons.core.LogsCenter;
 import cpp.commons.core.index.Index;
 import cpp.commons.util.ToStringBuilder;
+import cpp.logic.LogicManager;
 import cpp.logic.commands.Command;
 import cpp.logic.commands.CommandResult;
 import cpp.logic.commands.CommandUtil;
@@ -26,10 +29,10 @@ public class UnallocateClassGroupCommand extends Command {
     public static final String COMMAND_WORD = "unallocclass";
 
     public static final String MESSAGE_USAGE = UnallocateClassGroupCommand.COMMAND_WORD
-            + ": Unallocates contact(s) from a class group. "
+            + ": Unallocates contact(s) from a class group.\n"
             + "Parameters: "
-            + CliSyntax.PREFIX_CLASS + "CLASS NAME "
-            + CliSyntax.PREFIX_CONTACT + "CONTACT INDICES...\n"
+            + CliSyntax.PREFIX_CLASS + "CLASS_NAME "
+            + CliSyntax.PREFIX_CONTACT + "CONTACT_INDICES...\n"
             + "Example: " + UnallocateClassGroupCommand.COMMAND_WORD + " "
             + CliSyntax.PREFIX_CLASS + "CS2103T10 "
             + CliSyntax.PREFIX_CONTACT + "1 2 3";
@@ -39,7 +42,9 @@ public class UnallocateClassGroupCommand extends Command {
             Contacts unallocated: %3$s
             Contacts not unallocated (not allocated to class group initially): %4$s""";
     public static final String MESSAGE_INVALID_CLASS_GROUP_NAME = "The class group name provided is invalid";
-    public static final String MESSAGE_UNALLOCATION_FAILED = "No contacts were unallocated from the class group.";
+    public static final String MESSAGE_UNALLOCATION_FAILED = """
+            No contacts were unallocated from the class group.
+            Contacts not unallocated (not allocated to class group initially): %1$s""";
 
     private final ClassGroupName classGroupName;
     private final List<Index> contactIndices;
@@ -48,6 +53,9 @@ public class UnallocateClassGroupCommand extends Command {
     private int unsuccessfulUnallocationCount;
     private StringBuilder successfulContactUnallocations = new StringBuilder();
     private StringBuilder unsuccessfulContactUnallocations = new StringBuilder();
+
+    // Logger for logging unsuccessful unallocations
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Creates an UnallocateClassGroupCommand with the specified class group name
@@ -81,6 +89,11 @@ public class UnallocateClassGroupCommand extends Command {
             this.unsuccessfulContactUnallocations.append("None");
         }
 
+        if (this.successfulUnallocationCount == 0) {
+            throw new CommandException(String.format(UnallocateClassGroupCommand.MESSAGE_UNALLOCATION_FAILED,
+                    this.unsuccessfulContactUnallocations.toString()));
+        }
+
         return new CommandResult(
                 String.format(UnallocateClassGroupCommand.MESSAGE_SUCCESS, this.classGroupName.fullName,
                         this.successfulUnallocationCount, this.successfulContactUnallocations.toString(),
@@ -110,22 +123,18 @@ public class UnallocateClassGroupCommand extends Command {
 
     private void unallocateContactsFromClassGroup(ClassGroup classGroupToUnallocate,
             List<Contact> lastShownContactList) throws CommandException {
-        boolean anySuccessfulUnallocation = false;
         for (Index contactIndex : this.contactIndices) {
             Contact contactToUnallocate = lastShownContactList.get(contactIndex.getZeroBased());
             try {
                 classGroupToUnallocate.unallocateContact(contactToUnallocate.getId());
-                anySuccessfulUnallocation = true;
                 this.successfulUnallocationCount++;
                 this.buildSuccessfulUnallocationString(contactToUnallocate.getName().fullName);
             } catch (ContactNotAllocatedClassGroupException e) {
+                this.logger.info(
+                        "Contact already unallocated from class group: " + contactToUnallocate.getName().fullName);
                 this.unsuccessfulUnallocationCount++;
                 this.buildUnsuccessfulUnallocationString(contactToUnallocate.getName().fullName);
             }
-        }
-
-        if (!anySuccessfulUnallocation) {
-            throw new CommandException(UnallocateClassGroupCommand.MESSAGE_UNALLOCATION_FAILED);
         }
     }
 

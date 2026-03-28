@@ -525,7 +525,7 @@ Allocates a class to specific contacts.
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
 * These `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
-  
+
 <box type="warning" seamless>
 
 **Warnings:**
@@ -559,7 +559,7 @@ Unallocates a class from specific contacts.
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
 * These `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
-  
+
 <box type="warning" seamless>
 
 **Warnings:**
@@ -633,7 +633,7 @@ Adds an assignment to the address book.
 
 * `list contacts` followed by `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T-T10-1 ct/4 5`<br>
   Creates an assignment with the name "Assignment 4" and deadline "15 Jan 2024 23:59", allocated to the 4th and 5th contacts in the list, as well as all contacts belonging to class "CS2103T-T10-1".
-  
+
   The screenshot below illustrates the last example, where the class "CS2103T-T10-1" consists of contacts 2-5.\
   ![Creating and allocating Assignment 4](images/addass-result.png)
 
@@ -652,7 +652,7 @@ Allocates an assignment to specific contacts.
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
 * The `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
-  
+
 <box type="warning" seamless>
 
 **Warnings:**
@@ -700,11 +700,11 @@ Unallocates an assignment from specific contacts.
 * The `ASSIGNMENT_NAME` must match the name of an existing assignment (case-insensitive).
 
 * At least 1 of `[c/CLASS_NAME]` or `[ct/CONTACT_INDICES...]` must be provided.
-  
+
 * The `CLASS_NAME` must match the name of an existing class (case-insensitive).
 
 * The `CONTACT_INDICES...` must contain 1 or more positive integers 1, 2, 3, ..., referring to the index number shown in the displayed contact list.
-  
+
 <box type="warning" seamless>
 
 **Warnings:**
