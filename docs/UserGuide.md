@@ -223,7 +223,7 @@ In this quick tutorial, we will cover some common tasks such as listing contacts
 
 * Back up your data folder (`data/addressbook.json`) before manual edits. A corrupted `addressbook.json` will cause the app to start with an empty dataset.
 
-* The app prevents obvious duplicates at entry; if you attempt to add contacts, assignments, or classes with the same name, CPP will reject the entry with an explanatory error.
+* The app prevents duplicate names within the same category. While an assignment and a class can share the same name, you cannot have two assignments, two classes, or two contacts with identical names. CPP will reject any duplicate entry within a domain with an explanatory error.
 
 </box>
 
@@ -692,7 +692,7 @@ _Details coming soon ..._
 **A**: Make a copy of `data/addressbook.json` and store it in a safe location such as a cloud or external drive. To restore, stop CPP, replace the `addressbook.json` in the app home `data/` folder, then start CPP.
 
 **Q**: How does CPP prevent duplicate entries?\
-**A**: CPP performs basic duplicate detection at entry. **For contacts, classes and assignments**, the **name** should be unique. No 2 contacts, classes nor assignments should share the same name. If you attempt to add a contact, class or assignment that violates these rules, CPP will reject the entry and show an error message.
+**A**: CPP performs basic duplicate detection at entry. The app prevents duplicate names within the same category. While an assignment and a class can share the same name, you cannot have two assignments, two classes, or two contacts with identical names. CPP will reject any duplicate entry within a domain with an explanatory error
 
 **Q**: Can I export/import data for other systems (e.g., Excel)?\
 **A**: The primary data format used by CPP is JavaScript Object Notation (JSON). We do not support importing from Excel, but users may manually convert their Excel files to JSON format, adhering to the structure and format of the `addressbook.json` file generated on first run. Manual editing of `addressbook.json` is not recommended unless you are comfortable with JSON.
