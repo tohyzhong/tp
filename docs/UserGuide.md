@@ -104,12 +104,14 @@ This quick start assumes you are a teacher who wants to install CPP, open the ap
 1. If Java is installed, you should see output showing the Java version (e.g., `java version "17"`).
     <box type="info">Any version that is 17 or newer is acceptable.</box>
     <box type="warning">Older versions (e.g., Java 8) will not work and must be updated using Step 4.</box>
-    <box type="warning">If you see an error like `zsh: command not found: java`, it means Java is not installed. Download and install Java 17 from the official Oracle website.</box>
+    <box type="warning">If you see an error like `zsh: command not found: java`, it means Java is not installed. Please follow Step 4 to install Java.</box>
 
     ![macOS Java Version](images/java-version-mac.png)
     <p style="font-size: 0.9em; color: #666; text-align: center; margin-top: 0;">(Source: tutorials24x7)</p>
 
-1. Once Java is installed, repeat Steps 2–3 to verify the installation was successful.
+1. If Java is not found, you may refer to the [macOS guide](https://se-education.org/guides/tutorials/javaInstallationMac.html) to install Java 17.
+
+1. Once Java is installed, repeat Steps 1-3 to verify the installation.
 
 ### Install and run
 
