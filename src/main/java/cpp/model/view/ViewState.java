@@ -39,4 +39,8 @@ public class ViewState {
     public Object getPayload() {
         return this.payload;
     }
+
+    public boolean isViewingAssignment(Object assignment) {
+        return this.type == CommandResult.ViewType.ASSIGNMENT && this.payload.equals(assignment);
+    }
 }

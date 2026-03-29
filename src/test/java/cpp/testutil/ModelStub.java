@@ -11,6 +11,7 @@ import cpp.model.ReadOnlyAddressBook;
 import cpp.model.ReadOnlyUserPrefs;
 import cpp.model.assignment.Assignment;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
 import cpp.model.view.ViewState;
@@ -194,7 +195,8 @@ public class ModelStub implements Model {
 
     /** Returns the contact assignments for the given assignment. */
     @Override
-    public java.util.List<ContactAssignment> getContactAssignmentsForAssignment(Assignment assignment) {
+    public List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(
+            Assignment assignment) {
         throw new AssertionError("This method should not be called.");
     }
 

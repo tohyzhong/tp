@@ -3,9 +3,8 @@ package cpp.ui;
 import java.util.List;
 
 import cpp.logic.parser.ParserUtil;
-import cpp.model.ReadOnlyAddressBook;
 import cpp.model.assignment.Assignment;
-import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,16 +34,24 @@ public class UniqueAssignmentView extends UiPart<Region> {
         super(UniqueAssignmentView.FXML);
     }
 
-    public void setAssignment(Assignment assignment, List<ContactAssignment> cas, ReadOnlyAddressBook addressBook) {
-        this.assignmentName.setText(assignment.getName().toString());
+    /**
+     * Sets the assignment to display in this view, along with the per-contact data
+     * for the assignment. The per-contact data is provided as a list of
+     * ContactAssignmentWithContact DTOs, which contain the contact assignment data
+     * along with the associated contact data for display.
+     */
+    public void setAssignment(Assignment assignment,
+            List<ContactAssignmentWithContact> cas) {
+        this.assignmentName.setText("Assignment: " + assignment.getName().toString());
         this.assignmentDeadline
-                .setText(assignment.getDeadline().format(ParserUtil.DATETIME_FORMATTER));
+                .setText("Deadline: " + assignment.getDeadline().format(ParserUtil.DATETIME_FORMATTER));
 
-        ObservableList<ContactAssignment> observableCas = FXCollections.observableArrayList(cas);
+        ObservableList<ContactAssignmentWithContact> observableCas = FXCollections
+                .observableArrayList(cas);
         if (this.contactAssignmentListPanel != null) {
             this.contactAssignmentsPlaceholder.getChildren().clear();
         }
-        this.contactAssignmentListPanel = new ContactAssignmentListPanel(observableCas, addressBook);
+        this.contactAssignmentListPanel = new ContactAssignmentListPanel(observableCas);
         this.contactAssignmentsPlaceholder.getChildren().add(this.contactAssignmentListPanel.getRoot());
     }
 }

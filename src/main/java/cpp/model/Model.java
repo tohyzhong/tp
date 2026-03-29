@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import cpp.commons.core.GuiSettings;
 import cpp.model.assignment.Assignment;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
 import cpp.model.view.ViewState;
@@ -216,9 +217,10 @@ public interface Model {
     void clearViewState();
 
     /**
-     * Returns the contact assignments for the given assignment.
+     * Returns the contact assignments paired with their corresponding contacts for
+     * the given assignment.
      */
-    List<ContactAssignment> getContactAssignmentsForAssignment(Assignment assignment);
+    List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(Assignment assignment);
 
     /**
      * Observable property for the current view state.

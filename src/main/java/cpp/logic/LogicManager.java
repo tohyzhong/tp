@@ -16,7 +16,7 @@ import cpp.logic.parser.exceptions.ParseException;
 import cpp.model.Model;
 import cpp.model.ReadOnlyAddressBook;
 import cpp.model.assignment.Assignment;
-import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
 import cpp.model.view.ViewState;
@@ -104,9 +104,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public List<ContactAssignment> getContactAssignmentsForAssignment(
+    public List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(
             Assignment assignment) {
-        return this.model.getContactAssignmentsForAssignment(assignment);
+        return this.model.getContactAssignmentsWithContactsForAssignment(assignment);
     }
 
     @Override

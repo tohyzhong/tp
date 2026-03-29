@@ -1,8 +1,6 @@
 package cpp.ui;
 
-import cpp.model.ReadOnlyAddressBook;
-import cpp.model.assignment.ContactAssignment;
-import cpp.model.contact.Contact;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -16,35 +14,27 @@ public class ContactAssignmentListPanel extends UiPart<Region> {
     private static final String FXML = "ContactAssignmentListPanel.fxml";
 
     @FXML
-    private ListView<ContactAssignment> contactAssignmentListView;
-
-    private final ReadOnlyAddressBook addressBook;
+    private ListView<ContactAssignmentWithContact> contactAssignmentListView;
 
     /**
      * Creates a {@code ContactAssignmentListPanel} with the given
-     * {@code ObservableList}
-     * of {@code ContactAssignment} and the address book for contact lookup.
+     * {@code ObservableList} of {@code ContactAssignmentWithContact}.
      */
-    public ContactAssignmentListPanel(ObservableList<ContactAssignment> cas, ReadOnlyAddressBook addressBook) {
+    public ContactAssignmentListPanel(ObservableList<ContactAssignmentWithContact> cas) {
         super(ContactAssignmentListPanel.FXML);
-        this.addressBook = addressBook;
         this.contactAssignmentListView.setItems(cas);
         this.contactAssignmentListView.setCellFactory(listView -> new ContactAssignmentListViewCell());
     }
 
-    class ContactAssignmentListViewCell extends ListCell<ContactAssignment> {
+    class ContactAssignmentListViewCell extends ListCell<ContactAssignmentWithContact> {
         @Override
-        protected void updateItem(ContactAssignment ca, boolean empty) {
-            super.updateItem(ca, empty);
-
-            if (empty || ca == null) {
+        protected void updateItem(ContactAssignmentWithContact caWithContact, boolean empty) {
+            super.updateItem(caWithContact, empty);
+            if (empty || caWithContact == null) {
                 this.setGraphic(null);
                 this.setText(null);
             } else {
-                Contact contact = ContactAssignmentListPanel.this.addressBook.getContactList().stream()
-                        .filter(c -> c.getId().equals(ca.getContactId()))
-                        .findFirst().orElse(null);
-                this.setGraphic(new ContactAssignmentCard(ca, contact, this.getIndex() + 1).getRoot());
+                this.setGraphic(new ContactAssignmentCard(caWithContact, this.getIndex() + 1).getRoot());
             }
         }
     }

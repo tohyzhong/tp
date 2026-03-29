@@ -14,7 +14,7 @@ import cpp.logic.commands.CommandResult.ViewType;
 import cpp.logic.commands.exceptions.CommandException;
 import cpp.logic.parser.exceptions.ParseException;
 import cpp.model.assignment.Assignment;
-import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -297,9 +297,9 @@ public class MainWindow extends UiPart<Stage> {
         case ASSIGNMENT:
             Assignment ass = (Assignment) this.currentViewPayload;
             if (ass != null) {
-                List<ContactAssignment> cas = this.logic
-                        .getContactAssignmentsForAssignment(ass);
-                this.assignmentViewPanel.setAssignment(ass, cas, this.logic.getAddressBook());
+                List<ContactAssignmentWithContact> cas = this.logic
+                        .getContactAssignmentsWithContactsForAssignment(ass);
+                this.assignmentViewPanel.setAssignment(ass, cas);
                 if (!this.mainTabPane.getTabs().contains(this.viewTab)) {
                     this.mainTabPane.getTabs().add(this.viewTab);
                 }
@@ -327,9 +327,9 @@ public class MainWindow extends UiPart<Stage> {
         case ASSIGNMENT:
             if (this.currentViewPayload instanceof Assignment) {
                 Assignment ass = (Assignment) this.currentViewPayload;
-                List<ContactAssignment> cas = this.logic
-                        .getContactAssignmentsForAssignment(ass);
-                this.assignmentViewPanel.setAssignment(ass, cas, this.logic.getAddressBook());
+                List<ContactAssignmentWithContact> cas = this.logic
+                        .getContactAssignmentsWithContactsForAssignment(ass);
+                this.assignmentViewPanel.setAssignment(ass, cas);
             }
             break;
         default:

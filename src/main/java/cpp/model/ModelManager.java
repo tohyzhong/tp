@@ -13,6 +13,7 @@ import cpp.commons.util.CollectionUtil;
 import cpp.model.assignment.Assignment;
 import cpp.model.assignment.AssignmentManager;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.assignment.exceptions.ContactAlreadyAllocatedAssignmentException;
 import cpp.model.assignment.exceptions.ContactAssignmentNotFoundException;
 import cpp.model.classgroup.ClassGroup;
@@ -160,6 +161,9 @@ public class ModelManager implements Model {
         List<ContactAssignment> caList = this.assignmentManager.getContactAssignmentsForAssignment(target);
         this.assignmentManager.deregisterContactAssignmentsForAssignment(target);
         this.addressBook.removeAssignment(target, caList);
+        if (this.viewState.get().isViewingAssignment(target)) {
+            this.clearViewState();
+        }
     }
 
     @Override
@@ -217,6 +221,9 @@ public class ModelManager implements Model {
 
         this.assignmentManager.ungrade(assignment.getId(), contact.getId());
     }
+
+    // =========== ClassGroup-level operations
+    // ===============================================================================
 
     @Override
     public boolean hasClassGroup(ClassGroup classGroup) {
@@ -297,9 +304,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<ContactAssignment> getContactAssignmentsForAssignment(Assignment assignment) {
+    public List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(
+            Assignment assignment) {
         Objects.requireNonNull(assignment);
-        return this.assignmentManager.getContactAssignmentsForAssignment(assignment);
+        return this.assignmentManager.getContactAssignmentsWithContactsForAssignment(assignment,
+                this.addressBook.getContactList());
     }
 
     @Override

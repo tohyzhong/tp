@@ -1,6 +1,7 @@
 package cpp.model.assignment;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -179,6 +180,26 @@ public class AssignmentManager {
     public List<ContactAssignment> getContactAssignmentsForAssignment(Assignment assignment) {
         Objects.requireNonNull(assignment);
         return List.copyOf(this.byAssignment.getOrDefault(assignment.getId(), Collections.emptyMap()).values());
+    }
+
+    /**
+     * Returns a list of ContactAssignmentWithContact for the given assignment by
+     * pairing each contact assignment with its corresponding Contact from the
+     * provided contacts list. If a contact is not found, the contact value will
+     * be null in the DTO.
+     */
+    public List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(
+            Assignment assignment, List<Contact> contacts) {
+        Objects.requireNonNull(assignment);
+        Objects.requireNonNull(contacts);
+        List<ContactAssignment> cas = this.getContactAssignmentsForAssignment(assignment);
+        ArrayList<ContactAssignmentWithContact> result = new ArrayList<>();
+        for (ContactAssignment ca : cas) {
+            Contact contact = contacts.stream().filter(c -> c.getId().equals(ca.getContactId())).findFirst()
+                    .orElse(null);
+            result.add(new ContactAssignmentWithContact(ca, contact));
+        }
+        return result;
     }
 
     /**

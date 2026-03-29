@@ -1,9 +1,14 @@
 package cpp.ui;
 
+import java.util.Comparator;
+
+import cpp.logic.parser.ParserUtil;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.contact.Contact;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -23,21 +28,52 @@ public class ContactAssignmentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private Label address;
+    @FXML
+    private FlowPane tags;
+    @FXML
     private Label submitted;
     @FXML
     private Label graded;
+    @FXML
+    private Label score;
 
     /**
      * Creates a {@code ContactAssignmentCard} with the given
      * {@code ContactAssignment}
      * and the associated {@code Contact} for display.
      */
-    public ContactAssignmentCard(ContactAssignment ca, Contact contact, int displayedIndex) {
+    public ContactAssignmentCard(ContactAssignmentWithContact caWithContact, int displayedIndex) {
         super(ContactAssignmentCard.FXML);
+        ContactAssignment ca = caWithContact.getContactAssignment();
+        Contact contact = caWithContact.getContact();
         this.contactAssignment = ca;
         this.id.setText(displayedIndex + ". ");
         this.name.setText(contact == null ? "<unknown>" : contact.getName().fullName);
-        this.submitted.setText(ca.isSubmitted() ? "submitted" : "not submitted");
-        this.graded.setText(ca.isGraded() ? String.format("graded (%.1f)", ca.getScore()) : "not graded");
+        this.phone.setText(contact == null ? "" : contact.getPhone().value);
+        this.email.setText(contact == null ? "" : contact.getEmail().value);
+        this.address.setText(contact == null ? "" : contact.getAddress().value);
+        contact.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> this.tags.getChildren().add(new Label(tag.tagName)));
+
+        if (ca.isSubmitted()) {
+            this.submitted.setText("Submitted on " + ca.getSubmissionDate().format(ParserUtil.DATETIME_FORMATTER));
+        } else {
+            this.submitted.setText("Not Submitted");
+        }
+
+        if (ca.isGraded()) {
+            String gradedText = "Graded on " + ca.getGradingDate().format(ParserUtil.DATETIME_FORMATTER);
+            this.graded.setText(gradedText);
+            this.score.setText(String.format("Score: %.1f", ca.getScore()));
+        } else {
+            this.graded.setText("Not Graded");
+            this.score.setText("");
+        }
     }
 }
