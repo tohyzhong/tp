@@ -3,6 +3,31 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.main-tab-pane {
+    -fx-background-color: transparent;
+    -fx-gap: 5;
+}
+
+.main-tab {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 5 10 5 10;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.main-tab:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.main-tab:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #3e7b91 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
