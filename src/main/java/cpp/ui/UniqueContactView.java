@@ -42,6 +42,9 @@ public class UniqueContactView extends UiPart<Region> {
     private ContactAssignmentAssignmentListPanel assignmentListPanel;
     private ClassGroupListPanel classGroupListPanel;
 
+    /**
+     * Creates a {@code UniqueContactView}.
+     */
     public UniqueContactView() {
         super(UniqueContactView.FXML);
         this.resizeBlock(this.contactClassGroupsPlaceholder, 0);
