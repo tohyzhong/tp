@@ -9,6 +9,7 @@ import cpp.logic.commands.exceptions.CommandException;
 import cpp.logic.parser.exceptions.ParseException;
 import cpp.model.ReadOnlyAddressBook;
 import cpp.model.assignment.Assignment;
+import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
@@ -67,6 +68,13 @@ public interface Logic {
      */
     List<ContactAssignmentWithContact> getContactAssignmentsWithContactsForAssignment(
             Assignment assignment);
+
+    /**
+     * Returns a list of contact-assignment DTOs pairing contact-assignment and
+     * assignment for the given contact.
+     */
+    List<ContactAssignmentWithAssignment> getContactAssignmentsWithAssignmentsForContact(
+            Contact contact);
 
     /**
      * Clears the currently viewed assignment, if any.

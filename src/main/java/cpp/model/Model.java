@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import cpp.commons.core.GuiSettings;
 import cpp.model.assignment.Assignment;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
@@ -207,6 +208,11 @@ public interface Model {
     void updateFilteredClassGroupList(Predicate<ClassGroup> predicate);
 
     /**
+     * Set the current viewed contact in the model.
+     */
+    void viewContact(Contact contact);
+
+    /**
      * Set the current viewed assignment in the model.
      */
     void viewAssignment(Assignment assignment);
@@ -215,6 +221,12 @@ public interface Model {
      * Clears any currently viewed assignment.
      */
     void clearViewState();
+
+    /**
+     * Returns the contact assignments paired with their corresponding Assignments
+     * for the given Contact.
+     */
+    List<ContactAssignmentWithAssignment> getContactAssignmentsWithAssignmentsForContact(Contact contact);
 
     /**
      * Returns the contact assignments paired with their corresponding contacts for

@@ -202,6 +202,20 @@ public class AssignmentManager {
         return result;
     }
 
+    public List<ContactAssignmentWithAssignment> getContactAssignmentsWithAssignmentsForContact(
+            Contact contact, List<Assignment> assignments) {
+        Objects.requireNonNull(contact);
+        Objects.requireNonNull(assignments);
+        List<ContactAssignment> cas = this.getContactAssignmentsForContact(contact);
+        ArrayList<ContactAssignmentWithAssignment> result = new ArrayList<>();
+        for (ContactAssignment ca : cas) {
+            Assignment assignment = assignments.stream().filter(a -> a.getId().equals(ca.getAssignmentId())).findFirst()
+                    .orElse(null);
+            result.add(new ContactAssignmentWithAssignment(ca, assignment));
+        }
+        return result;
+    }
+
     /**
      * Returns a list of contact assignments for the given contact.
      */

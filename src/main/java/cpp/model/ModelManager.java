@@ -13,6 +13,7 @@ import cpp.commons.util.CollectionUtil;
 import cpp.model.assignment.Assignment;
 import cpp.model.assignment.AssignmentManager;
 import cpp.model.assignment.ContactAssignment;
+import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.assignment.exceptions.ContactAlreadyAllocatedAssignmentException;
 import cpp.model.assignment.exceptions.ContactAssignmentNotFoundException;
@@ -293,6 +294,12 @@ public class ModelManager implements Model {
     // =============================================================
 
     @Override
+    public void viewContact(Contact contact) {
+        Objects.requireNonNull(contact);
+        this.viewState.set(ViewState.ofContact(contact));
+    }
+
+    @Override
     public void viewAssignment(Assignment assignment) {
         Objects.requireNonNull(assignment);
         this.viewState.set(ViewState.ofAssignment(assignment));
@@ -309,6 +316,13 @@ public class ModelManager implements Model {
         Objects.requireNonNull(assignment);
         return this.assignmentManager.getContactAssignmentsWithContactsForAssignment(assignment,
                 this.addressBook.getContactList());
+    }
+
+    @Override
+    public List<ContactAssignmentWithAssignment> getContactAssignmentsWithAssignmentsForContact(Contact contact) {
+        Objects.requireNonNull(contact);
+        return this.assignmentManager.getContactAssignmentsWithAssignmentsForContact(contact,
+                this.addressBook.getAssignmentList());
     }
 
     @Override
