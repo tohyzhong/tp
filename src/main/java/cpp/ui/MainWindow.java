@@ -14,7 +14,9 @@ import cpp.logic.commands.CommandResult.ViewType;
 import cpp.logic.commands.exceptions.CommandException;
 import cpp.logic.parser.exceptions.ParseException;
 import cpp.model.assignment.Assignment;
+import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
+import cpp.model.contact.Contact;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -47,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private UniqueAssignmentView assignmentViewPanel;
+    private UniqueContactView contactViewPanel;
     private Map<ViewType, UiPart<?>> viewPanels = new EnumMap<>(ViewType.class);
     private ViewType currentViewType = ViewType.NONE;
     private Object currentViewPayload = null;
@@ -163,6 +166,11 @@ public class MainWindow extends UiPart<Stage> {
         // initially
         this.assignmentViewPanel = new UniqueAssignmentView();
         this.viewPanelPlaceholder.getChildren().add(this.assignmentViewPanel.getRoot());
+
+        // set up contact view panel inside the view tab placeholder; hide tab initially
+        this.contactViewPanel = new UniqueContactView();
+        this.viewPanels.put(ViewType.CONTACT, this.contactViewPanel);
+
         // register known view panels
         this.viewPanels.put(ViewType.ASSIGNMENT, this.assignmentViewPanel);
 
@@ -300,6 +308,20 @@ public class MainWindow extends UiPart<Stage> {
                 List<ContactAssignmentWithContact> cas = this.logic
                         .getContactAssignmentsWithContactsForAssignment(ass);
                 this.assignmentViewPanel.setAssignment(ass, cas);
+                this.viewPanelPlaceholder.getChildren().setAll(this.assignmentViewPanel.getRoot());
+                if (!this.mainTabPane.getTabs().contains(this.viewTab)) {
+                    this.mainTabPane.getTabs().add(this.viewTab);
+                }
+                this.mainTabPane.getSelectionModel().select(this.viewTab);
+            }
+            break;
+        case CONTACT:
+            Contact ct = (Contact) this.currentViewPayload;
+            if (ct != null) {
+                List<ContactAssignmentWithAssignment> cas = this.logic
+                        .getContactAssignmentsWithAssignmentsForContact(ct);
+                this.contactViewPanel.setContact(ct, cas);
+                this.viewPanelPlaceholder.getChildren().setAll(this.contactViewPanel.getRoot());
                 if (!this.mainTabPane.getTabs().contains(this.viewTab)) {
                     this.mainTabPane.getTabs().add(this.viewTab);
                 }
@@ -330,6 +352,14 @@ public class MainWindow extends UiPart<Stage> {
                 List<ContactAssignmentWithContact> cas = this.logic
                         .getContactAssignmentsWithContactsForAssignment(ass);
                 this.assignmentViewPanel.setAssignment(ass, cas);
+            }
+            break;
+        case CONTACT:
+            if (this.currentViewPayload instanceof Contact) {
+                Contact ct = (Contact) this.currentViewPayload;
+                List<ContactAssignmentWithAssignment> cas = this.logic
+                        .getContactAssignmentsWithAssignmentsForContact(ct);
+                this.contactViewPanel.setContact(ct, cas);
             }
             break;
         default:

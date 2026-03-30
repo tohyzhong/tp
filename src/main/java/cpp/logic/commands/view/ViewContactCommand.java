@@ -2,7 +2,6 @@ package cpp.logic.commands.view;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import cpp.commons.core.index.Index;
 import cpp.commons.util.ToStringBuilder;
@@ -12,7 +11,6 @@ import cpp.logic.commands.exceptions.CommandException;
 import cpp.model.Model;
 import cpp.model.ReadOnlyAddressBook;
 import cpp.model.assignment.ContactAssignment;
-import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
 
 /**
@@ -41,25 +39,34 @@ public class ViewContactCommand extends ViewCommand {
 
         Contact contactToView = lastShownList.get(this.targetIndex.getZeroBased());
 
-        ReadOnlyAddressBook addressBook = model.getAddressBook();
-        List<ClassGroup> relevantClassGroups = addressBook.getClassGroupList()
-                .stream()
-                .filter(classGroup -> classGroup.getContactIdSet().contains(contactToView.getId()))
-                .toList();
-        List<ContactAssignment> relevantContactAssignments = model.getContactAssignmentsForContact(contactToView);
+        /**
+         * ReadOnlyAddressBook addressBook = model.getAddressBook();
+         * List<ClassGroup> relevantClassGroups = addressBook.getClassGroupList()
+         * .stream()
+         * .filter(classGroup ->
+         * classGroup.getContactIdSet().contains(contactToView.getId()))
+         * .toList();
+         * List<ContactAssignment> relevantContactAssignments =
+         * model.getContactAssignmentsForContact(contactToView);
+         * 
+         * String contactDetails = contactToView.toString() + "\nClasses:\n"
+         * + (relevantClassGroups.isEmpty() ? "None"
+         * : relevantClassGroups.stream()
+         * .map(cg -> Messages.format(cg))
+         * .collect(Collectors.joining("\n")))
+         * + "\nAssignments:\n"
+         * + (relevantContactAssignments.isEmpty() ? "None"
+         * : relevantContactAssignments.stream()
+         * .map(ca -> this.formatContactAssignment(addressBook, ca))
+         * .collect(Collectors.joining("\n")));
+         */
 
-        String contactDetails = contactToView.toString() + "\nClasses:\n"
-                + (relevantClassGroups.isEmpty() ? "None"
-                        : relevantClassGroups.stream()
-                                .map(cg -> Messages.format(cg))
-                                .collect(Collectors.joining("\n")))
-                + "\nAssignments:\n"
-                + (relevantContactAssignments.isEmpty() ? "None"
-                        : relevantContactAssignments.stream()
-                                .map(ca -> this.formatContactAssignment(addressBook, ca))
-                                .collect(Collectors.joining("\n")));
+        model.viewContact(contactToView);
 
-        return new CommandResult(String.format(ViewContactCommand.MESSAGE_VIEW_CONTACT_SUCCESS, contactDetails));
+        return new CommandResult(
+                String.format(ViewAssignmentCommand.MESSAGE_SUCCESS, Messages.format(
+                        contactToView)),
+                CommandResult.ViewType.CONTACT);
     }
 
     @Override
