@@ -26,13 +26,12 @@ public class EditClassGroupCommand extends Command {
             + ": Edits the name of the class group identified "
             + "by the index number used in the displayed class group list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_CLASS + "NEW_NAME\n"
+            + CliSyntax.PREFIX_CLASS + "CLASS_NAME\n"
             + "Example: " + EditClassGroupCommand.COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_CLASS + "CS2103T11";
 
     public static final String MESSAGE_EDIT_CLASS_GROUP_SUCCESS = "Edited Class Group: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLASS_GROUP =
-            "This class group already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLASS_GROUP = "This class group already exists in the address book.";
 
     private final Index index;
     private final ClassGroupName newName;
@@ -66,9 +65,7 @@ public class EditClassGroupCommand extends Command {
         }
 
         ClassGroup editedClassGroup = new ClassGroup(classGroupToEdit.getId(), this.newName);
-        for (String contactId : classGroupToEdit.getContactIdSet()) {
-            editedClassGroup.allocateContact(contactId);
-        }
+        editedClassGroup.setContactIdSet(classGroupToEdit.getContactIdSet());
 
         model.setClassGroup(classGroupToEdit, editedClassGroup);
         return new CommandResult(

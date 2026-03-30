@@ -82,6 +82,9 @@ public class AddressBookParser {
         case EditContactCommand.COMMAND_WORD:
             return new EditContactCommandParser().parse(arguments);
 
+        case EditClassGroupCommand.COMMAND_WORD:
+            return new EditClassGroupCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -135,9 +138,6 @@ public class AddressBookParser {
 
         case UnallocateClassGroupCommand.COMMAND_WORD:
             return new UnallocateClassGroupCommandParser().parse(arguments);
-
-        case EditClassGroupCommand.COMMAND_WORD:
-            return new EditClassGroupCommandParser().parse(arguments);
 
         default:
             AddressBookParser.logger.finer("This user input caused a ParseException: " + userInput);

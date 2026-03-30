@@ -20,7 +20,8 @@ public class EditClassGroupCommandParser implements Parser<EditClassGroupCommand
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * EditClassGroupCommand and returns an EditClassGroupCommand object for execution.
+     * EditClassGroupCommand and returns an EditClassGroupCommand object for
+     * execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -29,16 +30,12 @@ public class EditClassGroupCommandParser implements Parser<EditClassGroupCommand
         Objects.requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_CLASS);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                            EditClassGroupCommand.MESSAGE_USAGE), pe);
-        }
-
         argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_CLASS);
+
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditClassGroupCommand.MESSAGE_USAGE));
+        }
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, CliSyntax.PREFIX_CLASS)) {
             throw new ParseException(
@@ -48,6 +45,8 @@ public class EditClassGroupCommandParser implements Parser<EditClassGroupCommand
 
         ClassGroupName newName = ParserUtil.parseClassGroupName(
                 argMultimap.getValue(CliSyntax.PREFIX_CLASS).get());
+
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         return new EditClassGroupCommand(index, newName);
     }
