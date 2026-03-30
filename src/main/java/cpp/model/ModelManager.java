@@ -127,6 +127,9 @@ public class ModelManager implements Model {
         List<ContactAssignment> caList = this.assignmentManager.getContactAssignmentsForContact(target);
         this.assignmentManager.deregisterContactAssignmentsForContact(target);
         this.addressBook.removeContact(target, caList);
+        if (this.viewState.get().isViewingContact(target)) {
+            this.clearViewState();
+        }
     }
 
     @Override
@@ -140,6 +143,9 @@ public class ModelManager implements Model {
     public void setContact(Contact target, Contact editedContact) {
         CollectionUtil.requireAllNonNull(target, editedContact);
         this.addressBook.setContact(target, editedContact);
+        if (this.viewState.get().isViewingContact(target)) {
+            this.viewContact(editedContact);
+        }
     }
 
     // =========== Assignment-level operations

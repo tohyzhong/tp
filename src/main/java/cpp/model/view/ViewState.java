@@ -43,4 +43,13 @@ public class ViewState {
     public boolean isViewingAssignment(Object assignment) {
         return this.type == CommandResult.ViewType.ASSIGNMENT && this.payload.equals(assignment);
     }
+
+    public boolean isViewingContact(Object contact) {
+        return this.type == CommandResult.ViewType.CONTACT && this.payload.equals(contact);
+    }
+
+    public boolean isViewingClassGroup(Object classGroup) {
+        return this.type == CommandResult.ViewType.CLASSGROUP && this.payload.equals(classGroup);
+    }
+
 }
