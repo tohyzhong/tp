@@ -55,8 +55,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             if (phoneValue.isEmpty()) {
                 throw new ParseException(FindContactCommand.MESSAGE_USAGE);
             }
-            String[] phoneKeywords = phoneValue.split("\\s+");
-            predicate = new ContactPhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords));
+            predicate = new ContactPhoneContainsKeywordsPredicate(Arrays.asList(phoneValue));
         } else if (hasEmailPrefix) {
             if (!preamble.isEmpty()) {
                 throw new ParseException(FindContactCommand.MESSAGE_USAGE);
@@ -65,8 +64,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             if (emailValue.isEmpty()) {
                 throw new ParseException(FindContactCommand.MESSAGE_USAGE);
             }
-            String[] emailKeywords = emailValue.split("\\s+");
-            predicate = new ContactEmailContainsKeywordsPredicate(Arrays.asList(emailKeywords));
+            predicate = new ContactEmailContainsKeywordsPredicate(Arrays.asList(emailValue));
         } else if (hasNamePrefix) {
             if (!preamble.isEmpty()) {
                 throw new ParseException(FindContactCommand.MESSAGE_USAGE);
