@@ -23,12 +23,12 @@ public class AssignmentDeadlineContainsKeywordPredicate implements AssignmentSea
         LocalDateTime deadline = assignment.getDeadline();
 
         String fullDateTimeStr = deadline.format(AssignmentDeadlineContainsKeywordPredicate.DATETIME_FORMATTER);
-        if (fullDateTimeStr.toLowerCase().contains(this.keyword)) {
+        if (fullDateTimeStr.equalsIgnoreCase(this.keyword)) {
             return true;
         }
 
         String dateOnlyStr = deadline.format(AssignmentDeadlineContainsKeywordPredicate.DATE_FORMATTER);
-        if (dateOnlyStr.toLowerCase().contains(this.keyword)) {
+        if (dateOnlyStr.equalsIgnoreCase(this.keyword)) {
             return true;
         }
 

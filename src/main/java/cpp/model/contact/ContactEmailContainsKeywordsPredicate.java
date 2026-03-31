@@ -2,11 +2,9 @@ package cpp.model.contact;
 
 import java.util.List;
 
-import cpp.commons.util.StringUtil;
-
 /**
- * Tests that a {@code Contact}'s {@code Email} matches any of the keywords
- * given.
+ * Tests that a {@code Contact}'s {@code Email} matches exactly with the given
+ * keyword (case-insensitive).
  */
 public class ContactEmailContainsKeywordsPredicate implements ContactSearchPredicate {
     private final List<String> keywords;
@@ -18,7 +16,7 @@ public class ContactEmailContainsKeywordsPredicate implements ContactSearchPredi
     @Override
     public boolean test(Contact contact) {
         return this.keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(contact.getEmail().value, keyword));
+                .anyMatch(keyword -> contact.getEmail().value.equalsIgnoreCase(keyword));
     }
 
     @Override
