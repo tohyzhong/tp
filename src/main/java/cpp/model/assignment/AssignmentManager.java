@@ -194,9 +194,12 @@ public class AssignmentManager {
         Objects.requireNonNull(contacts);
         List<ContactAssignment> cas = this.getContactAssignmentsForAssignment(assignment);
         ArrayList<ContactAssignmentWithContact> result = new ArrayList<>();
+        Map<String, Contact> contactMap = new HashMap<>();
+        for (Contact contact : contacts) {
+            contactMap.put(contact.getId(), contact);
+        }
         for (ContactAssignment ca : cas) {
-            Contact contact = contacts.stream().filter(c -> c.getId().equals(ca.getContactId())).findFirst()
-                    .orElse(null);
+            Contact contact = contactMap.get(ca.getContactId());
             result.add(new ContactAssignmentWithContact(ca, contact));
         }
         return result;
@@ -208,9 +211,12 @@ public class AssignmentManager {
         Objects.requireNonNull(assignments);
         List<ContactAssignment> cas = this.getContactAssignmentsForContact(contact);
         ArrayList<ContactAssignmentWithAssignment> result = new ArrayList<>();
+        Map<String, Assignment> assignmentMap = new HashMap<>();
+        for (Assignment assignment : assignments) {
+            assignmentMap.put(assignment.getId(), assignment);
+        }
         for (ContactAssignment ca : cas) {
-            Assignment assignment = assignments.stream().filter(a -> a.getId().equals(ca.getAssignmentId())).findFirst()
-                    .orElse(null);
+            Assignment assignment = assignmentMap.get(ca.getAssignmentId());
             result.add(new ContactAssignmentWithAssignment(ca, assignment));
         }
         return result;

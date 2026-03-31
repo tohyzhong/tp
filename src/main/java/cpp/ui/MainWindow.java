@@ -106,9 +106,9 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        if (logic.getGuiSettings().getWindowHeight() < 700 || logic.getGuiSettings().getWindowWidth() < 450) {
-            logic.setGuiSettings(new GuiSettings(450, 700, (int) logic.getGuiSettings().getWindowCoordinates().getX(),
-                    (int) logic.getGuiSettings().getWindowCoordinates().getY()));
+        GuiSettings guiSettings = logic.getGuiSettings();
+        if (guiSettings.getWindowHeight() < 700 || guiSettings.getWindowWidth() < 450) {
+            logic.setGuiSettings(new GuiSettings());
         }
         this.setWindowDefaultSize(logic.getGuiSettings());
 
@@ -266,22 +266,15 @@ public class MainWindow extends UiPart<Stage> {
         switch (listView) {
         case CONTACTS:
             this.mainTabPane.getSelectionModel().select(this.contactsTab);
-            // hide view tab if present
-            if (this.mainTabPane.getTabs().contains(this.viewTab)) {
-                this.mainTabPane.getTabs().remove(this.viewTab);
-            }
+            this.hideViewTab();
             break;
         case ASSIGNMENTS:
             this.mainTabPane.getSelectionModel().select(this.assignmentsTab);
-            if (this.mainTabPane.getTabs().contains(this.viewTab)) {
-                this.mainTabPane.getTabs().remove(this.viewTab);
-            }
+            this.hideViewTab();
             break;
         case CLASSGROUPS:
             this.mainTabPane.getSelectionModel().select(this.classesTab);
-            if (this.mainTabPane.getTabs().contains(this.viewTab)) {
-                this.mainTabPane.getTabs().remove(this.viewTab);
-            }
+            this.hideViewTab();
             break;
         case NONE:
         default:

@@ -57,9 +57,11 @@ public class ContactAssignmentContactCard extends UiPart<Region> {
         this.phone.setText(contact == null ? "" : contact.getPhone().value);
         this.email.setText(contact == null ? "" : contact.getEmail().value);
         this.address.setText(contact == null ? "" : contact.getAddress().value);
-        contact.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> this.tags.getChildren().add(new Label(tag.tagName)));
+        if (contact != null) {
+            contact.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> this.tags.getChildren().add(new Label(tag.tagName)));
+        }
 
         if (ca.isSubmitted()) {
             this.submitted.setText("Submitted on " + ca.getSubmissionDate().format(ParserUtil.DATETIME_FORMATTER));

@@ -1,5 +1,7 @@
 package cpp.model.view;
 
+import java.util.Objects;
+
 import cpp.logic.commands.CommandResult;
 
 /**
@@ -41,15 +43,15 @@ public class ViewState {
     }
 
     public boolean isViewingAssignment(Object assignment) {
-        return this.type == CommandResult.ViewType.ASSIGNMENT && this.payload.equals(assignment);
+        return this.type == CommandResult.ViewType.ASSIGNMENT && Objects.equals(this.payload, assignment);
     }
 
     public boolean isViewingContact(Object contact) {
-        return this.type == CommandResult.ViewType.CONTACT && this.payload.equals(contact);
+        return this.type == CommandResult.ViewType.CONTACT && Objects.equals(this.payload, contact);
     }
 
     public boolean isViewingClassGroup(Object classGroup) {
-        return this.type == CommandResult.ViewType.CLASSGROUP && this.payload.equals(classGroup);
+        return this.type == CommandResult.ViewType.CLASSGROUP && Objects.equals(this.payload, classGroup);
     }
 
 }
