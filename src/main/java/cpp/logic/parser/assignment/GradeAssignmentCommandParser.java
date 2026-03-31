@@ -1,7 +1,6 @@
 package cpp.logic.parser.assignment;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 import cpp.commons.core.index.Index;
@@ -49,7 +48,7 @@ public class GradeAssignmentCommandParser implements Parser<GradeAssignmentComma
                 .parseAssignmentName(argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
 
         LocalDateTime gradingDate = ParserUtil.parseDateTime(argMultimap.getValue(CliSyntax.PREFIX_DATETIME)
-                .orElseGet(() -> LocalDateTime.now(ZoneId.of("GMT+8")).format(ParserUtil.DATETIME_FORMATTER)));
+                .orElseGet(() -> LocalDateTime.now(ParserUtil.getDefaultZone()).format(ParserUtil.DATETIME_FORMATTER)));
 
         float score = ParserUtil.parseScore(argMultimap.getValue(CliSyntax.PREFIX_SCORE).get());
 

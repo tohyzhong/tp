@@ -38,6 +38,7 @@ public class ParserUtil {
             Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm""";
     public static final String MESSAGE_INVALID_FUTURE_DATETIME = "Date and time cannot be in the future.";
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static ZoneId defaultZone = ZoneId.of("GMT+8");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -163,10 +164,39 @@ public class ParserUtil {
      */
     public static LocalDateTime parseDateTime(String datetime) throws ParseException {
         LocalDateTime dateTime = ParserUtil.parseDeadline(datetime);
-        if (dateTime.isAfter(LocalDateTime.now(ZoneId.of("GMT+8")))) {
+        if (dateTime.isAfter(LocalDateTime.now(ParserUtil.defaultZone))) {
             throw new ParseException(ParserUtil.MESSAGE_INVALID_FUTURE_DATETIME);
         }
         return dateTime;
+    }
+
+    /**
+     * Parses a {@code String datetime} into a {@code LocalDateTime} and checks if
+     * it is not in the future. The datetime is parsed in GMT timezone and converted
+     * to the default timezone.
+     */
+    public static LocalDateTime parseGmtDateTime(String datetime) throws ParseException {
+        LocalDateTime dateTime = ParserUtil.parseDeadline(datetime);
+        dateTime = dateTime.atZone(ZoneId.of("GMT")).withZoneSameInstant(ParserUtil.getDefaultZone()).toLocalDateTime();
+        if (dateTime.isAfter(LocalDateTime.now(ParserUtil.defaultZone))) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_FUTURE_DATETIME);
+        }
+        return dateTime;
+    }
+
+    /**
+     * Sets the default ZoneId.
+     */
+    public static void setDefaultZone(ZoneId zone) {
+        Objects.requireNonNull(zone);
+        ParserUtil.defaultZone = zone;
+    }
+
+    /**
+     * Returns the default ZoneId used.
+     */
+    public static ZoneId getDefaultZone() {
+        return ParserUtil.defaultZone;
     }
 
     /**

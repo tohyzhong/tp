@@ -1,7 +1,6 @@
 package cpp.logic.parser.assignment;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 import cpp.commons.core.index.Index;
@@ -47,7 +46,7 @@ public class SubmitAssignmentCommandParser implements Parser<SubmitAssignmentCom
                 .parseAssignmentName(argMultimap.getValue(CliSyntax.PREFIX_ASSIGNMENT).get());
 
         LocalDateTime submissionDate = ParserUtil.parseDateTime(argMultimap.getValue(CliSyntax.PREFIX_DATETIME)
-                .orElseGet(() -> LocalDateTime.now(ZoneId.of("GMT+8")).format(ParserUtil.DATETIME_FORMATTER)));
+                .orElseGet(() -> LocalDateTime.now(ParserUtil.getDefaultZone()).format(ParserUtil.DATETIME_FORMATTER)));
 
         List<Index> contactIndices = List.of();
         if (hasContact) {
