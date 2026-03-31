@@ -68,9 +68,11 @@ This quick start assumes you are a teacher who wants to install CPP, open the ap
 
 **macOS:**
 
-1. Click on the Apple menu and select "About This Mac".
+1. Click on the Apple menu and select "System Settings".
 
-1. Go to the "Storage" tab.
+1. Go to "General" in the left sidebar.
+
+1. Click on "Storage".
 
 1. Check the available space for the drive where you plan to store the app home (e.g., Macintosh HD) to ensure it has at least `500MB` free.
 
@@ -97,14 +99,15 @@ This quick start assumes you are a teacher who wants to install CPP, open the ap
 
 **macOS:**
 
-1. Open Terminal by searching for it in the Applications folder or using Mac's Spotlight.
+1. Open Terminal by pressing `Cmd + Space` to open Spotlight, then type "Terminal" and press Enter.
 
-1. To check Java from Terminal, run `java -version`.
+1. Run the following command to check your Java version:
+   `java -version`
 
-1. If Java is installed, you should see output showing the Java version (e.g., `java version "17.0.1"`).
-    <box type="info">Any version that is 17.0.0 or newer is acceptable.</box>
+1. If Java is installed, you should see output showing the Java version (e.g., `java version "17"`).
+    <box type="info">Any version that is 17 or newer is acceptable.</box>
     <box type="warning">Older versions (e.g., Java 8) will not work and must be updated using Step 4.</box>
-    <box type="warning">If you see an error like "bash: java: command not found", it means Java is not installed. Please follow Step 4 to install Java.</box>
+    <box type="warning">If you see an error like `zsh: command not found: java`, it means Java is not installed. Please follow Step 4 to install Java.</box>
 
     ![macOS Java Version](images/java-version-mac.png)
     <p style="font-size: 0.9em; color: #666; text-align: center; margin-top: 0;">(Source: tutorials24x7)</p>
@@ -644,7 +647,7 @@ Marks a specific assignment as unsubmitted for the specified contacts.
 
 * Marks the assignment as unsubmitted for the specified contacts, as well as all contacts in the specified class.
 
-* If the assignment is not submitted for the specified contact, the submission status and submission date will not be updated.
+* If the assignment is not submitted for the specified contact, then it will not be updated.
 
 * The `ASSIGNMENT_NAME` must match the name of an existing assignment (case-insensitive).
 
@@ -764,7 +767,7 @@ Ungrades a specific assignment for the specified contacts.
 
 * Marks an assignment as ungraded for the specified contacts, as well as contacts in the specified class.
 
-* If the assignment is not graded for the specified contact, the grading status and grading date will not be updated.
+* If the assignment is not graded for the specified contact, then it will not be updated.
 
 * The `ASSIGNMENT_NAME` must match the name of an existing assignment (case-insensitive).
 
@@ -969,7 +972,7 @@ In the meantime, users can manually extract the required data from `addressbook.
 **A**: Make a copy of `data/addressbook.json` and store it in a safe location such as a cloud or external drive. To restore, stop CPP, replace the `addressbook.json` in the app home `data/` folder, then start CPP.
 
 **Q**: How does CPP prevent duplicate entries?\
-**A**: CPP performs basic duplicate detection at entry. The app prevents duplicate names within the same category. While an assignment and a class can share the same name, you cannot have two assignments, two classes, or two contacts with identical names. CPP will reject any duplicate entry within a domain with an explanatory error
+**A**: CPP performs basic duplicate detection at entry. The app prevents duplicate names within the same category. While an assignment and a class can share the same name, you cannot have two assignments, two classes, or two contacts with identical names. CPP will reject any duplicate entry within a domain with an explanatory error.
 
 **Q**: Can I export/import data for other systems (e.g., Excel)?\
 **A**: The primary data format used by CPP is JavaScript Object Notation (JSON). We do not support importing from Excel, but users may manually convert their Excel files to JSON format, adhering to the structure and format of the `addressbook.json` file generated on first run. Manual editing of `addressbook.json` is not recommended unless you are comfortable with the JSON format.
@@ -1006,6 +1009,10 @@ If you encounter other issues, please open a GitHub Issue in the [project reposi
 | **Add Assignment**        | `addass ass/ASSIGNMENT_NAME d/DEADLINE [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T-T10-1 ct/4 5`                                                                                                      |
 | **Allocate Assignment**   | `allocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `allocass ass/Assignment 3 c/CS2103T-T10-1 ct/1 2 3`                                                                                                                              |
 | **Unallocate Assignment** | `unallocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unallocass ass/Assignment 3 c/CS2103T-T10-1 ct/1 2 3`                                                                                                                          |
+| **Submit Assignment**     | `submit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] [d/SUBMISSION_DATE]`                                                                                                                                                                            |
+| **Unsubmit Assignment**   | `unsubmit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]`                                                                                                                                                                                              |
+| **Grade Assignment**      | `grade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] s/SCORE [d/GRADING_DATE]`                                                                                                                                                                        |
+| **Ungrade Assignment**    | `ungrade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]`                                                                                                                                                                                               |
 | **List Contacts**         | `list contacts`                                                                                                                                                                                                                                                    |
 | **List Classes**          | `list classes`                                                                                                                                                                                                                                                     |
 | **List Assignments**      | `list assignments`                                                                                                                                                                                                                                                 |
