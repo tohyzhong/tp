@@ -19,7 +19,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * FindContactCommand
      * and returns a FindContactCommand object for execution.
-     * 
+     *
      * Supports finding by name (default), phone (p/KEYWORD), or email (e/KEYWORD)
      * Examples: findcontact alice
      * findcontact p/91234567

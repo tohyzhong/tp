@@ -16,7 +16,7 @@ public class FindAssignmentCommandParser implements Parser<FindAssignmentCommand
      * Parses the given {@code String} of arguments in the context of the
      * FindAssignmentCommand
      * and returns a FindAssignmentCommand object for execution.
-     * 
+     *
      * Supports finding by name (default) or deadline (d/DEADLINE)
      * Examples: findass CS2103 project
      * findass d/31-12-2024
