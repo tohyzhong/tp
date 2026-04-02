@@ -966,6 +966,46 @@ Finds and displays contacts based on the specified criteria. You can search by c
 * `findcontact e/alice@gmail.com`
   Finds the contact with email <alice@gmail.com>.
 
+### Finding classes : `findclass`
+
+Finds and displays classes based on the specified criteria. You can search by class name (keyword match). Matching is case-insensitive.
+
+**Format:** `findclass c/CLASS_NAME_KEYWORDS...`
+
+<br>
+
+* **Name search (c/):** The command will find classes whose names contain ANY of the specified keywords (case-insensitive). Keywords are separated by spaces. For example, `findclass c/CS2103 Class` will return all classes whose name contains "CS2103" OR "Class".
+
+* The tab will automatically switch to the `Classes` tab upon successful execution.
+
+* The search results will remain filtered until you run another command that filters the list (e.g., another `findclass` command) or use `list classes` to show all classes again.
+
+<box type="warning" seamless>
+
+**Warnings:**
+
+* Invalid class names will not be allowed. For a detailed list of criteria for valid class names, please refer to the feature documentation on [**Adding classes: addclass**](#adding-classes-addclass).
+
+* CLASS_NAME_KEYWORDS must not be empty. Using the `c/` prefix with no value (e.g., `findclass c/`) will result in an error, and no filter is applied.
+
+* You cannot use unrecognized prefixes like `n/`, `p/`, `e/`, `d/`, or `ass/`. The system will reject commands with invalid prefixes.
+
+</box>
+
+<box type="tip" seamless>
+
+**Tip:** If you would like to preserve the current filter but switch to a different tab, you may manually click on the "Contacts" or "Assignments" tab. Note that clicking on the tabs will not clear existing filters, so you can still see the filtered classes when you switch back to the "Classes" tab.
+
+</box>
+
+**Examples:**
+
+* `findclass c/CS2103`
+  Finds all classes whose name contains "CS2103" (case-insensitive).
+
+* `findclass c/Tutorial Class`
+  Finds all classes whose name contains "Tutorial" OR "Class" (case-insensitive).
+
 ### Finding assignments : `findass`
 
 Finds and displays assignments based on the specified criteria. You can search by assignment name (substring match) or by assignment deadline (exact match). Matching is case-insensitive.
@@ -1019,48 +1059,6 @@ Finds and displays assignments based on the specified criteria. You can search b
 
 * `findass d/15-01-2024 23:59`
   Finds all assignments with a deadline of 15th January 2024 at 23:59 (exact match).
-
-### Finding classes : `findclass`
-
-Finds and displays classes based on the specified criteria. You can search by class name (keyword match). Matching is case-insensitive.
-
-**Format:**
-
-1. `findclass c/CLASS_NAME_KEYWORDS...` — search by class name
-
-<br>
-
-* **Name search (c/):** The command will find classes whose names contain ANY of the specified keywords (case-insensitive). Keywords are separated by spaces. For example, `findclass c/CS2103 Class` will return all classes whose name contains "CS2103" OR "Class".
-
-* The tab will automatically switch to the `Classes` tab upon successful execution.
-
-* The search results will remain filtered until you run another command that filters the list (e.g., another `findclass` command) or use `list classes` to show all classes again.
-
-<box type="warning" seamless>
-
-**Warnings:**
-
-* Invalid class names will not be allowed. For a detailed list of criteria for valid class names, please refer to the feature documentation on [**Adding a class: addcls**](#adding-a-class-addcls).
-
-* Each prefix (c/) must have a value. Using a prefix with no value (e.g., `findclass c/`) will result in an error.
-
-* You cannot use unrecognized prefixes like `n/`, `p/`, `e/`, `d/`, or `ass/`. The system will reject commands with invalid prefixes.
-
-</box>
-
-<box type="tip" seamless>
-
-**Tip:** If you would like to preserve the current filter but switch to a different tab, you may manually click on the "Contacts" or "Assignments" tab. Note that clicking on the tabs will not clear existing filters, so you can still see the filtered classes when you switch back to the "Classes" tab.
-
-</box>
-
-**Examples:**
-
-* `findclass c/CS2103`
-  Finds all classes whose name contains "CS2103" (case-insensitive).
-
-* `findclass c/Tutorial Class`
-  Finds all classes whose name contains "Tutorial" OR "Class" (case-insensitive).
 
 ### [TO BE UPDATED] Editing a contact : `edit`
 
@@ -1300,6 +1298,7 @@ If you encounter other issues, please open a GitHub Issue in the [project reposi
 | **List Classes**          | `list classes`                                                                                                                                                                                                                                                     |
 | **List Assignments**      | `list assignments`                                                                                                                                                                                                                                                 |
 | **Find Contact**          | `findcontact n/NAME_KEYWORDS...` e.g., `findcontact n/alice bob`<br>`findcontact p/PHONE_NUMBER` e.g., `findcontact p/91234567`<br>`findcontact e/EMAIL` e.g., `findcontact e/alice@gmail.com`                                                                     |
+| **Find Class**            | `findclass c/CLASS_NAME_KEYWORDS...` e.g., `findclass c/CS2103T CS2103`                                                                                                                                                                                            |
 | **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass d/DEADLINE` e.g., `findass d/31-12-2024`  or `findass d/31-12-2024 23:59`                                                                                                 |
 | **Edit**                  | `edit INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                               |
 | **Delete**                | `delete ct/CONTACT_INDICES...` e.g., `delete ct/3`<br>`delete ass/ASSIGNMENT_NAME` e.g., `delete ass/Assignment 1`<br>`delete c/CLASS_NAME` e.g., `delete c/CS2103T T14`                                                                                           |
