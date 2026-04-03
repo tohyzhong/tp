@@ -1035,7 +1035,7 @@ Finds and displays assignments based on the specified criteria. You can search b
 
 * Invalid assignment names will not be allowed. For a detailed list of criteria for valid assignment names, please refer to the feature documentation on [**Adding assignments: addass**](#adding-assignments-addass).
 
-* The deadline prefixes (ds/ and de/) must have a valid date value in the correct format. Using a prefix with no date (e.g., `findass ds/`) will result in an error. Invalid date formats will also be rejected.
+* The deadline prefixes (ds/ and de/) must have a valid date value in the correct format. Using a prefix with no date (e.g., `findass ds/`) will result in an error. Invalid date formats or start dates after end dates will also be rejected.
 
 * For deadline searches, the time may be omitted. For example, if an assignment has a deadline of `31-12-2024 23:59`, searching with `findass ds/31-12-2024` will also match it.
 
