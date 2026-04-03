@@ -1013,17 +1013,17 @@ Finds and displays assignments based on the specified criteria. You can search b
 **Format:**
 
 1. `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` — search by assignment name
-1. `findass d/DEADLINE` — search by assignment deadline
+1. `findass [ds/DEADLINE_START] [de/DEADLINE_END]` — search by assignment deadline
 
 <br>
 
 * **Name search (ass/):** The command will find assignments whose names contain the specified text. For example, `findass ass/CS2103` will find all assignments whose name contains "CS2103". All consecutive spaces will be replaced by a single space. For example, `findass ass/Assignment <5 SPACES> 1` will find all assignments whose name contains "Assignment 1".
 
-* **Deadline search (d/):** Searches for assignments by exact deadline match. The deadline value must match exactly in one of the supported formats. Example: `findass d/31-12-2024` will only find assignments with a deadline on 31st December 2024 (date-only format).
+* **Deadline search (ds/ and de/):** Searches for assignments by deadline range (inclusive of start and end points). The deadline values must match exactly one of the supported formats below. At least one of `[ds/DEADLINE_START]` or `[de/DEADLINE_END]` must be provided. Omission of the start or end deadline indicates no lower or upper bound for the search, respectively.
 
-* `DEADLINE` provided can be of the format `dd-MM-yyyy` — date only (e.g., `31-12-2024`) or `dd-MM-yyyy HH:mm` — date with time (e.g., `31-12-2024 23:59`)
+* `DEADLINE` provided can be of the format `dd-MM-yyyy` — date only (e.g., `31-12-2024`) or `dd-MM-yyyy HH:mm` — date with time (e.g., `31-12-2024 23:59`). When `dd-MM-yyyy` is provided for the start deadline, it is treated as the beginning of the day (00:00). However, it will be treated as the end of the day (23:59) for end deadline.
 
-* You cannot use multiple search types in one command. For example, `findass ass/Assignment 1 d/31-12-2024` is invalid. Choose one search method per command.
+* You cannot use multiple search types in one command. For example, `findass ass/Assignment 1 ds/31-12-2024` is invalid. Choose one search method per command.
 
 * The tab will automatically switch to the `Assignments` tab upon successful execution.
 
@@ -1035,9 +1035,9 @@ Finds and displays assignments based on the specified criteria. You can search b
 
 * Invalid assignment names will not be allowed. For a detailed list of criteria for valid assignment names, please refer to the feature documentation on [**Adding assignments: addass**](#adding-assignments-addass).
 
-* The deadline prefix (d/) must have a valid date value in the correct format. Using a prefix with no date (e.g., `findass d/`) will result in an error. Invalid date formats will also be rejected.
+* The deadline prefixes (ds/ and de/) must have a valid date value in the correct format. Using a prefix with no date (e.g., `findass ds/`) will result in an error. Invalid date formats will also be rejected.
 
-* For deadline searches, the time may be omitted. For example, if an assignment has a deadline of `31-12-2024 23:59`, searching with `findass d/31-12-2024` will also match it.
+* For deadline searches, the time may be omitted. For example, if an assignment has a deadline of `31-12-2024 23:59`, searching with `findass ds/31-12-2024` will also match it.
 
 * You cannot use unrecognized prefixes like `p/`, `e/`, `c/`, or `n/`. The system will reject commands with invalid prefixes.
 
@@ -1189,6 +1189,8 @@ CPP data is saved automatically in `[JAR file location]/data/addressbook.json`. 
 
 **Warnings:**
 
+* You should only make edits to `addressbook.json` when the application is closed. Any edits made while the application is running will not be saved.
+
 * If your changes to the data file make its format invalid, CPP will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
 
 * Certain edits can cause CPP to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
@@ -1196,7 +1198,11 @@ CPP data is saved automatically in `[JAR file location]/data/addressbook.json`. 
 
 ### Editing the preferences file
 
-CPP preferences are saved in `[JAR file location]/preferences.json`. This should only be used to modify the timezone setting, which is used to determine the deadlines and submission/grading dates shown in the app. By default, this is set to GMT +8, but you can change it to your local timezone if needed. Acceptable values range from -18 to 18, and any invalid or missing timezone values will default to GMT +8.
+CPP preferences are saved in `[JAR file location]/preferences.json`. This should only be used to modify the timezone setting, which is used to determine the deadlines and submission/grading dates shown in the app.
+
+By default, this is set to GMT +8, but you can change it to your local timezone if needed. Acceptable values range from -18 to 18, and any invalid or missing timezone values will default to GMT +8.
+
+You should only make edits to `preferences.json` when the application is closed. Any edits made while the application is running will not be saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1299,7 +1305,7 @@ If you encounter other issues, please open a GitHub Issue in the [project reposi
 | **List Assignments**      | `list assignments`                                                                                                                                                                                                                                                 |
 | **Find Contact**          | `findcontact n/CONTACT_NAME_KEYWORDS...` e.g., `findcontact n/alice bob`<br>`findcontact p/PHONE_NUMBER` e.g., `findcontact p/91234567`<br>`findcontact e/EMAIL` e.g., `findcontact e/alice@gmail.com`                                                             |
 | **Find Class**            | `findclass c/CLASS_NAME_KEYWORDS...` e.g., `findclass c/CS2103T CS2103`                                                                                                                                                                                            |
-| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass d/DEADLINE` e.g., `findass d/31-12-2024`  or `findass d/31-12-2024 23:59`                                                                                                 |
+| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass [ds/DEADLINE_START] [de/DEADLINE_END]` e.g., `findass ds/31-12-2024`  or `findass ds/31-12-2024 23:59 de/02-01-2024 23:59`                                                |
 | **Edit**                  | `edit INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                               |
 | **Delete**                | `delete ct/CONTACT_INDICES...` e.g., `delete ct/3`<br>`delete ass/ASSIGNMENT_NAME` e.g., `delete ass/Assignment 1`<br>`delete c/CLASS_NAME` e.g., `delete c/CS2103T T14`                                                                                           |
 | **Clear**                 | `clear`                                                                                                                                                                                                                                                            |
