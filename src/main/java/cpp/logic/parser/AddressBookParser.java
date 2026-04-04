@@ -64,12 +64,17 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        final Matcher untrimmedMatcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(userInput.stripLeading());
         if (!matcher.matches()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        if (!untrimmedMatcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
+        final String untrimmedArguments = untrimmedMatcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level
         // (i.e., FINE, FINER and lower)
@@ -99,13 +104,15 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case FindContactCommand.COMMAND_WORD:
+        case FindContactCommand.COMMAND_WORD_ALIAS:
             return new FindContactCommandParser().parse(arguments);
 
         case FindClassCommand.COMMAND_WORD:
+        case FindClassCommand.COMMAND_WORD_ALIAS:
             return new FindClassCommandParser().parse(arguments);
 
         case FindAssignmentCommand.COMMAND_WORD:
-            return new FindAssignmentCommandParser().parse(arguments);
+            return new FindAssignmentCommandParser().parse(untrimmedArguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
