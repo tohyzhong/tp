@@ -3,6 +3,7 @@ package cpp.ui;
 import cpp.model.assignment.ContactAssignmentWithAssignment;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -23,6 +24,9 @@ public class ContactAssignmentAssignmentListPanel extends UiPart<Region> {
     public ContactAssignmentAssignmentListPanel(ObservableList<ContactAssignmentWithAssignment> cas) {
         super(ContactAssignmentAssignmentListPanel.FXML);
         this.contactAssignmentListView.setItems(cas);
+        Label caAssignmentPlaceholder = new Label("No assignments found.");
+        caAssignmentPlaceholder.setStyle("-fx-text-fill: #b4b4b4;");
+        this.contactAssignmentListView.setPlaceholder(caAssignmentPlaceholder);
         this.contactAssignmentListView.setCellFactory(listView -> new ContactAssignmentAssignmentListViewCell());
     }
 
