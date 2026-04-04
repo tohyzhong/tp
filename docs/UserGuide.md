@@ -914,7 +914,7 @@ Finds and displays contacts based on the specified criteria. You can search by c
 1. `findcontact p/PHONE_NUMBER` — search by phone number (exact match)
 1. `findcontact e/EMAIL` — search by email address (exact match)
 
-* **Name search `n/`:** The command will find contacts whose names contain **any** of the specified keywords (case-insensitive). Keywords are separated by spaces. For example, `findcontact n/alice bob` will return all contacts whose name contains "alice" OR "bob".
+* **Name search `n/`:** The command will find contacts whose names contain **any** of the specified keywords (case-insensitive). Keywords are separated by spaces. For example, `findcontact n/alice bob` will return all contacts whose name contains "alice" or "bob".
 
 * **Phone search `p/`:** Searches for contacts by exact phone number match. The entire phone number must match exactly.
 
@@ -932,7 +932,7 @@ Finds and displays contacts based on the specified criteria. You can search by c
 
 * Each prefix (`n/`,`p/`,`e/`) must have a value. Using a prefix with no value (e.g.,`findcontact p/`) will result in an error.
 
-* Invalid contact names will not be allowed. For a detailed list of criteria for valid contact names, please refer to the feature documentation on [**Adding a contact: addcontact**](#adding-a-contact-addcontact).
+* Invalid contact names will not be allowed. For a detailed list of criteria for valid contact names, please refer to the feature documentation on [**Adding a contact**](#adding-a-contact-addcontact).
 
 * For phone and email searches, the entire value must match exactly. Partial matches will not return results.
 
@@ -959,10 +959,10 @@ Finds and displays contacts based on the specified criteria. You can search by c
   Using the abbreviated command, finds all contacts whose name contains "john" or "doe".
 
 * `findcontact p/91234567`<br>
-  Finds the contact with phone number 91234567.
+  Finds all contacts with phone number 91234567.
 
 * `findcontact e/alice@gmail.com`<br>
-  Finds the contact with email <alice@gmail.com>.
+  Finds all contacts with email <alice@gmail.com>.
 
 ### Finding classes : `findclass`
 
@@ -980,7 +980,7 @@ Finds and displays classes based on the specified criteria. You can search by cl
 
 **Warnings:**
 
-* Invalid class names will not be allowed. For a detailed list of criteria for valid class names, please refer to the feature documentation on [**Adding classes: addclass**](#adding-classes-addclass).
+* Invalid class names will not be allowed. For a detailed list of criteria for valid class names, please refer to the feature documentation on [**Adding classes**](#adding-classes-addclass).
 
 * `CLASS_NAME_KEYWORDS` must not be empty. Using the `c/` prefix with no value (e.g., `findclass c/`) will result in an error, and no filter is applied.
 
@@ -1029,7 +1029,7 @@ Finds and displays assignments based on the specified criteria. You can search b
 
 **Warnings:**
 
-* Invalid assignment names will not be allowed. For a detailed list of criteria for valid assignment names, please refer to the feature documentation on [**Adding assignments: addass**](#adding-assignments-addass).
+* Invalid assignment names will not be allowed. For a detailed list of criteria for valid assignment names, please refer to the feature documentation on [**Adding assignments**](#adding-assignments-addass).
 
 * The deadline prefixes (ds/ and de/) must have a valid date value in the correct format. Using a prefix with no date (e.g., `findass ds/`) will result in an error. Invalid date formats or start dates after end dates will also be rejected.
 
@@ -1059,11 +1059,11 @@ Finds and displays assignments based on the specified criteria. You can search b
 * `findass ds/31-12-2024`<br>
   Finds all assignments with a deadline of 31 December 2024 12am or later.
 
-* `findass de/15-01-2024`<br>
-  Finds all assignments with a deadline of 15 January 2024 at 11.59pm or earlier.
+* `findass de/15-01-2025`<br>
+  Finds all assignments with a deadline of 15 January 2025 11.59pm or earlier.
 
-* `findass ds/31-12-2024 15:00 de/15-01-2024 20:00`<br>
-  Finds all assignments with a deadline between 31 December 2024 3pm and 15 January 2024 8pm.
+* `findass ds/31-12-2024 15:00 de/15-01-2025 20:00`<br>
+  Finds all assignments with a deadline between 31 December 2024 3pm and 15 January 2025 8pm.
 
 ### Viewing full details of a contact/class/assignment: `view`
 
@@ -1361,16 +1361,16 @@ If you encounter other issues, please open a GitHub Issue in the [project reposi
 | **Add Assignment**        | `addass ass/ASSIGNMENT_NAME d/DEADLINE [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T T10 1 ct/4 5`                                                                                                      |
 | **Allocate Assignment**   | `allocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `allocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                              |
 | **Unallocate Assignment** | `unallocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unallocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                          |
-| **Submit Assignment**     | `submit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] [d/SUBMISSION_DATE]`                                                                                                                                                                            |
-| **Unsubmit Assignment**   | `unsubmit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]`                                                                                                                                                                                              |
-| **Grade Assignment**      | `grade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] s/SCORE [d/GRADING_DATE]`                                                                                                                                                                        |
-| **Ungrade Assignment**    | `ungrade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]`                                                                                                                                                                                               |
+| **Submit Assignment**     | `submit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] [d/SUBMISSION_DATE]` <br> e.g., `submit ass/Assignment 3 c/CS2103T10 ct/1 2 3 d/21-02-2026 23:50`                                                                                               |
+| **Unsubmit Assignment**   | `unsubmit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unsubmit ass/Assignment 3 c/CS2103T10 ct/1 2 3`                                                                                                                                  |
+| **Grade Assignment**      | `grade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] s/SCORE [d/GRADING_DATE]` <br> e.g., `grade ass/Assignment 3 c/CS2103T10 ct/1 2 3 s/67.9 d/21-02-2026 23:50`                                                                                     |
+| **Ungrade Assignment**    | `ungrade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `ungrade ass/Assignment 3 c/CS2103T10 ct/1 2 3`                                                                                                                                    |
 | **List Contacts**         | `list contacts`                                                                                                                                                                                                                                                    |
 | **List Classes**          | `list classes`                                                                                                                                                                                                                                                     |
 | **List Assignments**      | `list assignments`                                                                                                                                                                                                                                                 |
 | **Find Contact**          | `findcontact n/CONTACT_NAME_KEYWORDS...` e.g., `findcontact n/alice bob`<br>`findcontact p/PHONE_NUMBER` e.g., `findcontact p/91234567`<br>`findcontact e/EMAIL` e.g., `findcontact e/alice@gmail.com`                                                             |
 | **Find Class**            | `findclass c/CLASS_NAME_KEYWORDS...` e.g., `findclass c/CS2103T CS2103`                                                                                                                                                                                            |
-| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass [ds/DEADLINE_START] [de/DEADLINE_END]` e.g., `findass ds/31-12-2024`  or `findass ds/31-12-2024 23:59 de/02-01-2024 23:59`                                                |
+| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass [ds/DEADLINE_START] [de/DEADLINE_END]` e.g., `findass ds/31-12-2024`  or `findass ds/31-12-2024 23:59 de/02-01-2025 23:59`                                                |
 | **View Details**          | `view ct/CONTACT_INDEX` e.g., `view ct/2`<br>`view c/CLASS_NAME` e.g., `view c/CS2103T T10 1`<br>`view ass/ASSIGNMENT_NAME` e.g., `view ass/Assignment 1`                                                                                                          |
 | **Edit**                  | `edit INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                               |
 | **Delete**                | `delete ct/CONTACT_INDICES...` e.g., `delete ct/3`<br>`delete ass/ASSIGNMENT_NAME` e.g., `delete ass/Assignment 1`<br>`delete c/CLASS_NAME` e.g., `delete c/CS2103T T14`                                                                                           |
