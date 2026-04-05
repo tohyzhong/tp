@@ -33,6 +33,8 @@ public class EditClassGroupCommand extends Command {
             + CliSyntax.PREFIX_CLASS + "CS2103T11";
 
     public static final String MESSAGE_EDIT_CLASS_GROUP_SUCCESS = "Edited Class Group: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
+            + EditClassGroupCommand.MESSAGE_USAGE;
     public static final String MESSAGE_DUPLICATE_CLASS_GROUP = "This class group already exists in the address book.";
 
     private final Index index;
