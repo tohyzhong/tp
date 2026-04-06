@@ -58,7 +58,7 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
                 : null;
 
         String tagString = argMultimap.getValue(CliSyntax.PREFIX_TAG).orElse("");
-        Set<Tag> tagList = ParserUtil.parseTags(tagString);
+        Set<Tag> tagList = ParserUtil.parseNonEmptyTags(tagString);
 
         Contact contact = new Contact(name, phone, email, address, tagList);
 

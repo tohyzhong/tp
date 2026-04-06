@@ -31,6 +31,7 @@ import cpp.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EMPTY_TAGS = "Tags should not be blank.";
     public static final String MESSAGE_EMPTY_INDICES = "Contact indices should not be blank.";
     public static final String MESSAGE_INVALID_DATETIME = """
             Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm""";
@@ -127,6 +128,14 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    public static Set<Tag> parseNonEmptyTags(String tags) throws ParseException {
+        Set<Tag> tagSet = ParserUtil.parseTags(tags);
+        if (tagSet.isEmpty()) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return tagSet;
     }
 
     /**
