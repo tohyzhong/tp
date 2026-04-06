@@ -1167,9 +1167,11 @@ Edits the details of an existing contact in the address book.
 
 **Examples:**
 
-* `list contacts` followed by `editcontact 1 p/91234567 e/johndoe@example.com` edits the phone number and email of the 1st contact in the displayed list to "91234567" and "<johndoe@example.com>" respectively.
+* `list contacts` followed by `editcontact 1 p/91234567 e/johndoe@example.com`<br>
+Edits the phone number and email of the 1st contact in the displayed list to "91234567" and "<johndoe@example.com>" respectively.
 
-* `findcontact n/Bets` followed by `editcontact 1 n/Betsy Crower t/` edits the name of the 1st contact in the filtered list to "Betsy Crower" and clears all existing tags.
+* `findcontact n/Bets` followed by `editcontact 1 n/Betsy Crower t/`<br>
+Edits the name of the 1st contact in the filtered list to "Betsy Crower" and clears all existing tags.
 
 ### Editing a class : `editclass`
 
@@ -1203,9 +1205,11 @@ Edits the name of an existing class in the address book.
 
 **Examples:**
 
-* `editclass 1 c/CS2103T T10 2` renames the 1st class in the displayed list to `CS2103T T10 2`.
+* `list classes` followed by `editclass 1 c/CS2103T T10 2`<br>
+Renames the 1st class in the displayed class list to `CS2103T T10 2`.
 
-* `editclass 2 c/Tutorial Group B` renames the 2nd class to `Tutorial Group B`.
+* `findclass c/Tutorial Group A` followed by `editclass 1 c/Tutorial Group B`<br>
+Renames the 1st class in the filtered list to `Tutorial Group B`.
 
 ### Editing an assignment : `editass`
 
@@ -1245,9 +1249,11 @@ Edits the details of an existing assignment in the address book.
 
 **Examples:**
 
-* `editass 1 ass/Assignment 1234 d/20-12-2026 23:59` edits the name and deadline of the 1st assignment.
+* `list assignments` followed by `editass 1 ass/Assignment 1234 d/20-12-2026 23:59`<br>
+Edits the name and deadline of the 1st assignment in the displayed assignment list to "Assignment 1234" and 20 December 2026 11.59pm respectively.
 
-* `editass 2 d/01-01-2027 00:00` edits only the deadline of the 2nd assignment.
+* `findass ass/Assignment 1` followed by `editass 1 d/01-01-2027 00:00`<br>
+Edits only the deadline of the 1st assignment in the filtered list to 1 January 2027 12.00am.
 
 ### Deleting contacts, assignments, or classes : `delete`
 
