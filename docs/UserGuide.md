@@ -333,7 +333,8 @@ Adds a contact to the address book.
 * `addct n/Jane Lee p/91234567 e/janelee@example.com a/45 Clementi Road t/monitoring remedial`<br>
   Creates a contact using the alias command `addct`, with tags "monitoring" and "remedial".
 
-  [IMAGE TO BE ADDED]
+  The screenshot below illustrates the expected display result of the last example. <br>
+  ![Add Contact Example](../images/command-results/addct-result.png)
 
 ### Adding classes: `addclass`
 
@@ -375,7 +376,8 @@ Adds a class to the address book.
 * `list contacts` followed by `addclass c/CS2103T T10 1 ct/1 2 3`<br>
   Creates a class with the name "CS2103T T10 1" allocated to the 1st, 2nd, and 3rd contacts.
 
-  [IMAGE TO BE ADDED]
+  The screenshot below illustrates the expected display result of the last example. <br>
+  ![Add Class Example](../images/command-results/addc-result.png)
 
 ### Allocating classes to contacts: `allocclass`
 
@@ -419,7 +421,8 @@ Allocates a class to specific contacts.
 * `list contacts` followed by `allocclass c/CS2103T T10 1 ct/1 2 3`<br>
   Allocates the class "CS2103T T10 1" to the 1st, 2nd, and 3rd contacts in the list.
 
-  [IMAGE TO BE ADDED]
+  The screenshot below illustrates the expected display result of the last example. <br>
+  ![Allocate Class Example](../images/command-results/allocc-result.png)
 
 ### Unallocating classes from contacts: `unallocclass`
 
@@ -462,8 +465,9 @@ Unallocates a class from specific contacts.
 
 * `list contacts` followed by `unallocclass c/CS2103T T10 1 ct/1 2 3`<br>
   Unallocates the class "CS2103T T10 1" from the 1st, 2nd, and 3rd contacts in the list.
-
-  [IMAGE TO BE ADDED]
+  
+  The screenshot below illustrates the expected display result of the last example. <br>
+  ![Unallocate Class Example](../images/command-results/unallocc-result.png)
 
 ### Adding assignments: `addass`
 
@@ -523,8 +527,8 @@ Adds an assignment to the address book.
 * `list contacts` followed by `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T T10 1 ct/4 5`<br>
   Creates an assignment with the name "Assignment 4" and deadline "15 Jan 2024 11.59pm", allocated to the 4th and 5th contacts in the list, as well as all contacts belonging to class "CS2103T T10 1".
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" consists of contacts 2-5.\
-  ![Creating and allocating Assignment 4](images/addass-result.png)
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" consists of contacts 2-5. <br>
+  ![Creating and allocating Assignment 4](images/command-results/addass-result.png)
 
 ### Allocating assignments to contacts: `allocass`
 
@@ -577,8 +581,8 @@ Allocates an assignment to specific contacts.
 * `allocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`<br>
   Allocates the "Assignment 3" to the 1st, 2nd, and 3rd contacts in the list, as well as all contacts belonging to class "CS2103T T10 1".
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 was already allocated the assignment.<br>
-  ![Allocating Assignment 3](images/allocass-result.png)
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 was already allocated the assignment.<br>
+  ![Allocating Assignment 3](images/command-results/allocass-result.png)
 
 ### Unallocating assignments from contacts: `unallocass`
 
@@ -631,8 +635,8 @@ Unallocates an assignment from specific contacts.
 * `unallocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`<br>
   Unallocates the "Assignment 3" from the 1st, 2nd, and 3rd contacts in the list, as well as all contacts belonging to class "CS2103T T10 1".
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, and only contacts 1, 2, 4, and 5 had the assignment allocated.<br>
-  ![Unallocating Assignment 3](images/unallocass-result.png)
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, and only contacts 1, 2, 4, and 5 had the assignment allocated.<br>
+  ![Unallocating Assignment 3](images/command-results/unallocass-result.png)
 
 ### Marking assignments as submitted for contacts: `submit`
 
@@ -695,9 +699,8 @@ Marks a specific assignment as submitted for the specified contacts.
 * `submit ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3 d/21-02-2026 23:50`<br>
   Marks "Assignment 3" as submitted for the 1st, 2nd, and 3rd contacts in the list, as well as all other contacts belonging to "CS2103T T10 1", with the specified submission date and time: 21 Feb 2026 11.50pm.
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 already has the assignment submitted.
-  
-  [IMAGE TO BE ADDED IN VIEW TAB]
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 already has the assignment submitted.
+  ![Submit Assignment Example](images/command-results/submit-result.png)
 
 ### Marking assignments as unsubmitted for contacts: `unsubmit`
 
@@ -754,9 +757,8 @@ Marks a specific assignment as unsubmitted for the specified contacts.
 * `unsubmit ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`<br>
   Marks "Assignment 3" as unsubmitted for the 1st, 2nd, and 3rd contacts in the list, as well as all other contacts belonging to "CS2103T T10 1".
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 did not have the assignment submitted.
-  
-  [IMAGE TO BE ADDED IN VIEW TAB]
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, and contact 3 did not have the assignment submitted. <br>
+  ![Unsubmit Assignment Example](images/command-results/unsubmit-result.png)
 
 ### Grading assignments for contacts: `grade`
 
@@ -825,9 +827,8 @@ Grades a specific assignment for the specified contacts with a score.
 * `grade ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3 s/67.9 d/21-02-2026 23:50`<br>
   Grades "Assignment 3" with a score of 67.9 for the 1st, 2nd, and 3rd contacts in the list, as well as all other contacts in "CS2103T T10 1", with 21 Feb 2026 11.50pm as the grading date.
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, contact 3 did not have the assignment submitted, and contact 4 submitted but the assignment was already graded.
-
-  [IMAGE TO BE ADDED IN VIEW TAB]
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, contact 3 did not have the assignment submitted, and contact 4 submitted but the assignment was already graded. <br>
+  ![Grade Assignment Example](images/command-results/grade-result.png)
 
 ### Ungrading assignments for contacts: `ungrade`
 
@@ -884,13 +885,14 @@ Ungrades a specific assignment for the specified contacts.
 * `ungrade ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`<br>
   Ungrades "Assignment 3" for the 1st, 2nd, and 3rd contacts in the list, as well as all other contacts in "CS2103T T10 1".
 
-  The screenshot below illustrates the last example, where the class "CS2103T T10 1" contains contacts 2-5, contact 3 did not have the assignment submitted, and contact 4 submitted but the assignment was not graded yet.
-
-  [IMAGE TO BE ADDED IN VIEW TAB]
+  The screenshot below illustrates the expected display result of the last example, where the class "CS2103T T10 1" contains contacts 2-5, contact 3 did not have the assignment submitted, and contact 4 submitted but the assignment was not graded yet. <br>
+  ![Ungrade Assignment Example](images/command-results/ungrade-result.png)
 
 ### Listing all contacts : `list contacts`
 
 Shows a list of all contacts in the address book.
+
+![Listing Contacts Example](images/command-results/list-ct-result.png)
 
 **Format:** `list contacts`
 
@@ -916,6 +918,8 @@ Shows a list of all contacts in the address book.
 
 Shows a list of all classes in the address book.
 
+![Listing Classes Example](images/command-results/list-c-result.png)
+
 **Format:** `list classes`
 
 * If no classes have been added yet, running this command will simply display an empty list. It will not generate an error.
@@ -939,6 +943,8 @@ Shows a list of all classes in the address book.
 ### Listing all assignments : `list assignments`
 
 Shows a list of all assignments in the address book.
+
+![Listing Assignments Example](images/command-results/list-ass-result.png)
 
 **Format:** `list assignments`
 
@@ -1133,6 +1139,8 @@ Shows the full details of a contact, class, or assignment.
 
 **Format:** `view ct/CONTACT_INDEX`
 
+![View Contact Details](images/command-results/view-ct-result.png)
+
 * Shows the full details of the contact at the specified `CONTACT_INDEX`.
 
 * The index refers to the index number shown in the displayed contact list.
@@ -1161,6 +1169,8 @@ Shows the full details of a contact, class, or assignment.
 
 **Format:** `view c/CLASS_NAME`
 
+![View Class Details](images/command-results/view-c-result.png)
+
 * Shows the full details of the class with the specified `CLASS_NAME`.
 
 * `CLASS_NAME` must match the name of an existing class (case-insensitive).
@@ -1178,6 +1188,8 @@ Shows the full details of a contact, class, or assignment.
 #### View assignment details
 
 **Format:** `view ass/ASSIGNMENT_NAME`
+
+![View Assignment Details](images/command-results/view-ass-result.png)
 
 * Shows the full details of the assignment with the specified `ASSIGNMENT_NAME`.
 
