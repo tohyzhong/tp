@@ -270,8 +270,6 @@ Shows a message explaining how to access the help page.
 
 ### Adding a contact: `addcontact`
 
-#### Alias: `addct`
-
 Adds a contact to the address book.
 
 **Format:** `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [c/CLASS_NAME] [ass/ASSIGNMENT_NAME] [t/TAGS...]`
@@ -316,7 +314,12 @@ Adds a contact to the address book.
 
 <box type="tip" seamless>
 
-**Tip:** A contact can have any number of tags (including 0)
+**Tips:**
+
+* A contact can have any number of tags (including 0)
+
+* You can use the command alias `addct` instead of `addcontact` if you prefer a shorter command word.
+
 </box>
 
 **Examples:**
@@ -356,6 +359,14 @@ Adds a class to the address book.
 
 </box>
 
+<box type="tip" seamless>
+
+**Tips:**
+
+* You can use the command alias `addc` instead of `addclass` if you prefer a shorter command word.
+
+</box>
+
 **Examples:**
 
 * `addclass c/CS2103T T10 1`<br>
@@ -392,6 +403,14 @@ Allocates a class to specific contacts.
 
 </box>
 
+<box type="tip" seamless>
+
+**Tips:**
+
+* You can use the command alias `allocc` instead of `allocclass` if you prefer a shorter command word.
+
+</box>
+
 **Examples:**
 
 * `list contacts` followed by `allocclass c/CS2103T T10 1 ct/1`<br>
@@ -425,6 +444,14 @@ Unallocates a class from specific contacts.
 * Unallocating a class from a contact that does not belong to that class will not cause any changes to the contact's class memberships. However, if no successful unallocations are performed at the end of the command, the command will fail and the user will see an error message specifying the issue.
 
 * Unallocating a class from a contact does not automatically include unallocating its assignments, as these are tracked individually by contact. The “unallocate by class” feature is designed as a time-saver to help you update several contacts simultaneously. You will need to additionally use the `unallocass` command to unallocate specific assignments from the contact if needed.
+
+</box>
+
+<box type="tip" seamless>
+
+**Tips:**
+
+* You can use the command alias `unallocc` instead of `unallocclass` if you prefer a shorter command word.
 
 </box>
 
@@ -533,7 +560,9 @@ Allocates an assignment to specific contacts.
 
 <box type="tip" seamless>
 
-**Tip:** You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to allocate the assignment to more contacts at the same time.
+**Tips:**
+
+* You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to allocate the assignment to more contacts at the same time.
 
 </box>
 
@@ -585,7 +614,9 @@ Unallocates an assignment from specific contacts.
 
 <box type="tip" seamless>
 
-**Tip:** You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to unallocate the assignment from more contacts at the same time.
+**Tips:**
+
+* You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to unallocate the assignment from more contacts at the same time.
 
 </box>
 
@@ -706,7 +737,9 @@ Marks a specific assignment as unsubmitted for the specified contacts.
 
 <box type="tip" seamless>
 
-**Tip:** You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to unsubmit the assignment from more contacts at the same time.
+**Tips:**
+
+* You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to unsubmit the assignment from more contacts at the same time.
 
 </box>
 
@@ -834,7 +867,9 @@ Ungrades a specific assignment for the specified contacts.
 
 <box type="tip" seamless>
 
-**Tip:** You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to ungrade the assignment from more contacts at the same time.
+**Tips:**
+
+* You can enter both the `c/CLASS_NAME` and `ct/CONTACT_INDICES...` parameters to ungrade the assignment from more contacts at the same time.
 
 </box>
 
@@ -869,7 +904,11 @@ Shows a list of all contacts in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+**Tips:**
+
+* You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+
+* You can use the tab alias `ct` instead of `contacts` if you prefer a shorter command. The command `list ct` will have the same effect as `list contacts`.
 
 </box>
 
@@ -889,7 +928,11 @@ Shows a list of all classes in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+**Tips:**
+
+* You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+
+* You can use the tab alias `c` instead of `classes` if you prefer a shorter command. The command `list c` will have the same effect as `list classes`.
 
 </box>
 
@@ -909,7 +952,11 @@ Shows a list of all assignments in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+**Tips:**
+
+* You may also click on the tabs to switch between `Contacts`, `Classes`, and `Assignments`. Note that this will not affect any existing filters on the displayed lists, unlike the `list <TAB>` command which will clear all filters and show all items in that category.
+
+* You can use the tab alias `ass` instead of `assignments` if you prefer a shorter command. The command `list ass` will have the same effect as `list assignments`.
 
 </box>
 
@@ -955,7 +1002,7 @@ Finds and displays contacts based on the specified criteria. You can search by c
 
 * If you would like to preserve the current filter but switch to a different tab, you may manually click on the `Classes` or `Assignments` tab. Note that clicking on the tabs will not clear existing filters, so you can still see the filtered contacts when you switch back to the `Contacts` tab.
 
-* You may shorten `findcontact` to `findct` for quicker access. The same rules and formats apply.
+* You may use the command alias `findct` instead of `findcontact` if you prefer a shorter command.
 
 </box>
 
@@ -999,7 +1046,11 @@ Finds and displays classes based on the specified criteria. You can search by cl
 
 <box type="tip" seamless>
 
-**Tip:** If you would like to preserve the current filter but switch to a different tab, you may manually click on the `Contacts` or `Assignments` tab. Note that clicking on the tabs will not clear existing filters, so you can still see the filtered classes when you switch back to the `Classes` tab.
+**Tips:**
+
+* If you would like to preserve the current filter but switch to a different tab, you may manually click on the `Contacts` or `Assignments` tab. Note that clicking on the tabs will not clear existing filters, so you can still see the filtered classes when you switch back to the `Classes` tab.
+
+* You may use the command alias `findc` instead of `findclass` if you prefer a shorter command.
 
 </box>
 
@@ -1092,13 +1143,17 @@ Shows the full details of a contact, class, or assignment.
 
 <box type="warning" seamless>
 
-**Warning:** Unlike previous listed commands, this `ct/` prefix requires exactly one contact index to be provided. If you provide more than one index (e.g., `view ct/1 2`), the command will fail and no detailed view of the contact will be displayed.
+**Warnings:**
+
+* Unlike previous listed commands, this `ct/` prefix requires exactly one contact index to be provided. If you provide more than one index (e.g., `view ct/1 2`), the command will fail and no detailed view of the contact will be displayed.
 
 </box>
 
 <box type="tip" seamless>
 
-**Tip:** In the detailed view, you can see the contact's name, phone number, email, classes they belong to, assignments allocated to them, and the submission and grading status for each allocated assignment. Any changes made to the contact's details, class memberships, or assignment allocations will be reflected in real-time in the detailed view as well.
+**Tips:**
+
+* In the detailed view, you can see the contact's name, phone number, email, classes they belong to, assignments allocated to them, and the submission and grading status for each allocated assignment. Any changes made to the contact's details, class memberships, or assignment allocations will be reflected in real-time in the detailed view as well.
 
 </box>
 
@@ -1114,7 +1169,9 @@ Shows the full details of a contact, class, or assignment.
 
 <box type="tip" seamless>
 
-**Tip:** In the detailed view, you can see the class name, and the list of contacts allocated to it. Any changes made to the class details or contact memberships will be reflected in real-time in the detailed view as well.
+**Tips:**
+
+* In the detailed view, you can see the class name, and the list of contacts allocated to it. Any changes made to the class details or contact memberships will be reflected in real-time in the detailed view as well.
 
 </box>
 
@@ -1130,7 +1187,9 @@ Shows the full details of a contact, class, or assignment.
 
 <box type="tip" seamless>
 
-**Tip:** In the detailed view, you can see the assignment's name, deadline, and the list of contacts allocated to it together with their submission and grading status. Any changes made to the assignment details, submission or grading status, and contact allocations will be reflected in real-time in the detailed view as well.
+**Tips:**
+
+* In the detailed view, you can see the assignment's name, deadline, and the list of contacts allocated to it together with their submission and grading status. Any changes made to the assignment details, submission or grading status, and contact allocations will be reflected in real-time in the detailed view as well.
 
 </box>
 
@@ -1170,7 +1229,11 @@ Edits the details of an existing contact in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** Ensure that you are in the correct tab view by using `list contacts` before editing to confirm the correct index. You can also use `findcontact` to narrow the list first.
+**Tips:**
+
+* Ensure that you are in the correct tab view by using `list contacts` before editing to confirm the correct index. You can also use `findcontact` to narrow the list first.
+
+* You may use the command alias `editct` instead of `editcontact` if you prefer a shorter command.
 
 </box>
 
@@ -1208,7 +1271,11 @@ Edits the name of an existing class in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** Ensure that you are in the correct tab view by using `list classes` before editing to confirm the correct index. You can also use `findclass` to narrow the list first.
+**Tips:**
+
+* Ensure that you are in the correct tab view by using `list classes` before editing to confirm the correct index. You can also use `findclass` to narrow the list first.
+
+* You may use the command alias `editc` instead of `editclass` if you prefer a shorter command.
 
 </box>
 
@@ -1252,7 +1319,9 @@ Edits the details of an existing assignment in the address book.
 
 <box type="tip" seamless>
 
-**Tip:** Ensure that you are in the correct tab view by using `list assignments` before editing to confirm the correct index. You can also use `findass` to narrow the list first.
+**Tips:**
+
+* Ensure that you are in the correct tab view by using `list assignments` before editing to confirm the correct index. You can also use `findass` to narrow the list first.
 
 </box>
 
@@ -1294,7 +1363,9 @@ Deletes the specified contact(s), assignment, or class from the address book.
 
 <box type="tip" seamless>
 
-**Tip:** Use `findcontact` before deleting to narrow the list and make sure you have the right index. You can also delete multiple contacts at once: `delete ct/1 3 5`.
+**Tips:**
+
+* Use `findcontact` before deleting to narrow the list and make sure you have the right index. You can also delete multiple contacts at once: `delete ct/1 3 5`.
 </box>
 
 **Examples:**
@@ -1327,7 +1398,9 @@ Deletes the specified contact(s), assignment, or class from the address book.
 
 <box type="tip" seamless>
 
-**Tip:** If you just want to remove a single student from a class, use `unallocclass` instead of deleting the entire class.
+**Tips:**
+
+* If you just want to remove a single student from a class, use `unallocclass` instead of deleting the entire class.
 
 </box>
 
@@ -1349,13 +1422,17 @@ Deletes the specified contact(s), assignment, or class from the address book.
 
 <box type="warning" seamless>
 
-**Warning:** Deleting an assignment removes it and all its grading records permanently. This cannot be undone.
+**Warnings:**
+
+* Deleting an assignment removes it and all its grading records permanently. This cannot be undone.
 
 </box>
 
 <box type="tip" seamless>
 
-**Tip:** Use `list assignments` to see all assignment names before deleting, so you can copy the exact name.
+**Tips:**
+
+* Use `list assignments` to see all assignment names before deleting, so you can copy the exact name.
 
 </box>
 
@@ -1486,32 +1563,32 @@ If you encounter other issues, please open a GitHub Issue in the [project reposi
 
 ## Command summary
 
-| Action                    | Format, Examples                                                                                                                                                                                                                                                         |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Help**                  | `help`                                                                                                                                                                                                                                                                   |
-| **Add Contact**           | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [c/CLASS_NAME] [ass/ASSIGNMENT_NAME] [t/TAGS...]` or `addct ...` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/CS2103T T10 1 ass/Assignment 1 t/friend colleague` |
-| **Add Class**             | `addclass c/CLASS_NAME [ct/CONTACT_INDICES...]` <br> e.g., `addclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                                           |
-| **Allocate Class**        | `allocclass c/CLASS_NAME ct/CONTACT_INDICES...` <br> e.g., `allocclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                                         |
-| **Unallocate Class**      | `unallocclass c/CLASS_NAME ct/CONTACT_INDICES...` <br> e.g., `unallocclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                                     |
-| **Add Assignment**        | `addass ass/ASSIGNMENT_NAME d/DEADLINE [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T T10 1 ct/4 5`                                                                                                            |
-| **Allocate Assignment**   | `allocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `allocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                                    |
-| **Unallocate Assignment** | `unallocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unallocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                                |
-| **Submit Assignment**     | `submit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] [d/SUBMISSION_DATE]` <br> e.g., `submit ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3 d/21-02-2026 23:50`                                                                                                  |
-| **Unsubmit Assignment**   | `unsubmit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unsubmit ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3`                                                                                                                                     |
-| **Grade Assignment**      | `grade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] s/SCORE [d/GRADING_DATE]` <br> e.g., `grade ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3 s/67.9 d/21-02-2026 23:50`                                                                                        |
-| **Ungrade Assignment**    | `ungrade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `ungrade ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3`                                                                                                                                       |
-| **List Contacts**         | `list contacts`                                                                                                                                                                                                                                                          |
-| **List Classes**          | `list classes`                                                                                                                                                                                                                                                           |
-| **List Assignments**      | `list assignments`                                                                                                                                                                                                                                                       |
-| **Find Contact**          | `findcontact n/CONTACT_NAME_KEYWORDS...` e.g., `findcontact n/alice bob`<br>`findcontact p/PHONE_NUMBER` e.g., `findcontact p/91234567`<br>`findcontact e/EMAIL` e.g., `findcontact e/alice@gmail.com`                                                                   |
-| **Find Class**            | `findclass c/CLASS_NAME_KEYWORDS...` e.g., `findclass c/CS2103T CS2103`                                                                                                                                                                                                  |
-| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass [ds/DEADLINE_START] [de/DEADLINE_END]` e.g., `findass ds/31-12-2024`  or `findass ds/31-12-2024 23:59 de/02-01-2025 23:59`                                                      |
-| **View Details**          | `view ct/CONTACT_INDEX` e.g., `view ct/2`<br>`view c/CLASS_NAME` e.g., `view c/CS2103T T10 1`<br>`view ass/ASSIGNMENT_NAME` e.g., `view ass/Assignment 1`                                                                                                                |
-| **Edit Contact**          | `editcontact INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAGS...]` <br> e.g., `editcontact 2 n/James Lee e/jameslee@example.com`                                                                                                                    |
-| **Edit Class**            | `editclass INDEX c/CLASS_NAME` <br> e.g., `editclass 1 c/CS2103T T10 2`                                                                                                                                                                                                  |
-| **Edit Assignment**       | `editass INDEX [ass/ASSIGNMENT_NAME] [d/DEADLINE]` <br> e.g., `editass 1 ass/Assignment 2 d/20-12-2026 23:59`                                                                                                                                                            |
-| **Delete**                | `delete ct/CONTACT_INDICES...` e.g., `delete ct/3`<br>`delete ass/ASSIGNMENT_NAME` e.g., `delete ass/Assignment 1`<br>`delete c/CLASS_NAME` e.g., `delete c/CS2103 T10 1 T14`                                                                                            |
-| **Clear**                 | `clear`                                                                                                                                                                                                                                                                  |
-| **Exit**                  | `exit`                                                                                                                                                                                                                                                                   |
+| Action                    | Format, Examples                                                                                                                                                                                                                                          | Command Aliases |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **Help**                  | `help`                                                                                                                                                                                                                                                    | None            |
+| **Add Contact**           | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [c/CLASS_NAME] [ass/ASSIGNMENT_NAME] [t/TAGS...]` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/CS2103T T10 1 ass/Assignment 1 t/friend colleague` | `addct`         |
+| **Add Class**             | `addclass c/CLASS_NAME [ct/CONTACT_INDICES...]` <br> e.g., `addclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                            | `addc`          |
+| **Allocate Class**        | `allocclass c/CLASS_NAME ct/CONTACT_INDICES...` <br> e.g., `allocclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                          | `allocc`        |
+| **Unallocate Class**      | `unallocclass c/CLASS_NAME ct/CONTACT_INDICES...` <br> e.g., `unallocclass c/CS2103T T10 1 ct/1 2 3`                                                                                                                                                      | `unallocc`      |
+| **Add Assignment**        | `addass ass/ASSIGNMENT_NAME d/DEADLINE [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `addass ass/Assignment 4 d/15-01-2024 23:59 c/CS2103T T10 1 ct/4 5`                                                                                             | None            |
+| **Allocate Assignment**   | `allocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `allocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                     | None            |
+| **Unallocate Assignment** | `unallocass ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unallocass ass/Assignment 3 c/CS2103T T10 1 ct/1 2 3`                                                                                                                 | None            |
+| **Submit Assignment**     | `submit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] [d/SUBMISSION_DATE]` <br> e.g., `submit ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3 d/21-02-2026 23:50`                                                                                   | None            |
+| **Unsubmit Assignment**   | `unsubmit ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `unsubmit ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3`                                                                                                                      | None            |
+| **Grade Assignment**      | `grade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...] s/SCORE [d/GRADING_DATE]` <br> e.g., `grade ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3 s/67.9 d/21-02-2026 23:50`                                                                         | None            |
+| **Ungrade Assignment**    | `ungrade ass/ASSIGNMENT_NAME [c/CLASS_NAME] [ct/CONTACT_INDICES...]` <br> e.g., `ungrade ass/Assignment 3 c/CS2103 T10 1 ct/1 2 3`                                                                                                                        | None            |
+| **List Contacts**         | `list contacts` or `list ct`                                                                                                                                                                                                                              | None            |
+| **List Classes**          | `list classes` or `list c`                                                                                                                                                                                                                                | None            |
+| **List Assignments**      | `list assignments` or `list ass`                                                                                                                                                                                                                          | None            |
+| **Find Contact**          | `findcontact n/CONTACT_NAME_KEYWORDS...` e.g., `findcontact n/alice bob`<br>`findcontact p/PHONE_NUMBER` e.g., `findcontact p/91234567`<br>`findcontact e/EMAIL` e.g., `findcontact e/alice@gmail.com`                                                    | `findct`        |
+| **Find Class**            | `findclass c/CLASS_NAME_KEYWORDS...` e.g., `findclass c/CS2103T CS2103`                                                                                                                                                                                   | `findc`         |
+| **Find Assignment**       | `findass ass/ASSIGNMENT_NAME_SEARCH_STRING` e.g., `findass ass/Assignment 1`<br>`findass [ds/DEADLINE_START] [de/DEADLINE_END]` e.g., `findass ds/31-12-2024`  or `findass ds/31-12-2024 23:59 de/02-01-2025 23:59`                                       | None            |
+| **View Details**          | `view ct/CONTACT_INDEX` e.g., `view ct/2`<br>`view c/CLASS_NAME` e.g., `view c/CS2103T T10 1`<br>`view ass/ASSIGNMENT_NAME` e.g., `view ass/Assignment 1`                                                                                                 | None            |
+| **Edit Contact**          | `editcontact INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAGS...]` <br> e.g., `editcontact 2 n/James Lee e/jameslee@example.com`                                                                                                     | `editct`        |
+| **Edit Class**            | `editclass INDEX c/CLASS_NAME` <br> e.g., `editclass 1 c/CS2103T T10 2`                                                                                                                                                                                   | `editc`         |
+| **Edit Assignment**       | `editass INDEX [ass/ASSIGNMENT_NAME] [d/DEADLINE]` <br> e.g., `editass 1 ass/Assignment 2 d/20-12-2026 23:59`                                                                                                                                             | None            |
+| **Delete**                | `delete ct/CONTACT_INDICES...` e.g., `delete ct/3`<br>`delete ass/ASSIGNMENT_NAME` e.g., `delete ass/Assignment 1`<br>`delete c/CLASS_NAME` e.g., `delete c/CS2103 T10 1 T14`                                                                             | None            |
+| **Clear**                 | `clear`                                                                                                                                                                                                                                                   | None            |
+| **Exit**                  | `exit`                                                                                                                                                                                                                                                    | None            |
 
 </div>
