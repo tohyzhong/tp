@@ -2,11 +2,10 @@ package cpp.logic.parser;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -32,11 +31,21 @@ import cpp.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EMPTY_TAGS = "Tags should not be blank.";
     public static final String MESSAGE_EMPTY_INDICES = "Contact indices should not be blank.";
+    public static final String MESSAGE_INVALID_DATE_OR_DATETIME = """
+            Invalid date or date and time format.\
+            Please use the format: dd-MM-yyyy for dates or dd-MM-yyyy HH:mm for date and time.
+            """;
     public static final String MESSAGE_INVALID_DATETIME = """
             Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm""";
     public static final String MESSAGE_INVALID_FUTURE_DATETIME = "Date and time cannot be in the future.";
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final String DATETIME_FORMAT_STRING = "dd-MM-yyyy HH:mm";
+    public static final String DATE_FORMAT_STRING = "dd-MM-yyyy";
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter
+            .ofPattern(ParserUtil.DATETIME_FORMAT_STRING);
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(ParserUtil.DATE_FORMAT_STRING);
+    private static ZoneId defaultZone = ZoneId.of("GMT+8");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -130,13 +139,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code String tags} into a {@code Set<Tag>} and checks that the set is
+     * not empty.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Tag> parseNonEmptyTags(String tags) throws ParseException {
+        Set<Tag> tagSet = ParserUtil.parseTags(tags);
+        if (tagSet.isEmpty()) {
+            throw new ParseException(ParserUtil.MESSAGE_EMPTY_TAGS);
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses {@code String tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(String tags) throws ParseException {
         Objects.requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(ParserUtil.parseTag(tagName));
+        String[] parts = tags.trim().split("\\s+");
+        Set<Tag> tagSet = new LinkedHashSet<>();
+        for (String part : parts) {
+            if (part.isBlank()) {
+                continue;
+            }
+            tagSet.add(ParserUtil.parseTag(part));
         }
         return tagSet;
     }
@@ -151,7 +176,7 @@ public class ParserUtil {
         try {
             parsedDateTime = LocalDateTime.parse(trimmedDatetime, ParserUtil.DATETIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date and time format. Please use the format: dd-MM-yyyy HH:mm");
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_DATETIME);
         }
         return parsedDateTime;
     }
@@ -162,10 +187,39 @@ public class ParserUtil {
      */
     public static LocalDateTime parseDateTime(String datetime) throws ParseException {
         LocalDateTime dateTime = ParserUtil.parseDeadline(datetime);
-        if (dateTime.isAfter(LocalDateTime.now())) {
+        if (dateTime.isAfter(LocalDateTime.now(ParserUtil.defaultZone))) {
             throw new ParseException(ParserUtil.MESSAGE_INVALID_FUTURE_DATETIME);
         }
         return dateTime;
+    }
+
+    /**
+     * Parses a {@code String datetime} into a {@code LocalDateTime} and checks if
+     * it is not in the future. The datetime is parsed in GMT timezone and converted
+     * to the default timezone.
+     */
+    public static LocalDateTime parseGmtDateTime(String datetime) throws ParseException {
+        LocalDateTime dateTime = ParserUtil.parseDeadline(datetime);
+        dateTime = dateTime.atZone(ZoneId.of("GMT")).withZoneSameInstant(ParserUtil.getDefaultZone()).toLocalDateTime();
+        if (dateTime.isAfter(LocalDateTime.now(ParserUtil.defaultZone))) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_FUTURE_DATETIME);
+        }
+        return dateTime;
+    }
+
+    /**
+     * Sets the default ZoneId.
+     */
+    public static void setDefaultZone(ZoneId zone) {
+        Objects.requireNonNull(zone);
+        ParserUtil.defaultZone = zone;
+    }
+
+    /**
+     * Returns the default ZoneId used.
+     */
+    public static ZoneId getDefaultZone() {
+        return ParserUtil.defaultZone;
     }
 
     /**
