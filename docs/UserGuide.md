@@ -214,7 +214,7 @@ In this quick tutorial, we will cover some common tasks such as listing contacts
     Command:
 
     ```text
-    findcontact dAviD IRFAN
+    findcontact n/dAviD IRFAN
     ```
 
     Expected: Confirmation message in result display and contact list updated to show only David Li and Irfan Ibrahim.
@@ -1384,7 +1384,7 @@ Deletes the specified contact(s), assignment, or class from the address book.
 
 * `list contacts` followed by `delete ct/2` deletes the 2nd contact in the displayed list.
 
-* `findcontact Betsy` followed by `delete ct/1` deletes the 1st contact in the filtered results.
+* `findcontact n/Betsy` followed by `delete ct/1` deletes the 1st contact in the filtered results.
 
 * `delete ct/1 3` deletes the 1st and 3rd contacts shown in the displayed list.
 
