@@ -389,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to `addcontact` for a contact with fields (Name, Phone, Email, Address, Class name, Assignment name, Tags).
+1. User requests to add a contact with fields (Name, Phone, Email, Address, Class name, Assignment name, Tags).
 1. System <u>[shows updated contact list (Use Case 2)](#use-case-2-list-contacts)</u>.
 1. Use case ends.
 
