@@ -36,11 +36,18 @@ public class ContactTest {
         // null -> returns false
         Assertions.assertFalse(TypicalContacts.ALICE.isSameContact(null));
 
-        // same name, all other attributes different -> returns true
-        Contact editedAlice = new ContactBuilder(TypicalContacts.ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+        // same name, same tags, all other attributes different -> returns true
+        Contact aliceContact = new ContactBuilder(TypicalContacts.ALICE)
+                .withPhone(CommandTestUtil.VALID_PHONE_AMY)
+                .withEmail(CommandTestUtil.VALID_EMAIL_AMY)
+                .withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+        Contact editedAlice = new ContactBuilder(TypicalContacts.ALICE)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withEmail(CommandTestUtil.VALID_EMAIL_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        Assertions.assertTrue(TypicalContacts.ALICE.isSameContact(editedAlice));
+                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+        Assertions.assertTrue(aliceContact.isSameContact(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new ContactBuilder(TypicalContacts.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
