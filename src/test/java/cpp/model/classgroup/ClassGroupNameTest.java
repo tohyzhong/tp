@@ -25,6 +25,9 @@ public class ClassGroupNameTest {
         Assertions.assertTrue(ClassGroupName.isValidName("12345")); // numbers only
         Assertions.assertTrue(ClassGroupName.isValidName("Group A")); // with capital letters
         Assertions.assertTrue(ClassGroupName.isValidName("Advanced Software Engineering Group 3")); // long name
+        Assertions.assertTrue(ClassGroupName.isValidName("CS2103-T10")); // with hyphen
+        Assertions.assertTrue(ClassGroupName.isValidName("Group (A)")); // with brackets
+        Assertions.assertTrue(ClassGroupName.isValidName("Tutorial (Mon-Wed)")); // with hyphen and brackets
     }
 
     @Test
