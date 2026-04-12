@@ -50,6 +50,7 @@ public class ContactNameTest {
         Assertions.assertTrue(ContactName.isValidName("-")); // just hyphen
         Assertions.assertTrue(ContactName.isValidName("(Alan)")); // name in brackets
     }
+
     }
 
     @Test

@@ -14,7 +14,8 @@ public class ContactName {
             Names should only contain alphanumeric characters and spaces. Special characters such as hyphens (-), forward slashes (/), and parentheses () are allowed to support naming conventions like hyphenated names (Anne-Marie), son/daughter indicators (s/o, d/o), and ethnic names in brackets (Tan Ah Beng (Alan)). The name should not be blank""";
 
     /*
-     * The first character of the address can be alphanumeric or a special character (/, -, ().
+     * The first character of the address can be alphanumeric or a special character
+     * (/, -, ().
      * This allows patterns like "s/o" and "-name" while preventing blank strings.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}/\\-()][\\p{Alnum} /\\-()]*";
