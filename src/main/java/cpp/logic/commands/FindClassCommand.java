@@ -22,8 +22,8 @@ public class FindClassCommand extends Command {
             + ": Finds all class groups whose names contain the specified search string "
             + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Alias: " + FindClassCommand.COMMAND_WORD_ALIAS + "\n"
-            + "Parameters: " + CliSyntax.PREFIX_CLASS + "CLASS_NAME_SEARCH_STRING...\n"
-            + "Example: " + FindClassCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_CLASS + "cs2103 cs2102";
+            + "Parameters: " + CliSyntax.PREFIX_CLASS + "CLASS_NAME_SEARCH_STRING\n"
+            + "Example: " + FindClassCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_CLASS + "cs2103t t10";
 
     private final ClassNameContainsKeywordsPredicate predicate;
 

@@ -31,14 +31,14 @@ public class FindContactCommand extends Command {
             + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Alias: " + FindContactCommand.COMMAND_WORD_ALIAS + "\n"
             + "Parameters: ["
-            + CliSyntax.PREFIX_NAME + "CONTACT_NAME_SEARCH_STRING...] ["
+            + CliSyntax.PREFIX_NAME + "CONTACT_NAME_SEARCH_STRING] ["
             + CliSyntax.PREFIX_PHONE + "PHONE_NUMBER_SEARCH_STRING] ["
             + CliSyntax.PREFIX_EMAIL + "EMAIL_SEARCH_STRING]\n"
             + "Exactly one of ["
-            + CliSyntax.PREFIX_NAME + "CONTACT_NAME_SEARCH_STRING...], ["
+            + CliSyntax.PREFIX_NAME + "CONTACT_NAME_SEARCH_STRING], ["
             + CliSyntax.PREFIX_PHONE + "PHONE_NUMBER_SEARCH_STRING], or ["
             + CliSyntax.PREFIX_EMAIL + "EMAIL_SEARCH_STRING] must be provided.\n"
-            + "Example: " + FindContactCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_NAME + "alice bob\n"
+            + "Example: " + FindContactCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_NAME + "tony tan\n"
             + "Example: " + FindContactCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_PHONE + "91234567\n"
             + "Example: " + FindContactCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_EMAIL + "alice@gmail.com";
 
