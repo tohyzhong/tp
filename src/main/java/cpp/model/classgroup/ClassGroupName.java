@@ -11,15 +11,15 @@ public class ClassGroupName {
 
     public static final String MESSAGE_CONSTRAINTS = """
             Class names must contain only alphanumeric characters, spaces, hyphens, and parentheses.
-            Hyphens "-" must be between two alphanumeric characters (not at the start or end).
+            Hyphens "-" must be between two alphanumeric characters.
             Open parenthesis "(" cannot be at the start of the name, and must have a closing parenthesis ")".
-            There can only be alphanumeric characters inside the parentheses, \
+            There can only be alphanumeric characters inside the parentheses (no nesting allowed), \
             and there must be at least 1 alphanumeric character.\nThe name should not be blank.""";
 
     /*
      * Class names must:
      * - Contain only alphanumeric, spaces, hyphens, and parentheses
-     * - Hyphens must be between two alphanumeric characters (not at start/end)
+     * - Hyphens must be between two alphanumeric characters
      * - Parentheses must contain at least one alphanumeric character and be closed
      * (not at start)
      */
