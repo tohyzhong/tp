@@ -25,7 +25,8 @@ public class JsonAdaptedClassGroupTest {
         AddressBook addressBook = new AddressBook();
         Contact sampleContact = new ContactBuilder().withId("aaaaaaaa-1111-2222-3333-cccccccccccc").build();
         addressBook.addContact(sampleContact);
-        JsonAdaptedClassGroup json = new JsonAdaptedClassGroup(TypicalClassGroups.CLASS_GROUP_ONE);
+        JsonAdaptedClassGroup json = new JsonAdaptedClassGroup(JsonAdaptedClassGroupTest.VALID_ID,
+                JsonAdaptedClassGroupTest.VALID_NAME, new String[] { "aaaaaaaa-1111-2222-3333-cccccccccccc" });
         Assertions.assertEquals(TypicalClassGroups.CLASS_GROUP_ONE, json.toModelType(addressBook));
     }
 
