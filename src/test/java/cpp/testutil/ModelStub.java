@@ -15,6 +15,7 @@ import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
+import cpp.model.contact.ContactName;
 import cpp.model.view.ViewState;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
@@ -70,6 +71,11 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasContact(Contact contact) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasMultipleContactsWithName(ContactName name) {
         throw new AssertionError("This method should not be called.");
     }
 

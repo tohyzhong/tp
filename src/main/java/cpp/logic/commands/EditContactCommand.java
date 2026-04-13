@@ -81,8 +81,17 @@ public class EditContactCommand extends Command {
 
         model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(Model.PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(
-                String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, Messages.format(editedContact)));
+
+        boolean hasDuplicateContactNameWithDifferentTags = model.hasMultipleContactsWithName(editedContact.getName());
+        String resultString = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS,
+                Messages.format(editedContact));
+        if (hasDuplicateContactNameWithDifferentTags) {
+            resultString += """
+                    \n\nWarning: A contact with the same name \
+                    but different tags already exists in the address book.
+                    You may ignore this warning if this edit is intentional.""";
+        }
+        return new CommandResult(resultString);
     }
 
     /**

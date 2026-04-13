@@ -36,7 +36,9 @@ public class UniqueContactListTest {
 
     @Test
     public void contains_contactWithSameIdentityFieldsInList_returnsTrue() {
-        this.uniqueContactList.add(TypicalContacts.ALICE);
+        this.uniqueContactList.add(new ContactBuilder(TypicalContacts.ALICE)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .build());
         Contact editedAlice = new ContactBuilder(TypicalContacts.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
