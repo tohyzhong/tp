@@ -1331,7 +1331,9 @@ Edits the name of an existing class in the address book.
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-* The new `CLASS_NAME` cannot be blank, and must not match the name of any other existing class (space-less and case-insensitive matching).
+* The `CLASS_NAME` provided must be valid according to the criteria specified in the feature documentation on [**Adding classes**](#adding-classes-addclass).
+
+* Matching for `CLASS_NAME` will be space-less and case insensitive. For example, "CS2103T Tutorial Group 10" will be treated the same as "cs2103ttutorialgroup10".
 
 * All contacts previously allocated to this class will remain allocated after the edit.
 
@@ -1377,7 +1379,9 @@ Edits the details of an existing assignment in the address book.
 
 * Existing values will be overwritten by the input values.
 
-* The new `ASSIGNMENT_NAME` cannot be blank, and must not match the name of any existing assignment (space-less and case-insensitive matching).
+* The `ASSIGNMENT_NAME` provided must be valid according to the criteria specified in the feature documentation on [**Adding assignments**](#adding-assignments-addass).
+
+* Matching for `ASSIGNMENT_NAME` will be space-less and case insensitive. For example, "Assignment 1" will be treated the same as "assignment1".
 
 * The `DEADLINE` provided must be in the format `dd-MM-yyyy HH:mm`.
 
