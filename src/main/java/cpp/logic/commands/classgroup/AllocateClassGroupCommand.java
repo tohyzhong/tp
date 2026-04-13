@@ -37,7 +37,7 @@ public class AllocateClassGroupCommand extends Command {
             + CliSyntax.PREFIX_CLASS + "CLASS_NAME "
             + CliSyntax.PREFIX_CONTACT + "CONTACT_INDICES...\n"
             + "Example: " + AllocateClassGroupCommand.COMMAND_WORD + " "
-            + CliSyntax.PREFIX_CLASS + "CS2103T10 "
+            + CliSyntax.PREFIX_CLASS + "CS2103T T10 1 "
             + CliSyntax.PREFIX_CONTACT + "1 2 3";
 
     public static final String MESSAGE_SUCCESS = """
@@ -95,7 +95,7 @@ public class AllocateClassGroupCommand extends Command {
         }
 
         return new CommandResult(
-                String.format(AllocateClassGroupCommand.MESSAGE_SUCCESS, this.classGroupName.fullName,
+                String.format(AllocateClassGroupCommand.MESSAGE_SUCCESS, classGroupToAllocate.getName().fullName,
                         this.successfulAllocationCount, this.successfulContactAllocations.toString(),
                         this.unsuccessfulContactAllocations.toString()));
     }

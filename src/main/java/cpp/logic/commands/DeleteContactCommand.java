@@ -1,8 +1,10 @@
 package cpp.logic.commands;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import cpp.commons.core.index.Index;
 import cpp.commons.util.ToStringBuilder;
@@ -30,14 +32,11 @@ public class DeleteContactCommand extends DeleteCommand {
         Objects.requireNonNull(model);
         List<Contact> lastShownList = model.getFilteredContactList();
 
-        for (Index index : this.targetIndices) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
-            }
-        }
+        CommandUtil.checkContactIndices(lastShownList, this.targetIndices);
 
+        Set<Index> uniqueIndices = new LinkedHashSet<>(this.targetIndices);
         List<Contact> contactsToDelete = new ArrayList<>();
-        for (Index index : this.targetIndices) {
+        for (Index index : uniqueIndices) {
             contactsToDelete.add(lastShownList.get(index.getZeroBased()));
         }
 
