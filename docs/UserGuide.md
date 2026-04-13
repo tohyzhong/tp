@@ -348,11 +348,11 @@ Adds a contact to the address book.
 
 **Examples:**
 
-* `addcontact n/Betsy Crowe e/betsycrowe@example.com a/Betsy Street, Block 123, #06-07 p/1234567` <br>
-  Creates a contact with the name "Betsy Crowe", phone number "1234567", email "betsycrowe<span></span>@example.com", address "Betsy Street, Block 123, #06-07"
+* `addcontact n/Betsy-Crowe (Class 2) e/betsycrowe@example.com a/Betsy Street, Block 123, #06-07 p/1234567` <br>
+  Creates a contact with the name "Betsy-Crowe (Class 2)", phone number "1234567", email "betsycrowe<span></span>@example.com", address "Betsy Street, Block 123, #06-07"
 
-* `addcontact n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/CS2103T T10 1 ass/Assignment 1 t/friends owesMoney`<br>
-  Creates a contact with the name "John Doe", phone number "98765432", email "johnd<span></span>@example.com", address "311, Clementi Ave 2, #02-25", allocated to class group "CS2103T T10 1" and assignment "Assignment 1", with tags "friends" and "owesMoney".
+* `addcontact n/John s/o Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/CS2103T T10 1 ass/Assignment 1 t/friends owesMoney`<br>
+  Creates a contact with the name "John s/o Doe", phone number "98765432", email "johnd<span></span>@example.com", address "311, Clementi Ave 2, #02-25", allocated to class group "CS2103T T10 1" and assignment "Assignment 1", with tags "friends" and "owesMoney".
 
 * `addct n/Jane Lee p/91234567 e/janelee@example.com a/45 Clementi Road t/monitoring remedial`<br>
   Creates a contact using the alias command `addct`, with tags "monitoring" and "remedial".
@@ -412,8 +412,8 @@ Adds a class to the address book.
 
 **Examples:**
 
-* `addclass c/CS2103T T10 1`<br>
-  Creates a class with the name "CS2103T T10 1".
+* `addclass c/CS2103T-T10-1 (NUS)`<br>
+  Creates a class with the name "CS2103T-T10-1 (NUS)".
 
 * `list contacts` followed by `addclass c/CS2103T T10 1 ct/1 2 3`<br>
   Creates a class with the name "CS2103T T10 1" allocated to the 1st, 2nd, and 3rd contacts.
@@ -575,11 +575,11 @@ Adds an assignment to the address book.
 
 **Examples:**
 
-* `addass ass/Assignment 1 d/01-12-2023 23:59`<br>
-  Creates an assignment with the name "Assignment 1" and deadline "1 Dec 2023 11.59pm".
+* `addass ass/Assignment-1 (CS2103T) d/01-12-2023 23:59`<br>`
+  Creates an assignment with the name "Assignment-1 (CS2103T)" and deadline "1 Dec 2023 11.59pm".
 
-* `addass ass/Assignment 2 d/15-12-2023 23:59 c/CS2103T T10 1`<br>
-  Creates an assignment with the name "Assignment 2" and deadline "15 Dec 2023 11.59pm", allocated to all contacts belonging to class "CS2103T T10 1".
+* `addass ass/Assignment 2 d/15-12-2023 23:59 c/CS2103T-T10-1 (NUS)`<br>
+  Creates an assignment with the name "Assignment 2" and deadline "15 Dec 2023 11.59pm", allocated to all contacts belonging to class "CS2103T-T10-1 (NUS)".
 
 * `list contacts` followed by `addass ass/Assignment 3 d/30-12-2023 23:59 ct/1 2 3`<br>
   Creates an assignment with the name "Assignment 3" and deadline "30 Dec 2023 11.59pm", allocated to the 1st, 2nd, and 3rd contacts in the list.
