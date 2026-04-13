@@ -3,8 +3,7 @@ package cpp.model.contact;
 import cpp.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Contact}'s {@code Phone} matches exactly with the given
- * keyword (case-insensitive).
+ * Tests that a {@code Contact}'s {@code Phone} contains the given keyword.
  */
 public class ContactPhoneMatchesKeywordsPredicate implements ContactSearchPredicate {
     private final String searchString;

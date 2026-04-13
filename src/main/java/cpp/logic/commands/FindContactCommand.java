@@ -11,15 +11,15 @@ import cpp.model.contact.ContactSearchPredicate;
 /**
  * Finds and lists all contacts in address book using the {@code findcontact}
  * ({@code findct}) command.
- * <p>
+ * 
  * Supports three search modes:
- * <br>
+ * 
  * - Name search: finds contacts whose names contain any of the specified
  * keywords (case-insensitive, keyword-based search).<br>
- * - Phone search: finds contacts whose phone number matches the specified value
- * exactly.<br>
- * - Email search: finds contacts whose email address matches the specified
- * value exactly (case-insensitive).
+ * - Phone search: finds contacts whose phone number contains the specified
+ * value.
+ * - Email search: finds contacts whose email address contains the specified
+ * value (case-insensitive).
  */
 public class FindContactCommand extends Command {
 
@@ -27,7 +27,7 @@ public class FindContactCommand extends Command {
     public static final String COMMAND_WORD_ALIAS = "findct";
 
     public static final String MESSAGE_USAGE = FindContactCommand.COMMAND_WORD
-            + ": Finds all contacts whose names, classes, or emails contains the specified search string "
+            + ": Finds all contacts whose names, phones, or emails contain the specified search string "
             + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Alias: " + FindContactCommand.COMMAND_WORD_ALIAS + "\n"
             + "Parameters: ["
