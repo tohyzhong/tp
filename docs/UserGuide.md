@@ -302,7 +302,7 @@ Adds a contact to the address book.
 
 * Unique contacts will be identified with a combination of their `CONTACT_NAME` and `TAGS`. If you need to add multiple contacts with the same name, it is recommended to disambiguate them using different tags.
 
-* Matching for `CONTACT_NAME` will be space-less and case insensitive. For example, "Alex Yeoh" will be treated the same as "alexyeoh".
+* Matching for `CONTACT_NAME` will be space-less and case-insensitive. For example, "Alex Yeoh" will be treated the same as "alexyeoh".
 
 * The `PHONE_NUMBER` provided must only contain numeric digits (0-9), be a minimum of 3 digits long, and cannot be blank.
 
@@ -1281,7 +1281,7 @@ Edits the details of an existing contact in the address book.
 
 * The `CONTACT_NAME` provided must be valid according to the criteria specified in the feature documentation on [**Adding a contact**](#adding-a-contact-addcontact).
 
-* Matching for `CONTACT_NAME` will be space-less and case insensitive. For example, "Alex Yeoh" will be treated the same as "alexyeoh".
+* Matching for `CONTACT_NAME` will be space-less and case-insensitive. For example, "Alex Yeoh" will be treated the same as "alexyeoh".
 
 * The edited contact must not have a combination of `CONTACT_NAME` and `TAGS` that is the same as another existing contact (space-less and case-insensitive matching). For example, if there is already a contact named "Alice Tan" with the tag "friend", you cannot edit another contact to have the name "alice tan" with the tag "Friend".
 
@@ -1329,7 +1329,7 @@ Edits the name of an existing class in the address book.
 
 * The `CLASS_NAME` provided must be valid according to the criteria specified in the feature documentation on [**Adding classes**](#adding-classes-addclass).
 
-* Matching for `CLASS_NAME` will be space-less and case insensitive. For example, "CS2103T Tutorial Group 10" will be treated the same as "cs2103ttutorialgroup10".
+* Matching for `CLASS_NAME` will be space-less and case-insensitive. For example, "CS2103T Tutorial Group 10" will be treated the same as "cs2103ttutorialgroup10".
 
 * All contacts previously allocated to this class will remain allocated after the edit.
 
@@ -1377,7 +1377,7 @@ Edits the details of an existing assignment in the address book.
 
 * The `ASSIGNMENT_NAME` provided must be valid according to the criteria specified in the feature documentation on [**Adding assignments**](#adding-assignments-addass).
 
-* Matching for `ASSIGNMENT_NAME` will be space-less and case insensitive. For example, "Assignment 1" will be treated the same as "assignment1".
+* Matching for `ASSIGNMENT_NAME` will be space-less and case-insensitive. For example, "Assignment 1" will be treated the same as "assignment1".
 
 * The `DEADLINE` provided must be in the format `dd-MM-yyyy HH:mm`.
 
