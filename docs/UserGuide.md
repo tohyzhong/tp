@@ -276,17 +276,29 @@ Adds a contact to the address book.
 
 * Creates a contact with the specified `CONTACT_NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS`.
 
-* The `CONTACT_NAME` provided must contain only alphanumeric characters, spaces, `s/o` or `d/o` patterns, hyphens `-`, and parentheses `()`.
+* The `CONTACT_NAME` provided must contain only alphanumeric characters, spaces, `s/o` or `d/o` patterns, hyphens `-`, and parentheses `()`, subject to the following constraints:
 
-  * Forward slashes `/` are only allowed in `s/o` or `d/o` patterns (case-insensitive).
+  * `CONTACT_NAME` must start with an alphabetic character.
 
-  * Hyphens `-` must be between two alphanumeric characters (not at the start or end).
+  * `CONTACT_NAME` must not be blank.
 
-  * Open parenthesis `(` cannot be at the start of the name, and must have a closing parenthesis `)`.
+  * Forward slashes `/` are only allowed in `s/o` or `d/o` patterns (case-insensitive), and must follow the pattern `[Name] [s/o or d/o] [Name]`, requiring at least one word before and after the space-delimited separator.
 
-  * There can only be alphanumeric characters inside the parentheses, and there must be at least 1 alphanumeric character.
+  * `s/o` and `d/o` patterns may only appear once in `CONTACT_NAME`
 
-  * The name should not be blank.
+  * Hyphens `-` must be between two alphanumeric characters.
+
+  * Parentheses must:
+
+    * Not be at the start of the name
+
+    * Contain only spaces and alphanumeric characters, with at least 1 alphanumeric character
+
+    * Be properly closed (No nesting allowed)
+
+    * Open parenthesis `(` must be immediately followed by an alphanumeric character
+
+    * Closing parenthesis `)` must be immediately preceded by an alphanumeric character.
 
 * Unique contacts will be identified with a combination of their `CONTACT_NAME` and `TAGS`. If you need to add multiple contacts with the same name, it is recommended to disambiguate them using different tags.
 
@@ -354,7 +366,27 @@ Adds a class to the address book.
 
 **Format:** `addclass c/CLASS_NAME [ct/CONTACT_INDICES...]`
 
-* Creates a class with the specified `CLASS_NAME`. The `CLASS_NAME` must only contain alphanumeric characters and spaces. It cannot be blank, must be unique, and should not match the name of any existing class (space-less and case-insensitive matching).
+* Creates a class with the specified `CLASS_NAME`. The `CLASS_NAME` must only contain alphanumeric characters, spaces, hyphens `-`, and parentheses `()`, subject to the following constraints:
+
+  * The class name should not be blank.
+
+  * Hyphens `-` must be between two alphanumeric characters.
+
+  * Open parenthesis `(` cannot be at the start of the name, and must have a closing parenthesis `)`.
+
+  * Parentheses must:
+
+    * Not be at the start of the name
+
+    * Contain only spaces and alphanumeric characters, with at least 1 alphanumeric character
+
+    * Be properly closed (No nesting allowed)
+
+    * Open parenthesis `(` must be immediately followed by an alphanumeric character
+
+    * Closing parenthesis `)` must be immediately preceded by an alphanumeric character.
+
+* `CLASS_NAME` should not match the name of any existing class (space-less and case-insensitive matching). If you wish to add multiple different classes with the same name, you are advised to disambiguate them manually.
 
 * `ct/CONTACT_INDICES...` is optional and can be used to allocate the class to specific contacts upon creation. If the `ct/` prefix is included, at least 1 contact index must be specified.
 
@@ -489,7 +521,27 @@ Adds an assignment to the address book.
 
 * Creates an assignment with the specified `ASSIGNMENT_NAME` and `DEADLINE`.
 
-* The `ASSIGNMENT_NAME` must only contain alphanumeric characters and spaces. It cannot be blank, must be unique, and should not match the name of any existing assignment (space-less and case-insensitive matching). If you wish to add multiple different assignments with the same name but for different classes, you are advised to disambiguate them manually.
+* The `ASSIGNMENT_NAME` must only contain alphanumeric characters, spaces, hyphens `-`, and parentheses `()`, subject to the following constraints:
+
+  * The assignment name should not be blank.
+
+  * Hyphens `-` must be between two alphanumeric characters.
+
+  * Open parenthesis `(` cannot be at the start of the name, and must have a closing parenthesis `)`.
+
+  * Parentheses must:
+
+    * Not be at the start of the name
+
+    * Contain only spaces and alphanumeric characters, with at least 1 alphanumeric character
+
+    * Be properly closed (No nesting allowed)
+
+    * Open parenthesis `(` must be immediately followed by an alphanumeric character
+
+    * Closing parenthesis `)` must be immediately preceded by an alphanumeric character.
+
+* `ASSIGNMENT_NAME` should not match the name of any existing assignment (space-less and case-insensitive matching). If you wish to add multiple different assignments with the same name but for different classes, you are advised to disambiguate them manually.
 
 * The `DEADLINE` provided must be in the format `dd-MM-yyyy HH:mm`.
 
@@ -989,8 +1041,8 @@ Finds and displays contacts based on the specified criteria. You can search by c
 **Format:**
 
 1. `findcontact n/CONTACT_NAME_SEARCH_STRING` — search by name
-1. `findcontact p/PHONE_NUMBER` — search by phone number
-1. `findcontact e/EMAIL` — search by email address
+1. `findcontact p/PHONE_NUMBER_SEARCH_STRING` — search by phone number
+1. `findcontact e/EMAIL_SEARCH_STRING` — search by email address
 
 * **Name search `n/`:** The command will find contacts whose names contain the specified substring (case-insensitive). For example, `findcontact n/alice` will return all contacts whose name contains "alice".
 
