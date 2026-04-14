@@ -29,7 +29,8 @@ Given below are my contributions to the project:
 
 ## Project Management
 
-* Co-managed the main bulk of the issue tracker and releases from milestones `v1.1` - `v1.6` on GitHub together with [tohyzhong](./tohyzhong.md)
+* Managed release `v1.5` on GitHub
+* Co-managed the main bulk of the issue tracker and releases from milestones `v1.1` - `v1.4` and `v1.6` on GitHub together with [tohyzhong](./tohyzhong.md)
 * Updated milestone deadlines based on project progress and team availability
 * Reviewed all PE-D bug reports with [tohyzhong](./tohyzhong.md), and organised the bug reports by assigning labels based on report type and severity.
 * Reviewed and merged [49 pull requests](https://github.com/AY2526S2-CS2103T-T10-1/tp/issues?q=state%3Aclosed%20is%3Apr%20reviewed-by%3ABlerargh%20sort%3Acomments-desc) from other team members out of the 108 PRs closed, and provided detailed review comments for improvements where necessary.

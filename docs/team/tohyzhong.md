@@ -45,7 +45,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2526-s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2026-02-20T00%3A00%3A00&filteredFileName=&tabOpen=true&tabType=authorship&tabAuthor=tohyzhong&tabRepo=AY2526S2-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.6` (6 releases) on GitHub
+  * Managed releases `v1.1` - `v1.4` and `v1.6` (5 releases) on GitHub
+  * Co-managed release `v1.5` with [Blerargh](./blerargh.md)
   * Added GitHub project safeguards: enabled branch protection rules (PR protection)
   * Enabled the issue tracker with custom issues
   * Created milestones for release planning
