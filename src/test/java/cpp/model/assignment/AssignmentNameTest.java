@@ -32,7 +32,9 @@ public class AssignmentNameTest {
         Assertions.assertFalse(AssignmentName.isValidName("")); // empty string
         Assertions.assertFalse(AssignmentName.isValidName(" ")); // spaces only
         Assertions.assertFalse(AssignmentName.isValidName("^")); // only non-alphanumeric characters
-        Assertions.assertFalse(AssignmentName.isValidName("peter*")); // contains non-alphanumeric characters
+        Assertions.assertFalse(AssignmentName.isValidName("peter*")); // contains invalid character
+        Assertions.assertFalse(AssignmentName.isValidName("-Assignment")); // hyphen at start
+        Assertions.assertFalse(AssignmentName.isValidName("/Assignment")); // slash at start
     }
 
     @Test

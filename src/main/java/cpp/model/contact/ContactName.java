@@ -11,13 +11,39 @@ import cpp.commons.util.AppUtil;
 public class ContactName {
 
     public static final String MESSAGE_CONSTRAINTS = """
-            Names should only contain alphanumeric characters and spaces, and it should not be blank""";
+            Contact names must start with an alphabetic character, and only contain alphanumeric characters, \
+            spaces, "s/o" or "d/o" patterns, hyphens, and parentheses.
+            The contact name should not be blank.
+            Forward slashes "/" are only allowed in "s/o" or "d/o" patterns (case-insensitive), and must follow the \
+            pattern [Name] [s/o or d/o] [Name], \
+            requiring at least one word before and after the space-delimited separator.
+            "s/o" and "d/o" patterns are only allowed once in a name.
+            Hyphens "-" must be between two alphanumeric characters.
+            Parentheses must:
+                - Not be at the start of the name
+                - Contain only spaces and alphanumeric characters, with at least 1 alphanumeric character
+                - Be properly closed (No nesting allowed)
+                - Open parenthesis "(" must be immediately followed by an alphanumeric character
+                - Closing parenthesis ")" must be immediately preceded by an alphanumeric character.""";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Names must:
+     * - Start with an alphabetic character [A-Za-z]
+     * - Contain only alphanumeric, spaces, s/o, d/o, hyphens, and parentheses
+     * - Slashes only allowed in patterns: s/o, d/o (case-insensitive)
+     * - Hyphens must be between two alphanumeric characters
+     * - Parentheses must contain at least one alphanumeric character and be closed
+     * (not at start)
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = """
+            ^\
+            (?!(.*[sSdD]/[oO]){2,})\
+            [A-Za-z]\
+            ([\\p{Alnum} ]\
+            |(?<=[\\p{Alnum}])-(?=[\\p{Alnum}])\
+            |(?<=[\\p{Alnum}\\)] )[sSdD]/[oO](?= [\\(\\p{Alnum}])\
+            |\\([\\p{Alnum}](?:[\\p{Alnum} ]*[\\p{Alnum}])?\\))*\
+            $""";
 
     public final String fullName;
 

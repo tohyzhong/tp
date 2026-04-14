@@ -10,13 +10,29 @@ import cpp.commons.util.AppUtil;
 public class AssignmentName {
 
     public static final String MESSAGE_CONSTRAINTS = """
-            Assignment names should only contain alphanumeric characters and spaces, and it should not be blank""";
+            Assignment names must contain only alphanumeric characters, spaces, hyphens, and parentheses.
+            The assignment name should not be blank.
+            Hyphens "-" must be between two alphanumeric characters.
+            Open parenthesis "(" cannot be at the start of the name, and must have a closing parenthesis ")".
+            Parentheses must:
+                - Not be at the start of the name
+                - Contain only spaces and alphanumeric characters, with at least 1 alphanumeric character
+                - Be properly closed (No nesting allowed)
+                - Open parenthesis "(" must be immediately followed by an alphanumeric character
+                - Closing parenthesis ")" must be immediately preceded by an alphanumeric character.""";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Assignment names must:
+     * - Contain only alphanumeric, spaces, hyphens, and parentheses
+     * - Hyphens must be between two alphanumeric characters
+     * - Parentheses must contain at least one alphanumeric character and be closed
+     * (not at start)
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = """
+            [\\p{Alnum}](\
+            [\\p{Alnum} ]\
+            |(?<=[\\p{Alnum}])-(?=[\\p{Alnum}])\
+            |\\([\\p{Alnum}]([\\p{Alnum} ]*[\\p{Alnum}])?\\))*""";
 
     public final String fullName;
 

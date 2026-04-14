@@ -12,6 +12,7 @@ import cpp.model.assignment.ContactAssignmentWithAssignment;
 import cpp.model.assignment.ContactAssignmentWithContact;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.contact.Contact;
+import cpp.model.contact.ContactName;
 import cpp.model.view.ViewState;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
@@ -72,6 +73,12 @@ public interface Model {
      * the address book.
      */
     boolean hasContact(Contact contact);
+
+    /**
+     * Returns true if a contact with the same name as {@code name} exists in the
+     * address book.
+     */
+    boolean hasMultipleContactsWithName(ContactName name);
 
     /**
      * Deletes the given contact.

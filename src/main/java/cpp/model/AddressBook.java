@@ -12,6 +12,7 @@ import cpp.model.assignment.UniqueContactAssignmentList;
 import cpp.model.classgroup.ClassGroup;
 import cpp.model.classgroup.UniqueClassGroupList;
 import cpp.model.contact.Contact;
+import cpp.model.contact.ContactName;
 import cpp.model.contact.UniqueContactList;
 import javafx.collections.ObservableList;
 
@@ -118,6 +119,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasContact(Contact contact) {
         Objects.requireNonNull(contact);
         return this.contacts.contains(contact);
+    }
+
+    /**
+     * Returns true if a contact with the same name as {@code name} exists in the
+     * address book.
+     */
+    public boolean hasMultipleContactsWithName(ContactName name) {
+        Objects.requireNonNull(name);
+        return this.contacts.containsMultipleContactsWithName(name);
     }
 
     /**

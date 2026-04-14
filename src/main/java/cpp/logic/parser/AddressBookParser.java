@@ -107,11 +107,11 @@ public class AddressBookParser {
 
         case FindContactCommand.COMMAND_WORD:
         case FindContactCommand.COMMAND_WORD_ALIAS:
-            return new FindContactCommandParser().parse(arguments);
+            return new FindContactCommandParser().parse(untrimmedArguments);
 
         case FindClassCommand.COMMAND_WORD:
         case FindClassCommand.COMMAND_WORD_ALIAS:
-            return new FindClassCommandParser().parse(arguments);
+            return new FindClassCommandParser().parse(untrimmedArguments);
 
         case FindAssignmentCommand.COMMAND_WORD:
             return new FindAssignmentCommandParser().parse(untrimmedArguments);

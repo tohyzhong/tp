@@ -97,7 +97,8 @@ public class Contact {
         }
 
         return otherContact != null
-                && otherContact.getName().equals(this.getName());
+                && otherContact.getName().equals(this.getName())
+                && otherContact.getTags().equals(this.getTags());
     }
 
     /**

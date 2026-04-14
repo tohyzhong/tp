@@ -33,6 +33,8 @@ public class ClassGroupNameTest {
         Assertions.assertFalse(ClassGroupName.isValidName(" ")); // spaces only
         Assertions.assertFalse(ClassGroupName.isValidName("^")); // only non-alphanumeric characters
         Assertions.assertFalse(ClassGroupName.isValidName("Group@1")); // contains non-alphanumeric characters
+        Assertions.assertFalse(ClassGroupName.isValidName("-Group")); // hyphen at start
+        Assertions.assertFalse(ClassGroupName.isValidName("/Group")); // slash at start
     }
 
     @Test
